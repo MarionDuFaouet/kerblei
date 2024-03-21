@@ -1,0 +1,18 @@
+{
+    "name": "marion/kerblei",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Marion\\Kerblei\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MarionDuFaouet",
+            "email": "lozachm@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
