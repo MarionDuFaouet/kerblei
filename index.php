@@ -23,9 +23,9 @@ if (isset($_GET["action"])) {
 	$action = $_GET["action"];
 }
 
-// // Redirect to the corresponding action
-// $file = redirectTo($action);
-// require RACINE . "/controller/" . $file;
+// Redirect to the corresponding action
+$file = redirectTo($action);
+require RACINE . "/controller/" . $file;
 
 ?>
 
