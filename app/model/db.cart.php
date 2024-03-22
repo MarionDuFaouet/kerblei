@@ -71,7 +71,7 @@ function getCartByStatement($statement){
 function updateCartStatement($cartId, $newStatus){
     try {
         $cnx = connexionPDO();
-        $query = $conn->prepare("UPDATE `Cart` SET status = :newStatus WHERE cartId = :cartId");
+        $query = $cnx->prepare("UPDATE `Cart` SET `statement` = :newStatus WHERE cartId = :cartId");
         $query->bindValue(':newStatus', $newStatus, PDO::PARAM_STR);
         $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
         $query->execute();
