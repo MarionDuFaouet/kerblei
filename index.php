@@ -14,7 +14,7 @@ require RACINE . "/model/db.connec.php";
 
 require RACINE . "/controller/routes.php";
 
-// require_once RACINE . "/model/authentication.inc.php"; 
+require_once RACINE . "/model/authentication.php"; 
 
 ?>
 
