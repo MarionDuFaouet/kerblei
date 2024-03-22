@@ -1,27 +1,32 @@
 <?php
-include_once RACINE."model/db.connec.php";
+include_once RACINE."model/db.user.php";
 
-function login($mail, $pw) {
+function login($mail, $password) {
     if (!isset($_SESSION)) {
         session_start();
     }
 
     $user = getUserByMail($mail);
-    $pwDB = $user["pw"];
 
-    if (trim($pwDB) == trim(crypt($pw, $pwDB))) {
-        // le mot de passe est celui de l'utilisateur dans la base de donnees
+    if ($user && password_verify($password, $user["password"])) {
         $_SESSION["mail"] = $mail;
-        $_SESSION["pw"] = $pwDB;
+        // Rediriger l'utilisateur vers une page sécurisée après la connexion
+        header("Location: viewCart.php");
+        exit;
+    } else {
+        echo "Identifiants invalides";
     }
 }
+
 
 function logout() {
     if (!isset($_SESSION)) {
         session_start();
     }
     unset($_SESSION["mail"]);
-    unset($_SESSION["pw"]);
+    unset($_SESSION["password"]);
+    header("Location: viewHome.php");
+    exit;
 }
 
 function getMailLoggedOn(){
@@ -31,8 +36,7 @@ function getMailLoggedOn(){
     else {
         $stm = null;
     }
-    return $stm;
-        
+    return $stm;     
 }
 
 function isLoggedOn() {
@@ -42,8 +46,8 @@ function isLoggedOn() {
     $stm = false;
 
     if (isset($_SESSION["mail"])) {
-        $user = getUserByMailU($_SESSION["mail"]);
-        if ($user["mail"] == $_SESSION["mail"] && $user["pw"] == $_SESSION["pw"]
+        $user = getUserByMail($_SESSION["mail"]);
+        if ($user["mail"] == $_SESSION["mail"] && $user["password"] == $_SESSION["password"]
         ) {
             $stm = true;
         }
@@ -51,11 +55,4 @@ function isLoggedOn() {
     return $stm;
 }
 
-if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
-    // prog principal de test
-    header('Content-Type:text/plain');
-
-    // deconnexion
-    logout();
-}
 ?>
