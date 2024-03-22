@@ -21,7 +21,7 @@ else
 login($mail,$password);
 
 if (isLoggedOn()){ // si l'utilisateur est connecté on redirige vers le controleur monProfil
-    include RACINE . "/controller/viewOrder.php";
+    include RACINE . "/controller/viewCart.php";
 }
 else{ 
     include RACINE . "/views/viewRegister.php";
