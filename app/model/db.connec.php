@@ -6,5 +6,5 @@ function connexionPDO() {
         return $conn;
 }
 
-// pas de try / catch dans ma connexion, parce qu'ils sont systématiques dans mes fonctions du model
+// pas de try / catch dans ma connexion, parce qu'il est systématique dans mes fonctions du model
 ?>
