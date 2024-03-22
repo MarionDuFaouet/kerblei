@@ -48,19 +48,6 @@ function deleteUser($userId) {
     return $result;
 }
 
-function login($mail, $password) {
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-    $user = getUserbyMail($mail);
-    $passwordDB = $user["password"];
-
-    if (password_verify($password, $passwordDB)) {
-        // le mot de passe est celui de l'utilisateur dans la base de données
-        $_SESSION["mail"] = $mail;
-        $_SESSION["password"] = $passwordDB;
-    }
-}
 
 ?>
 
