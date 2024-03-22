@@ -48,4 +48,8 @@ body {
 
 .fa a {
   color: white;
+}
+
+#mainMenu {
+  display: flex;
 }/*# sourceMappingURL=style.css.map */

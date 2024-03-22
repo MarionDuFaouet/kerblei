@@ -8,7 +8,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 $description = "Découvrez notre gamme de bières artisanales.";
 $title="Micro-Brasserie Kerblei Accueil" ;
 
-require_once RACINE. '/views/header.php' 
+require_once RACINE. '/app/views/header.php' 
 ?>
 
 <!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->
@@ -80,4 +80,4 @@ Pour plus d'informations sur la façon dont nous faisons usage des cookies, lise
 
 <p>Tout litige en relation avec l’utilisation du site https://microbrasseriekerblei/ est soumis au droit français. En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents de Vannes.</p>
 
-<?php include RACINE . "/views/footer.php";?>
+<?php include RACINE . "/app/views/footer.php";?>
