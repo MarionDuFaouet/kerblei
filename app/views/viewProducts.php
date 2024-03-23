@@ -7,10 +7,9 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 $description = "Découvrez notre gamme de bières artisanales.";
 $title = "Kerblei - Nos produits.";
 
-include RACINE . "/views/header.php";
+require_once RACINE . "/views/header.php";
 ?>
 
-<!-- titre, cta, image -->
-<!-- section à propos, cta -->
+<!-- affichage de mes produits -->
 
-<?php include RACINE . "/views/footer.php";?>
+<?php require_once RACINE . "/views/footer.php";?>

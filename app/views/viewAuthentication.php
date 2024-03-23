@@ -6,10 +6,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     die('Erreur : '.basename(__FILE__));
 }
 
-
-include RACINE . "/views/header.php";
-// ou
-require_once RACINE. '/app/views/header.php';
+require_once RACINE. '/views/header.php';
 
 ?>
 
@@ -30,6 +27,4 @@ require_once RACINE. '/app/views/header.php';
 
 <hr>
 
-<?php require_once RACINE. '/app/views/footer.php'?>
-<!-- ou -->
-<?php include RACINE . "/views/footer.php";?>
+<?php require_once RACINE. '/views/footer.php'?>

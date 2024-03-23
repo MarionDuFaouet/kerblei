@@ -4,9 +4,8 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 $description = "Trouvez notre basserie.";
 $title="Micro-Brasserie Kerblei" ;
-include RACINE . "/views/header.php";
-// ou
-require_once RACINE. '/app/views/header.php';
+
+require_once RACINE. '/views/header.php';
 ?>
 
 <aside id="map">
@@ -19,6 +18,6 @@ require_once RACINE. '/app/views/header.php';
     </div>
 </aside>
 
-<?php require_once RACINE. '/app/views/footer.php'?>
+<?php require_once RACINE. '/views/footer.php'?>
 <!-- ou -->
 <?php include RACINE . "/views/footer.php";?>

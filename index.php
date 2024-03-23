@@ -13,13 +13,13 @@ $dotenv->load();
 // si je mets un \ avant routes.php l.19, r disparait!!!
 
 // database connection file
-require RACINE . "/model/db.connec.php";
+// require RACINE . "/model/db.connec.php";
 
 // routes file
 require RACINE . "/controller/routes.php";
 
 //authentication file
-require_once RACINE . "/model/authentication.php"; 
+// require_once RACINE . "/model/db.authentication.php"; 
 
 // // check for the action to perform
 // if (isset($_GET["action"])) {

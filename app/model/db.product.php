@@ -1,6 +1,6 @@
 <?php
 
-include_once "db.connec.php";
+include_once RACINE . "/model/db.connec.php";
 
 // get all from product table
 //pour afficher les produits dans ma vue/produit

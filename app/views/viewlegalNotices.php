@@ -8,7 +8,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 $description = "Découvrez notre gamme de bières artisanales.";
 $title="Micro-Brasserie Kerblei Accueil" ;
 
-require_once RACINE. '/app/views/header.php' 
+require_once RACINE. '/views/header.php' 
 ?>
 
 <!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->

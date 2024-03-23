@@ -7,7 +7,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 $description = "Découvrez notre gamme de bières artisanales.";
 $title = "Kerblei - S'inscrire";
 
-include RACINE . "/views/header.php";
+require_once RACINE . "/views/header.php";
 ?>
 <!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->
 <head>
@@ -17,4 +17,4 @@ include RACINE . "/views/header.php";
 
 <!-- formulaire de création de compte -->
 
-<?php include RACINE . "/views/footer.php";?>
+<?php require_once RACINE . "/views/footer.php";?>

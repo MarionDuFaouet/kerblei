@@ -1,11 +1,11 @@
 <?php
 
-include_once "db.connec.php";
+include_once RACINE . "/model/db.connec.php";
 
 function getUserByMail($mail) {
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM KerbleiUser WHERE mail=:mail AND isAdmin = 0");
+        $req = $cnx->prepare("SELECT * FROM KerbleiUser WHERE mail=:mail AND isAdmin == FALSE");
         $req->bindValue(':mail', $mail, PDO::PARAM_STR);
         $req->execute();
         
@@ -39,7 +39,7 @@ function addUser($mail, $password, $nameFirstname) {
 function deleteUser($userId) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("DELETE FROM KerbleiUser WHERE userId = :userId");
+        $query = $cnx->prepare("DELETE FROM KerbleiUser WHERE userId = :userId AND isAdmin == FALSE");
         $query->bindValue(':userId', $userId, PDO::PARAM_INT);
         $result = $query->execute();
     } catch (PDOException $e) {

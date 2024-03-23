@@ -7,7 +7,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php require_once RACINE. '/app/views/head.php'?>
+<?php require_once RACINE. '/views/head.php'?>
 
     <body>
         <header>

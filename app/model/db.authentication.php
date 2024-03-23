@@ -1,6 +1,6 @@
 <?php
-// include_once RACINE."/app/model/db.user.php";
-include_once "db.user.php";
+include_once RACINE."/model/db.user.php";
+// include_once "db.user.php";
 
 function login($mail, $password) {
     if (!isset($_SESSION)) {
@@ -12,6 +12,7 @@ function login($mail, $password) {
     if ($user && password_verify($password, $user["password"])) {
         $_SESSION["mail"] = $mail;
         // Rediriger l'utilisateur vers une page sécurisée après la connexion
+        // proscrire le header et le echo, trouver autre chose
         header("Location: viewCart.php");
         exit;
     } else {
