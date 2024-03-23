@@ -1,6 +1,6 @@
 <?php
 
-include_once RACINE . "/model/db.connec.php";
+include_once RACINE . "/model/connec.php";
 
 function getUserByMail($mail) {
     try {
@@ -38,11 +38,15 @@ function addUser($mail, $password, $nameFirstname) {
 function deleteUser($userId) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("DELETE FROM KerbleiUser WHERE userId = :userId AND isAdmin == FALSE");
+        $query = $cnx->prepare("DELETE FROM KerbleiUser WHERE userId = :userId AND isAdmin = 0");
         $query->bindValue(':userId', $userId, PDO::PARAM_INT);
         $result = $query->execute();
+        // j'ai le droit à ça???
+        session_destroy();
+        session_unset();
+        
     } catch (PDOException $e) {
-        die( "Erreur !: " . $e->getMessage() );
+        die("Erreur !: " . $e->getMessage());
     }
     return $result;
 }

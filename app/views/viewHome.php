@@ -11,9 +11,6 @@ require_once RACINE. '/views/header.php';
 ?>
 
 
-
-<h1>Test de fonts</h1>
-<p>Test de fonts</p>
 <!-- icone burger -->
 <i class="fa-solid fa-bars"></i>
 <!-- icone user -->
@@ -65,6 +62,8 @@ require_once RACINE. '/views/header.php';
     </div>
     <a href="./?action=products" title="Cliquez ici pour découvrir notre gamme de bières" class="cta-button">Découvrez la gamme</a>
 </section>
+
+
 
 
 <!-- 

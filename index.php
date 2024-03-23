@@ -1,5 +1,9 @@
 <?php
 
+// session beginning
+session_start();
+
+
 // root definition
 require __DIR__ . "/app/controller/config.php";
 
@@ -19,16 +23,19 @@ $dotenv->load();
 require RACINE . "/controller/routes.php";
 
 //authentication file
-// require_once RACINE . "/model/db.authentication.php"; 
+require_once RACINE . "/model/db.authentication.php"; 
 
-// // check for the action to perform
-// if (isset($_GET["action"])) {
-// 	$action = $_GET["action"];
-// }
+// check for the action to perform
+if (isset($_GET["action"]) == "") {
+	// $action = "default";
+}
+else{
+	$action = $_GET["action"];
+}
 
-// // Redirect to the corresponding action
-// $file = redirectTo($action);
-// require RACINE . "/controller/" . $file;
+// Redirect to the corresponding action
+$file = redirectTo($action);
+require RACINE . "/controller/" . $file;
 
 // Définir une valeur par défaut pour $action si elle n'est pas définie
 $action = isset($_GET["action"]) ? $_GET["action"] : "default";
