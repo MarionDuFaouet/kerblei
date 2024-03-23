@@ -16,6 +16,10 @@ include RACINE. '/views/header.php' ?>
 <!-- modif données perso utilisateur -->
 <!-- vue commandes passées et en cours -->
 
+<!-- to logout -->
+<a href="./?action=logout">Se déconnecter</a>
+
+
 <?php include RACINE . "/views/footer.php";?>
 
     
