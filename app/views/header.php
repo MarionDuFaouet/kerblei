@@ -11,9 +11,8 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 
     <body>
         <header>
+            <nav id="nav" class="active">
             <a href="./?action=home"><img src="/app/statics/images/zlogo1.png" alt="logo Brasserie Kerblei"></a>
-
-            <nav>
                 <ul id="mainMenu">
                     <li><a href="./?action=home">Accueil</a></li> 
                     <li><a href="./?action=products">Nos bières</a></li>
@@ -26,10 +25,29 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
                             <li><a href="./?action=authentication"><i class="fa-solid fa-user"></i></a></li>                
                     <?php } ?>
                 </ul>
+                <!-- burgerNav -->
+                <div id="icons"></div>
             </nav>
         </header>
 
         <main>
+
+
+<script>
+
+    //burgerNav
+    const links = document.querySelectorAll('nav li');
+    icons.addEvensListener("click", () => {
+        nav.classList.toggle("active");
+    });
+    // mes liens ferment la nav au clic
+    links forEach((link) =>{
+        link.addEvensListener('click', () => {
+            nav.classList.remove("active");
+        });
+    });
+
+</script>
         
 
 
