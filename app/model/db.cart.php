@@ -13,9 +13,9 @@ function getCartDetails() {
     $result = array();
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT K.name AS userName, K.firstname AS userFirstname, P.name AS productName, 
-        P.designation, C.statement, C.orderDate, C.deliveryDate
-            FROM `Cart` C
+        $query = $cnx->prepare("SELECT K.nameFirstname AS userName, P.name AS productName, 
+        P.designation AS designation, C.statement AS statement, C.orderDate AS orderDate, C.deliveryDate AS deliveryDate
+            FROM Cart C
             JOIN KerbleiUser K ON C.userId = K.userId
             JOIN OrderProduct OP ON C.cartId = OP.cartId
             JOIN Product P ON OP.productId = P.productId
@@ -24,8 +24,11 @@ function getCartDetails() {
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;
         }
+
+        // !!! message d'erreur plus sécure, à faire valider !!!
     } catch (PDOException $e) {
-        die("Erreur !: " . $e->getMessage());
+        error_log("Erreur PDO : " . $e->getMessage());
+        die("Une erreur s'est produite lors du traitement de votre requête.");
     }
 
     return $result;

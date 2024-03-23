@@ -5,8 +5,7 @@ include_once RACINE . "/model/db.connec.php";
 function getUserByMail($mail) {
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM KerbleiUser WHERE mail=:mail AND isAdmin == FALSE");
-        $req->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $req = $cnx->prepare("SELECT * FROM KerbleiUser WHERE mail = :mail AND isAdmin = 0");        $req->bindValue(':mail', $mail, PDO::PARAM_STR);
         $req->execute();
         
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
