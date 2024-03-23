@@ -31,6 +31,7 @@ $font-color: white;
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto';
 }
 
 .container {
@@ -60,6 +61,63 @@ body {
 .fa a{
   color: white;
   }
+  li{
+    list-style: none;
+  }
+  a, a:visited{
+    text-decoration: none;
+    color: white;
+  }
+  a:hover{
+    color: grey;
+  }
+
+  // navbar
+  nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    font-size: calc(0.5rem + 1.5vw);
+  }
+  nav ul{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+
+  #icons{
+    cursor: pointer;
+    display: none;
+  }
+  @media (max-width: 650px){
+    #icons{
+      display: block;
+    } #incons:before{
+      content: "\2630";
+    }
+    .active #icons:before{
+      content:"\2715";
+    }
+    nav ul{
+      position: fixed;
+      left: -100%;
+      top: 5%;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+      transition: 0.25s;
+    }
+    nav li{
+      padding: 3px 0;
+    }
+    nav li:hover{
+      background: #2a2a2a;
+    }
+    nav.active ul{
+      left: 0;
+    }
+  }
 
 #mainMenu{
   display: flex;
@@ -84,3 +142,5 @@ body {
   border: 1px solid $main-color;
   color: $main-color;
 }
+
+// proposition de conversion css en scss
