@@ -12,7 +12,7 @@ require_once RACINE . "/modele/authentification.inc.php";
 
 
 // recuperation des donnees GET, POST, et SESSION
-
+$idR = $_GET["idR"];
 // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
 
 // traitement si necessaire des donnees recuperees

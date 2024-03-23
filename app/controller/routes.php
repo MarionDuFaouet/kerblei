@@ -8,6 +8,7 @@ function redirectTo($action="default") {
     $actions["adminCart"] = "adminCart.php";
     $actions["adminProduct"] = "adminProduct.php";
     $actions["authentication"] = "authentication.php";
+    $actions["logout"] = "logout.php";
     $actions["cart"] = "cart.php";
     $actions["products"] = "products.php";
     $actions["register"] = "register.php";
