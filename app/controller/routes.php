@@ -11,6 +11,7 @@ function redirectTo($action="default") {
     $actions["cart"] = "cart.php";
     $actions["products"] = "products.php";
     $actions["register"] = "register.php";
+    $actions["map"] = "./views/map.php";
     $actions["legalNotices"] = "legalNotices.php";
 
     $controller_id = $actions[$action];
