@@ -4,7 +4,12 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     die('Erreur : ' . basename(__FILE__));
 }
 
+$description = "Connexion";
+require_once RACINE . "/views/viewAuthentication.php";
+
 require_once RACINE . "/model/db.authentication.php";
+
+
 
 // récupération des données GET, POST et SESSION
 if (isset($_POST["mail"]) && isset($_POST["password"])) {
@@ -31,6 +36,7 @@ if (isLoggedOn()) {
     // Si l'utilisateur n'est pas connecté, affichez la vue d'inscription
     include RACINE . "/views/viewRegister.php";
 }
+
 
 
 ?>
