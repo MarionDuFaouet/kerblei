@@ -9,8 +9,6 @@ function getProducts() {
         $cnx = connexionPDO();
         $query = $cnx->prepare("SELECT name, designation, unitPrice, pictureRef FROM Product");
         $query->execute();
-        
-        // Utilisation de fetchAll() pour récupérer tous les résultats en une seule fois
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die( "Erreur !: " . $e->getMessage() );
