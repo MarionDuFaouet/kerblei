@@ -32,4 +32,5 @@ if (isLoggedOn()) {
     include RACINE . "/views/viewRegister.php";
 }
 
+
 ?>

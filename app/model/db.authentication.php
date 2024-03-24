@@ -1,6 +1,5 @@
 <?php
 include_once RACINE."/model/db.user.php";
-// include_once "db.user.php";
 
 function login($mail, $password) {
     if (!isset($_SESSION)) {
