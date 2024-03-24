@@ -1,24 +1,21 @@
 <?php
 
-include_once RACINE . "/model/db.connec.php";
+include_once RACINE . "/model/connec.php";
 
-// get all from product table
-//pour afficher les produits dans ma vue/produit
+// retrieve and return all about products from the database.
 function getProducts() {
-    $result = array();
+    $products = array();
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("SELECT name, designation, unitPrice, pictureRef FROM Product");
         $query->execute();
-        $row = $query->fetch(PDO::FETCH_ASSOC);
-        while ($row) {
-            $result[] = $row;
-            $row = $query->fetch(PDO::FETCH_ASSOC);
-        }
+        
+        // Utilisation de fetchAll() pour récupérer tous les résultats en une seule fois
+        $products = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die( "Erreur !: " . $e->getMessage() );
     }
-    return $result;
+    return $products;
 }
 
 
