@@ -20,6 +20,8 @@ require_once RACINE . "/views/header.php";
             <p><?php echo $product['name']; ?></p>
             <p><?php echo $product['designation']; ?></p>
             <p><?php echo $product['unitPrice']; ?> &#x20AC</p>
+            <!-- ajouter un bouton panier -->
+            <button type="submit" class="cta-button" name="addToCart" value="<?php echo $productId; ?>">Ajouter au panier</button>
         </li>
     <?php endforeach; ?>
 </ul>
