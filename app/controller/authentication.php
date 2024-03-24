@@ -4,7 +4,6 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     die('Erreur : ' . basename(__FILE__));
 }
 
-$description = "Connexion";
 require_once RACINE . "/views/viewAuthentication.php";
 
 require_once RACINE . "/model/db.authentication.php";

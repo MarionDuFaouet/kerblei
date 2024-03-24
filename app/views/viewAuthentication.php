@@ -1,14 +1,16 @@
 <?php
-
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     die('Erreur : '.basename(__FILE__));
 }
 
-require_once RACINE. '/views/header.php';
+// meta description and title
+$title="Mon compte Kerblei" ;
+$description = "Mon compte Kerblei";
 
+require_once RACINE. '/views/header.php';
 ?>
 
-<!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->
+<!-- question : puis-je ajouter ici ce head? (pour ne pas indexer cette page) -->
 <head>
     <meta name="robots" content="noindex" />
     <meta name="googlebot" content="noindex" />
@@ -22,6 +24,7 @@ require_once RACINE. '/views/header.php';
     <input type="password" name="password" placeholder="Mon mot de passe"  /><br />
     <input class="cta-button" type="submit" title="Connexion à votre compte" value="Je me connecte"/>
 </form>
+pour test : Mathilda Milsom, mathildamilsom@example.com  mdp
 <br />
 <a href="./?action=register" class="cta-button" title="Cliquez pour créer un compte">Pas encore de compte ?</a>
 
