@@ -1,0 +1,21 @@
+//  CTA
+.cta-button {
+    padding: 10px;
+    margin: auto;
+    background-color: $secondary-color;
+    color: $font-color;
+    font-family: $title;
+    border-radius: 5px;
+
+    &:hover {
+        background: $font-color;
+        border: 1px solid $secondary-color;
+        color: $secondary-color;
+    }
+
+    &:active {
+        background: $font-color;
+        border: 1px solid $main-color;
+        color: $main-color;
+    }
+}

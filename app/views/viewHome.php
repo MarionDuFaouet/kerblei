@@ -22,7 +22,7 @@ require_once RACINE. '/views/header.php';
 
 
 
-<div id="headerMain">
+<div id="headerMain" class="container">
     <div id="headerMainLeft">
         <p>MICRO-BRASSERIE</p>
         <h1>KERBLEI</h1>
@@ -30,14 +30,14 @@ require_once RACINE. '/views/header.php';
         <a href="./?action=map" title="Cliquez ici pour nous trouver" class="cta-button">Nous rencontrer</a>
     </div>
     <div id="headerMainRight">
-    <img src="./statics/images/tonneau.png" alt="Tonneaux de bières Brasserie Kerblei">
+    <img src="./statics/images/tonneau.jpg" alt="Tonneaux de bières Brasserie Kerblei">
     </div>
 </div>
 
-<section id="about">
+<section class="container" id="about">
     <h2>DEGEMER MAT</h2>
     <div id="about1">
-        <img src="./statics/images/livraisons.png" alt="Caisses de bières Brasserie Kerblei">
+        <img src="./statics/images/livraisons.jpg" alt="Caisses de bières Brasserie Kerblei">
         <p> Lien abred argoat banniel pesketa daoudroad ennoc’h  fazi 
             peogwir, da gorre komz hervez bern c’houevr bagad 
             c’hoarvezout loa,  c’hraou c’havr Montroulez a kibellañ ar
@@ -58,7 +58,7 @@ require_once RACINE. '/views/header.php';
             stank pal ar sivi kazetenn druez amann, koumoul boutañ 
             roc’h penaos trouz pepr pounner.
         </p>
-        <img src="./statics/images/presse.png" alt="Impression étiquettes Brasserie Kerblei">
+        <img src="./statics/images/presse.jpg" alt="Impression étiquettes Brasserie Kerblei">
     </div>
     <a href="./?action=products" title="Cliquez ici pour découvrir notre gamme de bières" class="cta-button">Découvrez la gamme</a>
 </section>

@@ -1,0 +1,125 @@
+// Imports
+@import 'font';
+@import 'variables';
+@import 'reset';
+@import 'cta';
+@import 'footer';
+
+
+// Mixins
+@mixin secondary-title {
+  font-size: 1rem;
+  font-family: $title;
+  text-align: center;
+}
+
+// extends
+
+
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: $title;
+}
+
+h2 {
+  @include secondary-title();
+}
+
+
+.fa a {
+  color: white;
+
+  li {
+    list-style: none;
+  }
+
+  a,
+  &:visited {
+    text-decoration: none;
+    color: white;
+  }
+
+  &:hover {
+    color: grey;
+  }
+}
+
+// navbar
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  font-size: calc(0.5rem + 1.5vw);
+}
+
+// #icons {
+//   cursor: pointer;
+//   display: none;
+// }
+
+// @media (max-width: 650px){
+//   #icons{
+//     display: block;
+//   } #incons:before{
+//     content: "\2630";
+//   }
+//   .active #icons:before{
+//     content:"\2715";
+//   }
+//   nav ul{
+//     position: fixed;
+//     left: -100%;
+//     top: 5%;
+//     flex-direction: column;
+//     width: 100%;
+//     text-align: center;
+//     transition: 0.25s;
+//   }
+//   nav li{
+//     padding: 3px 0;
+//   }
+//   nav li:hover{
+//     background: #2a2a2a;
+//   }
+//   nav.active ul{
+//     left: 0;
+//   }
+// }
+
+#mainMenu {
+  display: flex;
+}
+
+#headerMain {
+  display: flex;
+  justify-content: space-around;
+
+
+  #headerMainRight img {
+    width: 25%;
+    border-radius: 50%;
+  }
+}
+
+#about1,
+#about2 {
+  display: flex;
+  p {
+    max-width: 100%;
+    margin: 30px;
+    justify-content: center;
+  }
+}
+
+
+
+
+
+// proposition de conversion css en scss

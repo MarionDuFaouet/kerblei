@@ -12,7 +12,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     <body>
         <header>
             <nav id="nav" class="active">
-            <a href="./?action=home"><img src="./statics/images/zlogo1.png" alt="logo Brasserie Kerblei"></a>
+            <a href="./?action=home"><img id="logo" src="./statics/images/zlogo1.png" alt="logo Brasserie Kerblei"></a>
                 <ul id="mainMenu">
                     <li><a href="./?action=default">Accueil</a></li> 
                     <li><a href="./?action=products">Nos bières</a></li>

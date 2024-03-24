@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    overflow-x: hidden; /* Pour éviter scroll horizontal */
+    font-family: $text;
+    color: $font-color;
+    background-color: $main-color;
+}
+
+ul {
+    list-style-type: none;
+
+    li {
+        color: white;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
