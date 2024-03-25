@@ -14,8 +14,10 @@ require_once RACINE . "/views/header.php";
     <meta name="robots" content="noindex" />
     <meta name="googlebot" content="noindex" />
 </head>
-
+<!-- --------------------------------------------------------- -->
 <h2>Je créé mon compte</h2>
+
+
 <form action="./?action=register" method="POST">
 
     <label for="nameFirstname">Mon nom</label>
