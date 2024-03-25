@@ -11,17 +11,6 @@ require_once RACINE. '/views/header.php';
 ?>
 
 
-<!-- icone burger -->
-<i class="fa-solid fa-bars"></i>
-<!-- icone user -->
-<i class="fa-solid fa-user"></i>
-<!-- icone panier -->
-<i class="fa-solid fa-basket-shopping"></i>
-<!-- icone poubelle -->
-<i class="fa-solid fa-trash"></i>
-
-
-
 <div id="headerMain" class="container">
     <div id="headerMainLeft">
         <p>MICRO-BRASSERIE</p>

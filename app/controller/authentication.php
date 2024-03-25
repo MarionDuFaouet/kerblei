@@ -15,6 +15,7 @@ if (isset($_POST["mail"]) && isset($_POST["password"])) {
     $mail = $_POST["mail"];
     $password = $_POST["password"];
 } else {
+    echo "Erreur : Adresse e-mail et/ou mot de passe manquant(s).";
     $mail = null;
     $password = null;
 }
@@ -26,16 +27,10 @@ if (isLoggedOn()) {
     // Si l'utilisateur est connecté, vérifiez son rôle
     if ($_SESSION["isAdmin"] == 1) {
         // Redirection vers la vue admin si isAdmin est égal à 1
-        include RACINE . "/controller/viewAdmin.php";
+        include RACINE . "/controller/viewHome.php";
     } else {
         // Sinon, redirigez vers la vue du panier
         include RACINE . "/controller/viewCart.php";
     }
-} else {
-    // Si l'utilisateur n'est pas connecté, affichez la vue d'inscription
-    include RACINE . "/views/viewRegister.php";
 }
 
-
-
-?>

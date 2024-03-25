@@ -5,6 +5,7 @@ function redirectTo($action="default") {
     $actions = array();
     $actions["default"] = "home.php";
     $actions["account"] = "account.php";
+    $actions["admin"] = "admin.php";
     $actions["adminCart"] = "adminCart.php";
     $actions["adminProduct"] = "adminProduct.php";
     $actions["authentication"] = "authentication.php";
@@ -19,12 +20,12 @@ function redirectTo($action="default") {
 
     // Si le fichier n'existe pas :
     if (!file_exists(__DIR__ . '/' . $controller_id)) {
-        die("Le fichier : " . $controller_id . " n'existe pas !");
+        // http_response_code(404);
+        echo "Le fichier : {$controller_id} n'existe pas !";
     }
 
-    // Si la clé "action" existe dans notre tableau "lesActions" :
+    // if "action" exist in ["actions"]
     if (array_key_exists($action, $actions)) {
-        // Le fichier à inclure sera retourné :
         return $controller_id;
     } else {
         return $actions["default"];

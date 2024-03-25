@@ -5,21 +5,42 @@
 
 html,
 body {
-    overflow-x: hidden; /* Pour éviter scroll horizontal */
+    overflow-x: hidden;
+    /* Pour éviter scroll horizontal */
     font-family: $text;
     color: $font-color;
     background-color: $main-color;
 }
 
-ul {
-    list-style-type: none;
-
-    li {
-        color: white;
-    }
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-a {
+h1 {
+    font-family: $title;
+}
+
+h2 {
+    @include secondary-title();
+}
+
+ul {
+    list-style-type: none;
+}
+
+a,
+.fa a {
     text-decoration: none;
     color: white;
+
+    &:visited {
+        text-decoration: none;
+        color: rgb(51, 51, 51);
+    }
+
+    &:hover {
+        color: grey;
+    }
 }

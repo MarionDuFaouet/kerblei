@@ -1,21 +1,31 @@
 <?php
 include_once RACINE."/model/db.user.php";
 
+
+// Function to authenticate user based on email and password
+// Parameters:
+// - $mail: email of the user trying to login
+// - $password: password provided by the user
+// Returns:
+// - true if authentication is successful
+// - false if authentication fails due to incorrect password or user not found
 function login($mail, $password) {
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-
+    // Retrieve user data from database based on email
     $user = getUserByMail($mail);
-
-    if ($user && password_verify($password, $user["password"])) {
-        $_SESSION["mail"] = $mail;
-        // Rediriger l'utilisateur vers une page sécurisée après la connexion
-        // proscrire le header et le echo, trouver autre chose
-        header("Location: viewCart.php");
-        exit;
+    // Check if user exists
+    if ($user) {
+        // Retrieve hashed password from database
+        $hashedPasswordDB = $user["password"];
+        // Verify provided password against hashed password
+        if (password_verify($password, $hashedPasswordDB)) {
+            // Passwords match, store email in session
+            $_SESSION["mail"] = $mail;
+            return true; // Authentication successful
+        } else {
+            return false; // Incorrect password
+        }
     } else {
-        echo "Identifiants invalides";
+        return false; // User not found
     }
 }
 
