@@ -3,12 +3,6 @@ include_once RACINE."/model/db.user.php";
 
 
 // Function to authenticate user based on email and password
-// Parameters:
-// - $mail: email of the user trying to login
-// - $password: password provided by the user
-// Returns:
-// - true if authentication is successful
-// - false if authentication fails due to incorrect password or user not found
 function login($mail, $password) {
     // Retrieve user data from database based on email
     $user = getUserByMail($mail);

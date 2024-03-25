@@ -26,11 +26,9 @@ login($mail, $password);
 if (isLoggedOn()) {
     // Si l'utilisateur est connecté, vérifiez son rôle
     if ($_SESSION["isAdmin"] == 1) {
-        // Redirection vers la vue admin si isAdmin est égal à 1
-        include RACINE . "/controller/viewHome.php";
+        $message = "Bienvenue, admin!";
     } else {
-        // Sinon, redirigez vers la vue du panier
-        include RACINE . "/controller/viewCart.php";
+        $message = "Bienvenue, utilisateur!";
     }
 }
 

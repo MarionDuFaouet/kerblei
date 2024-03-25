@@ -20,7 +20,6 @@ require_once RACINE. '/views/header.php';
 
 <h2>Je Possède un compte</h2>
 <form action="./?action=authentication" method="POST">
-    
     <label for="mail">J'entre mon identifiant</label>
     <input type="text" name="mail" placeholder="Mon Email" /><br />
     
@@ -29,6 +28,8 @@ require_once RACINE. '/views/header.php';
 
     <input class="cta-button" type="submit" title="Connexion à votre compte" value="Je me connecte"/>
 </form>
+<div id="message"><?php echo $message; ?></div>
+
 pour test : Mathilda Milsom, mathildamilsom@example.com  mdp
 pour test : Yoann Le Cerf, yoannlecerf@example.com mdp (isAdmin ==1)
 <br />
