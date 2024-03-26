@@ -4,9 +4,8 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     die('Erreur : ' . basename(__FILE__));
 }
 
-require_once RACINE . "/views/viewAuthentication.php";
-
 require_once RACINE . "/model/db.authentication.php";
+require_once RACINE . "/views/viewAuthentication.php";
 
 
 
@@ -31,4 +30,3 @@ if (isLoggedOn()) {
         $message = "Bienvenue, utilisateur!";
     }
 }
-

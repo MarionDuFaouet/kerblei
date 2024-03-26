@@ -15,6 +15,8 @@ require_once RACINE . "/views/header.php";
     <meta name="googlebot" content="noindex" />
 </head>
 <!-- --------------------------------------------------------- -->
+
+
 <h2>Je créé mon compte</h2>
 
 

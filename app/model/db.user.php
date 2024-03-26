@@ -2,6 +2,13 @@
 
 include_once RACINE . "/model/connec.php";
 
+
+/*
+ * Retrieves user data from the database based on email.
+ *
+ * @param string $mail The email of the user to retrieve.
+ * @return array|false An associative array containing user data if found, or false if not found.
+ */
 function getUserByMail($mail) {
     try {
         $cnx = connexionPDO();
@@ -9,11 +16,11 @@ function getUserByMail($mail) {
         $req->bindValue(':mail', $mail, PDO::PARAM_STR);
         $req->execute();
         
-        $resultat = $req->fetch(PDO::FETCH_ASSOC);
+        $result = $req->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die( "Erreur !: " . $e->getMessage() );
     }
-    return $resultat;
+    return $result;
 }
 
 // add User
@@ -42,8 +49,9 @@ function deleteUser($userId) {
         $query = $cnx->prepare("DELETE FROM KerbleiUser WHERE userId = :userId AND isAdmin = 0");
         $query->bindValue(':userId', $userId, PDO::PARAM_INT);
         $result = $query->execute();
-        // j'ai le droit à ça???
+        // détruit les données associées à la session courante
         session_destroy();
+        // detruit les variables de la session
         session_unset();
         
     } catch (PDOException $e) {
