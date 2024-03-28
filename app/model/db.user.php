@@ -23,17 +23,22 @@ function getUserByMail($mail) {
     return $result;
 }
 
+
 // add User
 // création de compte pour register
-function addUser($mail, $password, $nameFirstname) {
+function addUser($mail, $password, $name, $firstname, $phone) {
     try {
         $cnx = connexionPDO();
         // Utilisation de password_hash pour hacher le mot de passe de manière sécurisée
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $query = $cnx->prepare("INSERT INTO KerbleiUser (mail, password, nameFirstname) VALUES (:mail, :password, :nameFirstname)");
+        $query = $cnx->prepare("INSERT INTO KerbleiUser (mail, password, name, firstname, phone) VALUES (:mail, :password, :name, :firstname, :phone)");
         $query->bindValue(':mail', $mail, PDO::PARAM_STR);
         $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
-        $query->bindValue(':nameFirstname', $nameFirstname, PDO::PARAM_STR);
+        $query->bindValue(':name', $name, PDO::PARAM_STR);
+        $query->bindValue(':firstname', $firstname, PDO::PARAM_STR);
+        $query->bindValue(':phone', $phone, PDO::PARAM_STR);
+
+
         $result = $query->execute();
     } catch (PDOException $e) {
         die( "Erreur !: " . $e->getMessage() );

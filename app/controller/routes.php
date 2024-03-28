@@ -16,9 +16,9 @@ function redirectTo($action="default") {
     $actions["map"] = "./views/map.php";
     $actions["legalNotices"] = "legalNotices.php";
 
-    $controller_id = $actions[$action];
-
+    //### DEBUG 4,5 de test d'existence du fichier de controleur
     // Si le fichier n'existe pas :
+    $controller_id = $actions[$action];
     if (!file_exists(__DIR__ . '/' . $controller_id)) {
         // http_response_code(404);
         echo "Le fichier : {$controller_id} n'existe pas !";
@@ -26,7 +26,7 @@ function redirectTo($action="default") {
 
     // if "action" exist in ["actions"]
     if (array_key_exists($action, $actions)) {
-        return $controller_id;
+        return $actions[$action];
     } else {
         return $actions["default"];
     }

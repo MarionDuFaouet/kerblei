@@ -1,31 +1,20 @@
 // Imports
-@import 'font';
-@import 'variables';
-@import 'reset';
-@import 'cta';
-@import 'footer';
-@import 'mixins';
-@import 'header';
+@import 'partials/font';
+@import 'partials/variables';
+@import 'partials/reset';
+@import 'partials/cta';
+@import 'partials/footer';
+@import 'partials/mixins';
+@import 'partials/header';
+@import 'partials/home';
+@import 'partials/products';
 
 
-// page home
-#headerMain {
-  display: flex;
-  justify-content: space-around;
-
-  img {
-    width: 25%;
-    border-radius: 50%;
-  }
-}
-
-#about1,
-#about2 {
-  display: flex;
-
-  p {
-    max-width: 100%;
-    margin: 30px;
-    justify-content: center;
-  }
-}
+// $breakpoints: (
+//   "phone-down": 500px,
+//   "tablet-up": 768px,
+//   "tablet-down": 900px,
+//   "desktop-up": 1024px,
+//   "desktop-down": 1280px,
+//   "widescreen-up": 1440px
+// );

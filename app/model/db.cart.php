@@ -14,7 +14,7 @@ function getCartDetails() {
     $result = array();
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT K.nameFirstname AS userName, P.name AS productName, 
+        $query = $cnx->prepare("SELECT K.name K.firstname AS userName, P.name AS productName, 
         P.designation AS designation, C.statement AS statement, C.orderDate AS orderDate, C.deliveryDate AS deliveryDate
             FROM Cart C
             JOIN KerbleiUser K ON C.userId = K.userId
@@ -37,11 +37,11 @@ function getCartDetails() {
 // retrieve an cart by its id
 // récupère et retourne dans un tableau les dates de commande 
 // et la date choisie pour la livraison d'une commande identifiée
-function getCartByAccountId($cartId) {
+function getCartByAccountId($accountId) {
     $result = array();
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT orderDate, deliveryDate, statement FROM `Cart` WHERE cartId=:cartId");
+        $query = $cnx->prepare("SELECT orderDate, deliveryDate, statement FROM `Cart` WHERE accountId=:accountId");
         $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);

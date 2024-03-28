@@ -1,0 +1,16 @@
+.product{
+    display: flex;
+    flex-direction: column;
+     img{
+        width: 60px;
+     }
+     p{
+        text-align: center;
+     }
+}
+@media screen and(min-width:500px) {
+// comment passer ce bordel en row???
+    .product{
+        flex-direction: row;
+    }
+}

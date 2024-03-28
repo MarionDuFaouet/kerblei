@@ -1,6 +1,7 @@
 // Mixins
 @mixin secondary-title {
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-family: $title;
     text-align: center;
+    margin: 30px;
   }

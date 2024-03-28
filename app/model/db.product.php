@@ -8,7 +8,7 @@ function getProducts()
     $products = array();
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT name, designation, unitPrice, pictureRef FROM Product");
+        $query = $cnx->prepare("SELECT name, degree, designation, unitPrice, pictureRef FROM Product");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -25,7 +25,7 @@ function getProductById($productId)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT name, designation, unitPrice, pictureRef FROM Product WHERE productId=:productId");
+        $query = $cnx->prepare("SELECT name, degree, designation, unitPrice, pictureRef FROM Product WHERE productId=:productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -37,12 +37,13 @@ function getProductById($productId)
 
 // add products
 // va enregistrer un nouveau produit depuis adminProduct
-function createProduct($name, $designation, $unitPrice, $pictureRef)
+function createProduct($name, $degree, $designation, $unitPrice, $pictureRef)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT into Product (name, designation, unitPrice, pictureRef) values(:name,:designation, :unitPrice, :pictureRef)");
+        $query = $cnx->prepare("INSERT into Product (name, degree, designation, unitPrice, pictureRef) values(:name, :degree, :designation, :unitPrice, :pictureRef)");
         $query->bindValue(':name,', $name, PDO::PARAM_STR);
+        $query->bindValue('degree', $degree['degree'], PDO::PARAM_STR);
         $query->bindValue(':designation,', $designation, PDO::PARAM_STR);
         $query->bindValue(':unitPrice,', $unitPrice, PDO::PARAM_STR); // ??? dans ma bdd, le type est en decimal!!!
         $query->bindValue(':pictureRef,', $pictureRef, PDO::PARAM_STR);
@@ -58,9 +59,10 @@ function updateProduct($productId, $newData){
     try {
         $cnx = connexionPDO();
 
-        $query = $cnx->prepare("UPDATE Product SET name = :name, designation = :designation, unitPrice = :unitPrice, pictureRef = :pictureRef WHERE productId = :productId");
+        $query = $cnx->prepare("UPDATE Product SET name = :name, degree = :degree, designation = :designation, unitPrice = :unitPrice, pictureRef = :pictureRef WHERE productId = :productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->bindValue(':name', $newData['name'], PDO::PARAM_STR);
+        $query->bindValue('degree', $newData['degree'], PDO::PARAM_STR);
         $query->bindValue(':designation', $newData['designation'], PDO::PARAM_STR);
         $query->bindValue(':unitPrice', $newData['unitPrice'], PDO::PARAM_STR);
         $query->bindValue(':pictureRef', $newData['pictureRef'], PDO::PARAM_STR);
