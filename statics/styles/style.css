@@ -264,13 +264,11 @@ header {
   margin: 50px auto;
 }
 
-.product {
+.flex-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
-.product li img {
-  width: 60px;
-}
-.product p {
-  text-align: center;
+
+.flex-container > .flex-item {
+  flex: auto;
 }/*# sourceMappingURL=style.css.map */
