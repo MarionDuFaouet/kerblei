@@ -24,4 +24,6 @@ require_once RACINE . "/views/header.php";
     <?php endforeach; ?>
 </ul>
 
+
 <?php require_once RACINE . "/views/footer.php";?>
+

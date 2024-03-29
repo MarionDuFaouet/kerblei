@@ -1,9 +1,7 @@
 <?php
-if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
-    die('Erreur : '.basename(__FILE__));
-}
 
 // meta description and title
+$description = "Bienvenue Kerblei Admin.";
 $title="Kerblei Admin";
 include RACINE. '/views/header.php' ?>
 

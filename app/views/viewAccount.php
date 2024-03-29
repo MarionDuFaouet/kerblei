@@ -1,7 +1,4 @@
 <?php
-if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
-    die('Erreur : '.basename(__FILE__));
-}
 
 // meta description and title
 $title="Micro-Brasserie Kerblei - Mon compte" ;
@@ -47,8 +44,7 @@ include RACINE. '/views/header.php' ?>
     <?php endforeach; ?>
 </ul>
 
-<!-- to logout -->
-<a href="./?action=logout">Se déconnecter</a>
+
 
 
 <?php include RACINE . "/views/footer.php";?>

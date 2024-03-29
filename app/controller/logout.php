@@ -1,10 +1,6 @@
 <?php
 
-if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
-    die('Erreur : '.basename(__FILE__));
-}
-
-require_once RACINE . "/model/authentication.inc.php";
+require_once RACINE . "/model/db.authentication.php";
 
 // recuperation des donnees GET, POST, et SESSION
 
