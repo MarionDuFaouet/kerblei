@@ -28,16 +28,22 @@ require_once RACINE . '/views/header.php';
     </p>
 
     <input class="cta-button" type="submit" title="Connexion à votre compte" value="Je me connecte" />
+    
+    
+    <!-- to logout -->
+    <div>
+        <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
+    </div>
+
 </form>
 
 <?php require RACINE . '/views/message.php'; ?>
-<!-- to logout -->
-<div>
-    <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
-</div>
+<?php $message; ?>
+
+
 <br />
 
-    <a href="./?action=register" class="cta-button" title="Cliquez ici pour créer un compte">Pas encore de compte ?</a>
+<a href="./?action=register" class="cta-button" title="Cliquez ici pour créer un compte">Pas encore de compte ?</a>
 </div>
 
 

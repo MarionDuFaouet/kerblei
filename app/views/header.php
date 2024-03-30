@@ -15,7 +15,7 @@
                     <li><a href="./?action=products">Nos bières</a></li>
             
                     <!-- ---------------------------------------- -->
-                    <?php if (isset($_SESSION ['name'])) { ?>
+                    <?php if (isset($_SESSION ['mail'])) { ?>
                         <li><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
                         <li><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
                     <?php } else { ?>

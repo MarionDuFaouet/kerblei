@@ -25,7 +25,7 @@ if (empty($_POST['mail']) || empty($_POST['password'])) {
 
 
 
-require RACINE . "/model/db.authentication.php";
+require RACINE . "/model/authentication.inc.php";
 
 // login($mail, $password);
 $user = getUserByMail($_POST['mail']);

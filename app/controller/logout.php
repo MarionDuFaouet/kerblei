@@ -1,12 +1,25 @@
 <?php
 
-require_once RACINE . "/model/db.authentication.php";
+// to ensure there's session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-// recuperation des donnees GET, POST, et SESSION
+// Fonction de déconnexion
+function logout() {
+    session_unset();
+    session_destroy();
+    require RACINE . "/views/viewHome.php";
+    
+    //###DEBUG
+    var_dump($_SESSION);
 
-// appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
+    exit(); // stop script
+}
 
-// traitement si necessaire des donnees recuperees
+// calling logout
 logout();
 
 ?>
+
+

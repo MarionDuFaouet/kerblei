@@ -3,11 +3,9 @@
 // Session beginning
 session_start();
 
-//###DEBUG Pour récupérer une valeur de la session
-// $mail = $_SESSION['mail'];
+//###DEBUG
 // var_dump($_SESSION);
-// $id_session = session_id();
-// var_dump($id_session);
+
 
 // Loading environment variables
 use Dotenv\Dotenv;

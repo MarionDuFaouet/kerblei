@@ -29,15 +29,7 @@ function login($mail, $password) {
 }
 
 
-function logout() {
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-    unset($_SESSION["mail"]);
-    unset($_SESSION["password"]);
-    header("Location: viewHome.php");
-    exit;
-}
+
 
 function getMailLoggedOn(){
     if (isLoggedOn()){
