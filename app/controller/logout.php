@@ -13,7 +13,7 @@ function logout() {
     require RACINE . "/views/viewHome.php";
 
     //###DEBUG
-    var_dump($_SESSION);
+    // var_dump($_SESSION);
 
     exit(); // stop script
 }

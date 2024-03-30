@@ -10,7 +10,6 @@ $registered = false;
 $msg = null;
 
 if (isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["name"])&& isset($_POST["firstname"])&& isset($_POST["phone"])) {
-    var_dump($_POST);
  
     if ($_POST["mail"] != "" && $_POST["password"] != "" && $_POST["name"] != "" && $_POST["firstname"] != "" && $_POST["phone"] != "") {
         $mail = $_POST["mail"];

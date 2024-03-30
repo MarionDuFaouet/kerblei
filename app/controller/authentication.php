@@ -41,7 +41,7 @@ $_SESSION['mail'] = $user['mail'];
 $_SESSION['admin'] = $user['isAdmin'];
 $_SESSION['msg'] = ['level' => 'success', 'content' => 'Salut ' . $user['firstname'] . '! Vous êtes connecté.'];
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 if ($_SESSION['admin']==0){
     require RACINE . "/views/viewAccount.php";
 } else require RACINE . "/views/viewAdmin.php";
