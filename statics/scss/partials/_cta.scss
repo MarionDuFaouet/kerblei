@@ -2,11 +2,14 @@
 .cta-button {
     justify-content: center;
     padding: 10px;
-    margin: auto;
+    // margin: 20px;
+    // margin: auto;
     background-color: $secondary-color;
     color: $font-color;
     font-family: $title;
     border-radius: 5px;
+    cursor: pointer;
+
 
     &:hover {
         background: $font-color;
