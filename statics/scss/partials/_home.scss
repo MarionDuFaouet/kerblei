@@ -41,12 +41,16 @@
     }
 }
 
+#about {
+    padding-bottom: 30px;
+}
+
 @media screen and(min-width: 900px) {
     #headerMain {
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
-        margin: 0 ;
+        margin: 0;
     }
 
     #firstTitle,
@@ -54,24 +58,28 @@
         text-align: left;
     }
 
-    #about1, #about2{
+    #about1,
+    #about2 {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    #about2{
+
+    #about2 {
         flex-direction: row-reverse;
-        p{
-            margin-right:30px
+
+        p {
+            margin-right: 30px
         }
     }
-    #about1 p{
-        margin-left:30px;
+
+    #about1 p {
+        margin-left: 30px;
     }
 }
 
 #about {
-    img{
+    img {
         display: block;
         margin: 40px auto;
     }

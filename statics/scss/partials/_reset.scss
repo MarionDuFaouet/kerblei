@@ -12,6 +12,7 @@ body {
     font-family: $text;
     color: $font-color;
     background-color: $main-color;
+    min-height:100vh;
 }
 
 .container {
@@ -44,5 +45,5 @@ a,
 
 .hr {
     color: $font-color;
-    margin: 20px;
+    // margin: 20px;
 }

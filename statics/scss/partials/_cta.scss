@@ -2,8 +2,9 @@
 .cta-button {
     justify-content: center;
     padding: 10px;
-    // margin: 20px;
-    // margin: auto;
+    margin:20px auto;
+    width:auto;
+    max-width: 250px;
     background-color: $secondary-color;
     color: $font-color;
     font-family: $title;
