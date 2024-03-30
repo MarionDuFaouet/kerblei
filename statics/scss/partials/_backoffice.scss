@@ -1,0 +1,18 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.tabs{
+    background-color: #070707;
+    max-width: 800px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: 1px solid #FFFFFF3e;
+    color: #b4b2b2;
+    grid-template-rows: min-content 1fr;
+}
