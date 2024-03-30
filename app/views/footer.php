@@ -1,5 +1,5 @@
     </main>
-    <hr id="top">
+    <hr>
     <footer>
         <div id="footerMenu">
             <a href="./?action=legalNotices">Mentions légales</a>

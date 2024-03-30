@@ -31,5 +31,5 @@
         </nav>
         <header></header>
 
-        <hr id="down">
+        <hr>
     <main>
