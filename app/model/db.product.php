@@ -1,6 +1,6 @@
 <?php
 
-include_once RACINE . "/model/connec.php";
+include_once RACINE . "/model/connec.inc.php";
 
 // retrieve and return all about products from the database.
 function getProducts()

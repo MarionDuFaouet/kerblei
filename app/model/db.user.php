@@ -1,6 +1,6 @@
 <?php
 
-include_once RACINE . "/model/connec.php";
+include_once RACINE . "/model/connec.inc.php";
 
 
 /*

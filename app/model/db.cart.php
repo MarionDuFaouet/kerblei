@@ -1,6 +1,6 @@
 <?php
 
-include_once RACINE . "/model/db.connec.php";
+include_once RACINE . "/model/db.connec.inc.php";
 
 // !!! peut-être que je fais fausse route, ma requête doit peut-être 
 // juste récupérer mes commandes, et c'est mon routeur qui fera le 
