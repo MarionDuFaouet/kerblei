@@ -23,5 +23,5 @@ require_once RACINE. '/views/header.php';
 <!-- <i class="fa-solid fa-trash"></i> -->
 
 
-
+<?php include RACINE . "/views/viewMap.php";?>
 <?php include RACINE . "/views/footer.php";?>
