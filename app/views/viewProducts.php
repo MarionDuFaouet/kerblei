@@ -9,20 +9,22 @@ $title = "Kerblei - Nos produits";
 require_once RACINE . "/views/header.php";
 ?>
 <h2>Nos produits</h2>
+
 <!-- affichage de mes produits -->
-<ul class="container">
-<?php foreach ($products as $product): ?>
-        <li class="product">
+<section class="container product">
+    <?php foreach ($products as $product): ?>
+        <div class="productShow">
             <img src="./statics/images/<?php echo $product['pictureRef']; ?>" alt="<?php echo $product['name']?>">
             <p><?php echo $product['name']; ?></p>
             <p><?php echo $product['degree']; ?></p>
             <p><?php echo $product['designation']; ?></p>
             <p><?php echo $product['unitPrice']; ?> &#x20AC</p>
             <!-- bouton panier -->
+            
             <button type="submit" class="cta-button" name="addToCart" value="<?php echo $product['productId']; ?>">Ajouter au panier</button>
-        </li>
+        </div>
     <?php endforeach; ?>
-</ul>
+</section>
 
 
 <?php require_once RACINE . "/views/footer.php";?>

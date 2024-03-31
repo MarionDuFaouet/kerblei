@@ -101,6 +101,7 @@ footer #footerMenu {
 }
 footer #footerMenu img {
   display: inline;
+  right: 0;
   max-width: 25%;
 }
 footer #copyright {
@@ -286,8 +287,7 @@ hr {
     opacity: 1;
 }
 
-/* formulaires */
-
+/* Forms */
 form{
   display: flex;
   flex-direction: column;
@@ -328,10 +328,6 @@ nav{
 #navBurger{
   margin-right: 50px;
 }
-
-
-
-
 
 .logo img {
   width: 100%;
@@ -397,3 +393,27 @@ nav li:first-child{
     width: 100%;
   }
 }
+
+
+/* Produits */
+.productShow{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.productShow p{
+  text-align: center;
+}
+
+@media(min-width: 768px){
+  .product{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .productShow{
+    width: 26%;
+  }
+}
+
+
