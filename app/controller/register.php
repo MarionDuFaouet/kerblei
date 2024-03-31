@@ -1,7 +1,6 @@
 <?php
 
-require RACINE . "/model/authentication.inc.php";
-//require RACINE . "/model/db.user.php";
+require RACINE . "/model/db.user.php";
 
 // ajouter une vérif , si email déjà existant dans la base, pop up cet email 
 // appartient déjà à un compte.
