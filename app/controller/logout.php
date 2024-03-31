@@ -1,5 +1,4 @@
 <?php
-// controleur logout
 
 // to ensure there's session
 if (session_status() == PHP_SESSION_NONE) {
@@ -20,7 +19,5 @@ function logout() {
 
 // calling logout
 logout();
-
-?>
 
 
