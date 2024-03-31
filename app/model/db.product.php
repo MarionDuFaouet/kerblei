@@ -3,12 +3,12 @@
 include_once RACINE . "/model/connec.inc.php";
 
 // retrieve and return all about products from the database.
-function getProducts()
-{
+//me permet d'afficher les produits
+function getProducts() {
     $products = array();
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT name, degree, designation, unitPrice, pictureRef FROM Product");
+        $query = $cnx->prepare("SELECT productId, name, degree, designation, unitPrice, pictureRef FROM Product");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -42,11 +42,11 @@ function createProduct($name, $degree, $designation, $unitPrice, $pictureRef)
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("INSERT into Product (name, degree, designation, unitPrice, pictureRef) values(:name, :degree, :designation, :unitPrice, :pictureRef)");
-        $query->bindValue(':name,', $name, PDO::PARAM_STR);
-        $query->bindValue('degree', $degree['degree'], PDO::PARAM_STR);
-        $query->bindValue(':designation,', $designation, PDO::PARAM_STR);
-        $query->bindValue(':unitPrice,', $unitPrice, PDO::PARAM_STR); // ??? dans ma bdd, le type est en decimal!!!
-        $query->bindValue(':pictureRef,', $pictureRef, PDO::PARAM_STR);
+        $query->bindValue(':name', $name, PDO::PARAM_STR);
+        $query->bindValue(':degree', $degree, PDO::PARAM_STR);
+        $query->bindValue(':designation', $designation, PDO::PARAM_STR);
+        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR); // ??? dans ma bdd, le type est en decimal!!!
+        $query->bindValue(':pictureRef', $pictureRef, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
         die("Erreur !: " . $e->getMessage());
