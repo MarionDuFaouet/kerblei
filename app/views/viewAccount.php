@@ -12,35 +12,9 @@ include RACINE . '/views/header.php' ?>
 </head> -->
 
 <!-- --------------------------------------------------------------------------- -->
-
-<!-- modif données perso utilisateur -->
 <h2>Mon compte</h2>
-<h2>Modifier mes données personnelles</h2>
-<form action="./?action=account" method="POST">
-
-    <label for="name">Mon nom</label>
-    <input type="text" name="name" placeholder="Mon nom" /><br />
-
-    <label for="firstname">Mon prénom</label>
-    <input type="text" name="firstname" placeholder="Mon prénom" /><br />
-
-    <label for="mail">Mon mail</label>
-    <input type="text" name="mail" placeholder="Mon Email" /><br />
-
-    <label for="password">J'entre mon mot de passe</label>
-    <input type="password" name="password" placeholder="Mon mot de passe" /><br />
-
-    <input class="cta-button" type="submit" title="Modification de vos données" value="Je valide ces modifications" />
-    <!-- to logout -->
-    <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
-
-</form>
 
 
-
-<br />
-
-<hr>
 <!-- vue commandes passées et en cours -->
 <h2>Mes commandes</h2>
 <ul>
@@ -56,6 +30,29 @@ include RACINE . '/views/header.php' ?>
     <?php endforeach; ?>
 </ul>
 
+<hr>
+
+<!-- modif données perso utilisateur -->
+<h2>Modifier mes données personnelles</h2>
+<form action="./?action=account" method="POST">
+
+    <label for="name">Mon nom</label>
+    <input type="text" name="name" placeholder="Nom" /><br />
+
+    <label for="firstname">Mon prénom</label>
+    <input type="text" name="firstname" placeholder="Prénom" /><br />
+
+    <label for="mail">Mon mail</label>
+    <input type="text" name="mail" placeholder="Email" /><br />
+
+    <label for="password">Mon nouveau mot de passe</label>
+    <input type="password" name="password" placeholder="Mot de passe" /><br />
+
+    <input class="cta-button" type="submit" title="Modification de vos données" value="Je valide ces modifications" />
+    <!-- to logout -->
+    <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
+
+</form>
 
 
 

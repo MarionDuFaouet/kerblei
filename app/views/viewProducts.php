@@ -26,14 +26,14 @@ require_once RACINE . "/views/header.php";
             </form>
 
 
-
-
-
-
+            
         </div>
     <?php endforeach; ?>
-    <?php require RACINE . '/views/message.php'; ?>
-    <?php $message; ?>
+    <!-- affichage message -->
+    <p><?php echo $msg; ?></p>
+    <!-- <?php require RACINE . '/views/message.php'; ?>
+    <?php $message; ?> -->
+
 </section>
 
 

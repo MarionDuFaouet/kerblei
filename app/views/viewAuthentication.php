@@ -34,8 +34,10 @@ require_once RACINE . '/views/header.php';
 
 </form>
 
-<?php require RACINE . '/views/message.php'; ?>
-<?php $message; ?>
+<!-- <?php require RACINE . '/views/message.php'; ?>
+<?php $message; ?> -->
+<p><?php echo $msg; ?></p>
+
 
 <br />
 

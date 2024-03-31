@@ -16,7 +16,7 @@ require_once RACINE. '/views/header.php';
 </head> -->
 
 <!-- -------------------------------------------------------------------------- -->
-
+<p><?php echo $msg; ?></p>
 <!-- vue panier, modif et validation -->
 
 <!-- icone poubelle! -->
