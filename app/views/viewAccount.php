@@ -31,10 +31,12 @@ include RACINE . '/views/header.php' ?>
     <input type="password" name="password" placeholder="Mon mot de passe" /><br />
 
     <input class="cta-button" type="submit" title="Modification de vos données" value="Je valide ces modifications" />
+    <!-- to logout -->
+    <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
+
 </form>
 
-<!-- to logout -->
-<a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
+
 
 <br />
 
