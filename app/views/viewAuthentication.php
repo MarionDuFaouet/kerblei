@@ -25,6 +25,9 @@ require_once RACINE . '/views/header.php';
     <input type="password" name="password" placeholder="Mon mot de passe" /><br />
 
     <input class="cta-button" type="submit" title="Connexion à votre compte" value="Je me connecte" />
+    
+    <!-- message -->
+    <p><?php echo $msg; ?></p>
 
     <!-- to logout -->
     <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
@@ -36,7 +39,6 @@ require_once RACINE . '/views/header.php';
 
 <!-- <?php require RACINE . '/views/message.php'; ?>
 <?php $message; ?> -->
-<p><?php echo $msg; ?></p>
 
 
 <br />

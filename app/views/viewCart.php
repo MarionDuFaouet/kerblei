@@ -5,8 +5,6 @@ $description = "Découvrez notre gamme de bières artisanales.";
 $title="Micro-Brasserie Kerblei - Panier" ;
 
 require_once RACINE. '/views/header.php';
-
-
 ?>
 
 <!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->
@@ -17,6 +15,7 @@ require_once RACINE. '/views/header.php';
 
 <!-- -------------------------------------------------------------------------- -->
 <p><?php echo $msg; ?></p>
+
 <!-- vue panier, modif et validation -->
 
 <!-- icone poubelle! -->
