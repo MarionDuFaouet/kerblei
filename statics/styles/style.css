@@ -472,6 +472,8 @@ nav li:first-child {
   margin-bottom: 30px;
 }
 
+
+
 @media(min-width: 768px) {
   .mapContent {
     flex-direction: row;
