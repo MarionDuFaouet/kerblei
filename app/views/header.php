@@ -4,9 +4,9 @@
 <?php require RACINE . '/views/head.php' ?>
 
 <body>
-    <!-- burgerNav -->
     <nav class="navbar">
         <a href="./?action=default" class="logo"><img src="./statics/images/zlogo1.png" alt="logo Brasserie Kerblei"></a>
+        <!-- burgerNav -->
         <ul class="sidebar">
             <li onclick=hideSidebar()><i id="navCross" class="fa-solid fa-xmark"></i></li>
             <li><a href="./?action=default">Accueil</a></li>
@@ -19,6 +19,7 @@
                 <li><a href="./?action=authentication"><i class="fa-solid fa-user"></i></a></li>
             <?php } ?>
         </ul>
+        <!-- nav -->
         <ul>
             <li class="hideOnMobile"><a href="./?action=default">Accueil</a></li>
             <li class="hideOnMobile"><a href="./?action=products">Nos bières</a></li>
@@ -29,9 +30,8 @@
             <?php } else { ?>
                 <li class="hideOnMobile"><a href="./?action=authentication"><i class="fa-solid fa-user"></i></a></li>
             <?php } ?>
-            
-            <li onclick=showSidebar()><i id="navBurger" class=" menuButton fa-solid fa-bars"></i></li>
 
+            <li onclick=showSidebar()><i id="navBurger" class=" menuButton fa-solid fa-bars"></i></li>
         </ul>
     </nav>
 
