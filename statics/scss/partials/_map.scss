@@ -1,0 +1,17 @@
+.mapContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    p{
+        margin-bottom: 30px;
+      }
+}
+
+@media (min-width: 768px) {
+    .mapContent {
+      flex-direction: row;
+      margin-top: 50px;
+    }
+  }
