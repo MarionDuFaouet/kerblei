@@ -22,13 +22,14 @@
         <ul>
             <li class="hideOnMobile"><a href="./?action=default">Accueil</a></li>
             <li class="hideOnMobile"><a href="./?action=products">Nos bières</a></li>
+            <li class="hideOnMobile"><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
+
             <?php if (isset($_SESSION['mail'])) { ?>
-                <li class="hideOnMobile"><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
                 <li class="hideOnMobile"><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
             <?php } else { ?>
-                <li class="hideOnMobile"><a href="./?action=authentication"><i class="fa-solid fa-basket-shopping"></i>Panier / Nous trouver</a></li>
                 <li class="hideOnMobile"><a href="./?action=authentication"><i class="fa-solid fa-user"></i></a></li>
             <?php } ?>
+            
             <li onclick=showSidebar()><i id="navBurger" class=" menuButton fa-solid fa-bars"></i></li>
 
         </ul>
