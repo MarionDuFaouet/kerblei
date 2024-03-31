@@ -12,20 +12,29 @@ require_once RACINE . "/views/header.php";
 
 <!-- affichage de mes produits -->
 <section class="container product">
-    <?php foreach ($products as $product): ?>
+    <?php foreach ($products as $product) : ?>
         <div class="productShow">
-            <img src="./statics/images/<?php echo $product['pictureRef']; ?>" alt="<?php echo $product['name']?>">
+            <img src="./statics/images/<?php echo $product['pictureRef']; ?>" alt="<?php echo $product['name'] ?>">
             <p><?php echo $product['name']; ?></p>
             <p><?php echo $product['degree']; ?></p>
             <p><?php echo $product['designation']; ?></p>
             <p><?php echo $product['unitPrice']; ?> &#x20AC</p>
             <!-- bouton panier -->
-            
-            <button type="submit" class="cta-button" name="addToCart" value="<?php echo $product['productId']; ?>">Ajouter au panier</button>
+            <!-- j'envoie vers cart ou product??? -->
+            <form action="./?action=products" method="POST">
+                <button type="submit" class="cta-button" name="addToCart" value="<?php echo $product['productId']; ?>">Ajouter au panier</button>
+            </form>
+
+
+
+
+
+
         </div>
     <?php endforeach; ?>
+    <?php require RACINE . '/views/message.php'; ?>
+    <?php $message; ?>
 </section>
 
 
-<?php require_once RACINE . "/views/footer.php";?>
-
+<?php require_once RACINE . "/views/footer.php"; ?>

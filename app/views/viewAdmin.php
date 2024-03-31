@@ -13,36 +13,54 @@ include RACINE . '/views/header.php' ?>
 </head> -->
 <!-- ---------------------------------------------------------------------- -->
 
+
+<!-- puis-je faire des button href ou action, ou mes routeurs seront appelés comment? -->
 <div class="tabs">
     <div class="tabsBtnContainer" role="tabList" aria-label="tab component">
         <!-- accessibility -->
-        <button class="tab activeTab" role="tab" aria-controls="panel-1" id="tab-1" type="button" aria-selected="true" tabindex="0">Gestion des commandes🛒</button>
+        <button  class="tab activeTab" role="tab" aria-controls="panel-1" id="tab-1" type="button" aria-selected="true" tabindex="0">Gestion des commandes🛒</button>
         <!-- accessibility -->
         <button class="tab" role="tab" aria-controls="panel-2" id="tab-2" type="button" aria-selected="false" tabindex="-1">Gestion des produits🧴</button>
-
     </div>
     <!-- accessibility -->
     <div class="tabContent activeTabContent" id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
-        <h3>Gestion des commandes🛒</h3>
-        <p>contenu gestion commandes. Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Ullam natus voluptas aut aliquid tempore fugiat
-            doloremque iste facilis vel illum? Iusto quos rerum deserunt et!
-            Dolores molestiae asperiores aliquid deleniti?</p>
+        <!-- backOffice -->
+        <h3>Gestion des commandes🛒</h3><br>
+
+
+
+
+
+        <!-- backOffice Order début-->
+        <?php include RACINE . '/views/viewAdminOrder.php' ?>
+        <!-- backOffice Order fin-->
+
+
+
+
+
     </div>
     <!-- accessibility -->
     <div class="tabContent" id="panel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2">
         <h3>Gestion des produits🧴</h3>
-        <p>contenu gestion produits. Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit. Rerum nam assumenda beatae.</p>
+
+
+
+
+
+        <!-- backOffice Products début-->
+        <?php include RACINE . '/views/viewAdminProduct.php' ?>
+        <!-- backOffice Products fin-->
+
+
+
+
+
+
     </div>
 </div>
 
-
-
-
-
-
-
+<!-- src : youtube/Ecole du web/ coder des onglets en javasccript -->
 
 
 
