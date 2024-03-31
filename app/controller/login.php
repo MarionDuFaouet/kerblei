@@ -1,11 +1,10 @@
 <?php
 
-
 $msg = null;
 
 // if the user applying is already logged in
 if (isset($_SESSION['mail'])) {
-    $msg = 'Vous êtes déjà connecté depuis le compte associé à ce mail "' . $_SESSION['mail'] . '". Merci de vous déconnecter.';
+    $msg = 'Vous êtes déjà connecté au compte associé à ce mail "' . $_SESSION['mail'] . '". Merci de vous déconnecter.';
     require RACINE .  "/views/viewLogin.php";
     exit;                           // end of script  
 }
@@ -24,8 +23,6 @@ if (empty($_POST['mail']) || empty($_POST['password'])) {
     exit;
 }
 
-
-
 require RACINE . "/model/db.user.php";
 // login($mail, $password);
 $user = getUserByMail($_POST['mail']);
@@ -42,11 +39,10 @@ $_SESSION['admin'] = $user['isAdmin'];
 
 
 // ##DEBUG
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 if ($_SESSION['admin']==0){
     require RACINE . "/views/viewAccount.php";
-} else require RACINE . "/views/viewAdmin.php";
-//header ("Location: ?action=home");     // login is achieved. Go to the landing page (home)
-// require RACINE . "/views/viewLogin.php";
+} else require RACINE . "/views/viewAdmin.php"; // login is achieved. Go to the landing page (home)
+
 

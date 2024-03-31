@@ -1,4 +1,5 @@
 <?php
+
 // meta description and title
 $title = "Connexion Kerblei";
 $description = "Mon compte Kerblei";
@@ -37,8 +38,7 @@ require_once RACINE . '/views/header.php';
 
 </form>
 
-<!-- <?php require RACINE . '/views/message.php'; ?>
-<?php $message; ?> -->
+<?php $message; ?>
 
 
 <br />

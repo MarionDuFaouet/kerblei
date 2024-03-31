@@ -2,9 +2,9 @@
 
 // meta description and title
 $description = "Découvrez notre gamme de bières artisanales.";
-$title="Micro-Brasserie Kerblei - Panier" ;
+$title = "Micro-Brasserie Kerblei - Panier";
 
-require_once RACINE. '/views/header.php';
+require_once RACINE . '/views/header.php';
 ?>
 
 <!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->
@@ -14,7 +14,9 @@ require_once RACINE. '/views/header.php';
 </head> -->
 
 <!-- -------------------------------------------------------------------------- -->
-<p><?php echo $msg; ?></p>
+<section class="container">
+    <p><?php echo $msg; ?></p>
+</section>
 
 <!-- vue panier, modif et validation -->
 
@@ -22,5 +24,7 @@ require_once RACINE. '/views/header.php';
 <!-- <i class="fa-solid fa-trash"></i> -->
 
 
-<?php include RACINE . "/views/viewMap.php";?>
-<?php include RACINE . "/views/footer.php";?>
+<?php
+include RACINE . "/views/viewMap.php";
+include RACINE . "/views/footer.php"; 
+?>

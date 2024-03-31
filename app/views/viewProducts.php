@@ -31,8 +31,7 @@ require_once RACINE . "/views/header.php";
     <?php endforeach; ?>
     <!-- affichage message -->
     <p><?php echo $msg; ?></p>
-    <!-- <?php require RACINE . '/views/message.php'; ?>
-    <?php $message; ?> -->
+    
 
 </section>
 
