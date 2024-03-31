@@ -47,12 +47,8 @@ require_once RACINE . '/views/header.php';
             roc’h penaos trouz pepr pounner.
         </p>
     </div>
-    <div id="ctaHome">
-        <!-- commetn aligner ce fucking bouton??? -->
     <a href="./?action=products" title="Cliquez ici pour découvrir notre gamme de bières" class="cta-button">Découvrez la gamme</a>
-    </div>
 </section>
-
 
 
 

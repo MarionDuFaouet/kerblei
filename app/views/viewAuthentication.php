@@ -17,34 +17,27 @@ require_once RACINE . '/views/header.php';
 
 <h2>Je Possède un compte</h2>
 <form action="./?action=authentication" method="POST">
-    <p>
-        <label for="mail">J'entre mon identifiant (mail)</label>
-        <input type="text" name="mail" placeholder="Mon Email" /><br />
-    </p>
 
-    <p>
-        <label for="password">J'entre mon mot de passe</label>
-        <input type="password" name="password" placeholder="Mon mot de passe" /><br />
-    </p>
+    <label for="mail">J'entre mon identifiant (mail)</label>
+    <input type="text" name="mail" placeholder="Mon Email" /><br />
+
+    <label for="password">J'entre mon mot de passe</label>
+    <input type="password" name="password" placeholder="Mon mot de passe" /><br />
 
     <input class="cta-button" type="submit" title="Connexion à votre compte" value="Je me connecte" />
-    
-    
+
     <!-- to logout -->
-    <div>
-        <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
-    </div>
+    <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
+
+    <!-- to create account -->
+    <a href="./?action=register" class="cta-button" title="Cliquez ici pour créer un compte">Pas encore de compte ?</a>
 
 </form>
 
 <?php require RACINE . '/views/message.php'; ?>
 <?php $message; ?>
 
-
 <br />
-
-<a href="./?action=register" class="cta-button" title="Cliquez ici pour créer un compte">Pas encore de compte ?</a>
-</div>
 
 
 <?php require_once RACINE . '/views/footer.php' ?>
