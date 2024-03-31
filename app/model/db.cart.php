@@ -1,11 +1,8 @@
 <?php
 
-include_once RACINE . "/model/db.connec.inc.php";
+include_once RACINE . "/model/connec.inc.php";
 
-// !!! peut-être que je fais fausse route, ma requête doit peut-être 
-// juste récupérer mes commandes, et c'est mon routeur qui fera le 
-// travail en allant chercher à la fois dans user, cart et product
-// les infos demandées dans la vue ???
+// TOUT CE QUI CONCERNE LA PAGE PANIER ET NON PRODUCTS
 
 // retrieve an cart
 // retourne dans un tableau le détail de la commande d'un client
@@ -110,7 +107,7 @@ function calculateCartTotal($cart){
 
 
 // add product on cart
-// va permettre d'ajouter un produit depuis cart
+// va permettre d'AJOUTER UN PRODUIT DEPUIS CART
 function addProductToCart($cartId, $productId, $quantity) {
     try {
         $cnx = connexionPDO();
