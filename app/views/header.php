@@ -15,8 +15,8 @@
                 <li><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
                 <li><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
             <?php } else { ?>
-                <li><a href="./?action=authentication"><i class="fa-solid fa-basket-shopping"></i>Panier / Nous trouver</a></li>
-                <li><a href="./?action=authentication"><i class="fa-solid fa-user"></i></a></li>
+                <li><a href="./?action=login"><i class="fa-solid fa-basket-shopping"></i>Panier / Nous trouver</a></li>
+                <li><a href="./?action=login"><i class="fa-solid fa-user"></i></a></li>
             <?php } ?>
         </ul>
         <!-- nav -->
@@ -28,7 +28,7 @@
             <?php if (isset($_SESSION['mail'])) { ?>
                 <li class="hideOnMobile"><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
             <?php } else { ?>
-                <li class="hideOnMobile"><a href="./?action=authentication"><i class="fa-solid fa-user"></i></a></li>
+                <li class="hideOnMobile"><a href="./?action=login"><i class="fa-solid fa-user"></i></a></li>
             <?php } ?>
 
             <li onclick=showSidebar()><i id="navBurger" class=" menuButton fa-solid fa-bars"></i></li>
