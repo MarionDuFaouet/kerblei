@@ -12,13 +12,22 @@ body {
     font-family: $text;
     color: $font-color;
     background-color: $main-color;
-    min-height:100vh;
+    min-height: 100vh;
 }
 
 .container {
     max-width: 1200px;
     width: 80%;
     margin: 0 auto;
+}
+
+/* $msg */
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
 }
 
 h1 {

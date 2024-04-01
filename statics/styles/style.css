@@ -480,3 +480,11 @@ nav li:first-child {
     margin-top: 50px;
   }
 }
+
+/* $msg */
+.green{
+  color: green;
+}
+.red{
+  color: red;
+}
