@@ -461,14 +461,15 @@ nav li:first-child {
 }
 
 /* MAP */
-.mapContent{
+.mapContent {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 50px;
 }
-.mapContent p{
+
+.mapContent p {
   margin-bottom: 30px;
 }
 
@@ -482,9 +483,8 @@ nav li:first-child {
 }
 
 /* $msg */
-.green{
-  color: green;
-}
-.red{
-  color: red;
+.msg {
+  color: orange;
+  text-align: center;
+  padding-bottom: 10px;
 }

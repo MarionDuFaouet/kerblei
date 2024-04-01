@@ -22,13 +22,11 @@ body {
 }
 
 /* $msg */
-.green {
-    color: green;
-}
-
-.red {
-    color: red;
-}
+.msg {
+    color: orange;
+    text-align: center;
+    padding-bottom: 10px;
+  }
 
 h1 {
     font-family: $title;
