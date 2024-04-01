@@ -30,10 +30,10 @@ include RACINE . '/views/header.php' ?>
         <h2>Gestion commandes</h2>
         <p class="msg"><?php echo $msg; ?></p>
         <h3>Nouvelles commandes</h3>
-        
+
 
         <h3>Commandes livrées</h3>
-      
+
         <!---------------------------- backOffice Order end ------------------------------>
     </div>
 
@@ -68,6 +68,7 @@ include RACINE . '/views/header.php' ?>
 
         <h2>Modifier les produits</h2>
         <p class="msg"><?php echo $msg; ?></p>
+        <?php var_dump($products); ?>
         <!-- AFFICHAGE DES PRODUITS -->
         <table>
             <thead>
@@ -92,7 +93,9 @@ include RACINE . '/views/header.php' ?>
                         <td><?php echo $product['pictureRef']; ?></td>
                         <td>
                             <!-- Bouton de sélection du produit -->
-                            <input type="checkbox"></button>
+                            <input type="radio" name="selectedProduct" 
+                            value="<?php echo $product['productId']; ?>" 
+                            onclick="fillForm(<?php echo $product['productId']; ?>)">
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -100,12 +103,12 @@ include RACINE . '/views/header.php' ?>
         </table>
 
         <!-- FORMULAIRE DE MODIFICATION / SUPPRESSION DES PRODUITS -->
-        <!-- <form method="post" action="admin.php"> -->
+        <form id="productForm" method="post" action="admin.php">
             <!-- Champ caché pour stocker l'ID du produit sélectionné -->
-            <!-- <input type="hidden" name="selectedProductId" id="selectedProductId"> -->
+            <input type="hidden" name="selectedProductId" id="selectedProductId">
 
             <!-- Champ de modification pré-rempli -->
-            <!-- <label for="productName">Nom</label>
+            <label for="productName">Nom</label>
             <input type="text" id="productName" name="productName"><br>
             <label for="productDegre">Degrés</label>
             <input type="text" id="productDegre" name="productDegre"><br>
@@ -114,12 +117,13 @@ include RACINE . '/views/header.php' ?>
             <label for="productPrice">Prix unitaire</label>
             <input type="text" id="productPrice" name="productPrice"><br>
             <label for="productPictureRef">Image</label>
-            <input type="text" id="productPictureRef" name="productPictureRef"><br> -->
+            <input type="text" id="productPictureRef" name="productPictureRef"><br>
 
             <!-- Boutons d'action -->
-            <!-- <button class="cta-button" type="submit" name="updateProduct">Valider les modifications</button>
+            <button class="cta-button" type="submit" name="updateProduct">Valider les modifications</button>
             <button class="cta-button" type="submit" name="deleteProduct">Supprimer le produit</button>
-        </form> -->
+        </form>
+
         <!----------------------------- backOffice Products end ----------------------------->
     </div>
 </div>
