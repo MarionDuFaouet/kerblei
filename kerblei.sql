@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 31 mars 2024 à 23:08
+-- Généré le : lun. 01 avr. 2024 à 14:54
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -109,10 +109,10 @@ INSERT INTO `orderproduct` (`productId`, `cartId`, `quantity`) VALUES
 CREATE TABLE `product` (
   `productId` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `designation` varchar(50) DEFAULT NULL,
+  `designation` varchar(70) DEFAULT NULL,
   `unitPrice` decimal(4,2) DEFAULT NULL,
   `pictureRef` varchar(50) DEFAULT NULL,
-  `degree` varchar(9) DEFAULT NULL
+  `degree` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -120,10 +120,15 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productId`, `name`, `designation`, `unitPrice`, `pictureRef`, `degree`) VALUES
-(1, 'Ambrée ', 'Saveur affirmée, profil malté, onctueuse', 5.00, 'bAmbree.jpg', '6,1 %.vol'),
-(2, 'I.P.A', '  Blonde Ale , houblonnage aromatique ++++', 5.00, 'bIpa.jpg', '5,5 %,vol'),
-(3, 'Blonde', 'Légère amertume, reflets dorés, saveur fruitée', 5.00, 'blonde.jpg', '5% vol'),
-(4, 'Blonde d \'été', 'Corps léger, notes d\'agrumes, rafraichissante', 5.00, 'blondeEte.jpg', '5,5 % vol');
+(1, 'Ambrée ', 'Saveur affirmée, profil malté, onctueuse', 5.00, 'bAmbree.jpg', '6,1'),
+(2, 'I.P.A', '  Blonde Ale , houblonnage aromatique ++++', 5.00, 'bIpa.jpg', '5,5'),
+(3, 'Blonde', 'Légère amertume, reflets dorés, saveur fruitée', 5.00, 'blonde.jpg', '5'),
+(4, 'Blonde d \'été', 'Corps léger, notes d\'agrumes, rafraichissante', 5.00, 'blondeEte.jpg', '5,5'),
+(8, 'Blonde des sept Iles', 'Lager, à base de 3 céréales (blé, orge et seigle),', 5.00, 'blonde7iles.jpg', '5'),
+(11, 'Brune', 'Houblon floral, notes de café et chocolat', 5.00, 'brune.jpg', '6,3'),
+(13, 'Rigad\'elle', 'Ambrée au miel de Baden', 5.00, 'bRigadElle.jpg', '7'),
+(14, 'Rousse', 'Caractère fleuri,robe rougeoyante,houblon plus aromatique', 5.00, 'bRousse.jpg', '5,4'),
+(15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 5.00, 'bTriple.jpg', '7,5');
 
 --
 -- Index pour les tables déchargées
@@ -182,7 +187,7 @@ ALTER TABLE `kerbleiuser`
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Contraintes pour les tables déchargées
