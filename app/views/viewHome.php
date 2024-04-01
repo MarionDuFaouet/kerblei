@@ -14,8 +14,8 @@ require_once RACINE . '/views/header.php';
         <p id="firstTitle">KERBLEI</h1>
 
         <p id="headerMainText">Une dégustation? <br> Venez visiter la brasserie !</p>
-
-        <a href="./?action=map" title="Cliquez ici pour nous trouver" class="cta-button">Nous rencontrer</a>
+       
+        <a href="./?action=cart" title="Cliquez ici pour nous trouver" class="cta-button">Nous rencontrer</a>
     </div>
     <img src="./statics/images/tonneau.jpg" alt="Tonneaux de bières Brasserie Kerblei">
 
