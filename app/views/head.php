@@ -11,5 +11,6 @@
     <link rel="stylesheet" href="./statics/styles/style.css">   
     <script src="./statics/js/headerScript.js" defer></script>
     <script src="./statics/js/backoffice.js" defer></script>
+    <script src="./statics/js/admin.js"></script>
 
 </head>
