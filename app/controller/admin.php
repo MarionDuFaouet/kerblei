@@ -1,59 +1,83 @@
 <?php 
-// placer les appels au bon moment
-require_once RACINE . "/model/db.product.php";
-$products = getProducts();
-require_once RACINE . "/model/db.cart.php";
-require_once RACINE . "/model/db.user.php";
 
-
+$registeredProduct = false;
+$msg = null;
 
 // view calling
-require_once RACINE . "./views/admin.php"; ?>
+// require RACINE . "./views/viewAdmin.php"; ?>
 <!-- -----------------------------------ADMIN ORDER--------------------------------- -->
-<?php
-require_once RACINE . "/model/db.product.php";
-require_once RACINE . "/model/db.cart.php";
 
-
-require_once RACINE . 'views/viewAdminCart.php';
-?>
 <!-- -----------------------------------ADMIN PRODUCT--------------------------------------- -->
 
 <?php
+// AJOUT DES PRODUITS
 require_once RACINE . "/model/db.product.php";
 
-$products = getProducts();
+// AJOUTER PROCESS DE VERIF POUR CHAQUE ENTREE
 
-require_once RACINE . 'views/viewAdminProduct.php';
+// Vérifiez si des données de formulaire ont été soumises
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Récupérez les données du formulaire
+    $name = $_POST["name"];
+    $degree = $_POST["degree"];
+    $designation = $_POST["designation"];
+    $unitPrice = $_POST["unitPrice"];
+    $pictureRef = $_POST["img"]; // Assurez-vous que le nom de l'input correspond à "img" dans votre formulaire
 
 
+    // Appelez la fonction du modèle pour créer un nouveau produit dans la base de données
+    $result = createProduct($name, $degree, $designation, $unitPrice, $pictureRef);
+
+    // Vérifiez si la création du produit a réussi
+    if ($result) {
+        $msg = "Produit ajouté avec succès.";
+    } else {
+        $msg = "Erreur lors de l'ajout du produit.";
+    }
+} 
+
+// Incluez la vue du formulaire pour ajouter des produits
+require_once RACINE . "/views/viewAdmin.php";
+?>
+
+
+
+
+
+
+
+
+// MODIFICATION DES PRODUITS
 // Vérifier si des données de formulaire ont été soumises pour la mise à jour du produit
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
     // Récupérer les données du formulaire
     $productId = $_POST["productId"];
     $newData = array(
         "name" => $_POST["name"],
+        "degree" => $_POST["degree"],
         "designation" => $_POST["designation"],
         "unitPrice" => $_POST["unitPrice"],
         "pictureRef" => $_POST["pictureRef"]
     );
 
+    //affichage des produits
+    $products = getProducts();
     // Appeler la fonction du modèle pour mettre à jour le produit dans la base de données
     $rowCount = updateProduct($productId, $newData);
 
     // Vérifier si la mise à jour a réussi
     if ($rowCount > 0) {
-        echo "Produit ajouté avec succès.";
+        $msg= "Produit ajouté avec succès.";
 
     } else {
         // Afficher un message d'erreur si la mise à jour a échoué
-        echo "Erreur lors de la mise à jour du produit.";
+        $msg = "Erreur lors de la mise à jour du produit.";
     }
 }
 
 function deleteProductFromAdmin($productId){
     deleteProductById($productId);
-    echo "<script>alert('Produit mis à jour avec succès !');</script>";
+    $msg="Produit mis à jour avec succès !"; //ne fonctionne pas si au sein d'une fonction
 }
 
 ?>

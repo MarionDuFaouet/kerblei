@@ -18,6 +18,7 @@ require_once RACINE . "/views/header.php";
 
 <h2>Je créé mon compte</h2>
 
+<p class="msg"><?php echo $msg; ?></p>
 
 <form action="./?action=register" method="POST">
 
@@ -34,10 +35,9 @@ require_once RACINE . "/views/header.php";
     <input type="phone" name="phone" placeholder="Mon numéro de téléphone" /><br />
 
     <label for="password">J'entre mon mot de passe</label>
-    <input type="password" name="password" placeholder="Mon mot de passe"  /><br />
+    <input type="password" name="password" placeholder="8 à 12 caratères, 1 majuscule et un caractère spécial"  /><br />
 
     <input class="cta-button" type="submit" title="Création votre compte" value="Je créé mon compte"/>
-    <p><?php echo $msg; ?></p>
 
 </form>
 <br />

@@ -37,11 +37,21 @@ function getProductById($productId)
 
 // add products
 // va enregistrer un nouveau produit depuis adminProduct
+/**
+ * Creates a new product in the database.
+ *
+ * @param string $name Product name.
+ * @param string $degree Alcohol degree of the product.
+ * @param string $designation Product description.
+ * @param string $unitPrice Unit price of the product.
+ * @param string $pictureRef Reference of the product image.
+ * @return bool Returns true if the product was successfully created, otherwise returns false.
+ */
 function createProduct($name, $degree, $designation, $unitPrice, $pictureRef)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT into Product (name, degree, designation, unitPrice, pictureRef) values(:name, :degree, :designation, :unitPrice, :pictureRef)");
+        $query = $cnx->prepare("INSERT INTO Product (name, degree, designation, unitPrice, pictureRef) VALUES (:name, :degree, :designation, :unitPrice, :pictureRef)");
         $query->bindValue(':name', $name, PDO::PARAM_STR);
         $query->bindValue(':degree', $degree, PDO::PARAM_STR);
         $query->bindValue(':designation', $designation, PDO::PARAM_STR);

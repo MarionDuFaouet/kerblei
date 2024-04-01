@@ -29,7 +29,7 @@ include RACINE . '/views/header.php' ?>
     <div class="tabContent activeTabContent" id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
         <!--------------------------- backOffice Order début------------------------------->
         <h2>Gestion commandes</h2>
-
+        <p><?php echo $msg; ?></p>
         <h3>Nouvelles commandes</h3>
         <ul>
             <?php foreach ($carts as $cart) : ?>
@@ -74,27 +74,34 @@ include RACINE . '/views/header.php' ?>
         <!----------------------------- backOffice Products début-------------------------->
         <h2>Gestion produits</h2>
 
+
+
         <h2>Ajouter un produit</h2>
-        <form action="./?action=product" method="POST">
+        <p class="msg"><?php echo $msg; ?></p>
+        <form action="./?action=admin" method="POST">
 
             <label for="name">Nom</label>
-            <input type="text" name="name" placeholder="ex : Ambrée 6,1 %.vol" /><br />
+            <input type="text" name="name" placeholder="ex : Ambrée" /><br />
 
+            <label for="degree">Degrés</label>
+            <input type="text" name="degree" placeholder="ex : 6,1" /><br />
+            
             <label for="designation">Désignation</label>
             <input type="text" name="designation" placeholder="texte max 50 car." /><br />
 
-            <label for="price">Prix unitaire</label>
-            <input type="text" name="price" placeholder="00.00" /><br />
+            <label for="unitPrice">Prix unitaire</label>
+            <input type="text" name="unitPrice" placeholder="00.00 euros" /><br />
 
             <label for="img">Image</label>
             <input type="text" name="img" placeholder="monimage.jpg" /><br />
 
             <input class="cta-button" type="submit" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
-
         </form>
 
-        <h2>Modifier les produits</h2>
 
+
+
+        <h2>Modifier les produits</h2>
 
         <!-- comment combiner ces deux approches? -->
         <div id="productBoard">
