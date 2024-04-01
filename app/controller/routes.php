@@ -14,6 +14,8 @@ function redirectTo($action="default") {
     $actions["map"] = "./views/map.php";
     $actions["legalNotices"] = "legalNotices.php";
 
+    
+
     //### DEBUG 4,5 de test d'existence du fichier de controleur
     // Si le fichier n'existe pas :
     $controller_id = $actions[$action];

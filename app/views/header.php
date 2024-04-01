@@ -8,17 +8,20 @@
         <a href="./?action=default" class="logo"><img src="./statics/images/zlogo1.png" alt="logo Brasserie Kerblei"></a>
         <!-- burgerNav -->
         <ul class="sidebar">
-            <li onclick=hideSidebar()><i id="navCross" class="fa-solid fa-xmark"></i></li>
+            <li onclick="hideSidebar()"><i id="navCross" class="fa-solid fa-xmark"></i></li>
             <li><a href="./?action=default">Accueil</a></li>
             <li><a href="./?action=products">Nos bières</a></li>
-            <?php if (isset($_SESSION['mail'])) { ?>
-                <li><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
+            <li><a href="./?action=login"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
+            <?php if (isset($_SESSION['mail']) &&($_SESSION['admin']==1)): ?>
+                <!-- pourquoi je ne suis pas redirigée vers l'admin alors que je suis connectée? -->
+                <li><a href="./?action=admin"><i class="fa-solid fa-user"></i></a></li>
+                <?php elseif(isset($_SESSION['mail'])&&($_SESSION['admin']==0)): ?>
                 <li><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
-            <?php } else { ?>
-                <li><a href="./?action=login"><i class="fa-solid fa-basket-shopping"></i>Panier / Nous trouver</a></li>
+            <?php else: ?>
                 <li><a href="./?action=login"><i class="fa-solid fa-user"></i></a></li>
-            <?php } ?>
+            <?php endif; ?>
         </ul>
+
         <!-- nav -->
         <ul>
             <li class="hideOnMobile"><a href="./?action=default">Accueil</a></li>

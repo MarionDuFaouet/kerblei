@@ -10,14 +10,13 @@ function logout() {
     session_unset();
     session_destroy();
     require RACINE . "/views/viewHome.php";
-
-    //###DEBUG
-    // var_dump($_SESSION);
-
     exit(); // stop script
 }
 
 // calling logout
 logout();
+//###DEBUG
+var_dump($_SESSION);
+// pourquoi ma session ne se vide pas alors que la deconnexion fonctionne?
 
 

@@ -37,9 +37,8 @@ $_SESSION['mail'] = $user['mail'];
 $_SESSION['admin'] = $user['isAdmin'];
 
 
-
 // ##DEBUG
-// var_dump($_SESSION);
+var_dump($_SESSION);
 
 if ($_SESSION['admin']==0){
     require RACINE . "/views/viewAccount.php";

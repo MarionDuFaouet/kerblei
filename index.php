@@ -4,7 +4,7 @@
 session_start();
 
 //###DEBUG
-// var_dump($_SESSION);
+var_dump($_SESSION);
 
 
 // Loading environment variables

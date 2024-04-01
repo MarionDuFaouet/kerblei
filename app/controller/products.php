@@ -7,6 +7,10 @@ require_once RACINE . "/model/db.product.php";
 // affichage des produits
 $products = getProducts();
 
+//ni fait ni à faire
+//IL faurdait que quand l'utilisateur est connecté ça fonctionne, 
+// sinon, message:"vous devez être connecté pour ajouter des 
+// produits au panier"
 
 
 // ajout de produits au panier
@@ -47,7 +51,7 @@ if (isset($_POST['addToCart'])) {
     
 }
 
-
+// 
 /* successfull add product to cart */
 $_SESSION['cart'] = $user['cart'];
 // Afficher un message de succès
