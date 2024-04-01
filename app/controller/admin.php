@@ -3,97 +3,94 @@
 $registeredProduct = false;
 $msg = null;
 
-// view calling
-// require RACINE . "./views/viewAdmin.php"; 
 ?>
-<!-- -----------------------------------ADMIN ORDER--------------------------------- -->
+<!-- -----------------------------------ADMIN ORDER----------------------------------------- -->
 
 <!-- -----------------------------------ADMIN PRODUCT--------------------------------------- -->
 
 <?php
-// AJOUT DES PRODUITS
+// ADD PRODUCTS
 require_once RACINE . "/model/db.product.php";
 
-// AJOUTER PROCESS DE VERIF POUR CHAQUE ENTREE
-
-// Vérifiez si des données de formulaire ont été soumises
+// Check if form data has been submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Vérifiez si tous les champs sont renseignés
-    if (!empty($_POST["name"]) && !empty($_POST["degree"]) && !empty($_POST["designation"]) && !empty($_POST["unitPrice"]) && !empty($_POST["img"])) {
-        // Récupérez les données du formulaire
+    // Check if all fields are filled
+    if (
+        !empty($_POST["name"]) && !empty($_POST["degree"]) && !empty($_POST["designation"])
+        && !empty($_POST["unitPrice"]) && !empty($_POST["img"])
+    ) {
+        // Get form data
         $name = $_POST["name"];
         $degree = $_POST["degree"];
         $designation = $_POST["designation"];
         $unitPrice = $_POST["unitPrice"];
-        $pictureRef = $_POST["img"]; // Assurez-vous que le nom de l'input correspond à "img" dans votre formulaire
-        
-        // Vérifiez les longueurs des champs et affichez les messages d'erreur appropriés
+        $pictureRef = $_POST["img"];
+
+        // Check field lengths and display appropriate error messages
         if (strlen($name) > 20) {
-            $msg = "Le nom ne doit pas dépasser 20 caractères.";
+            $msg = "Le nom ne doit pas excéder 20 caractères";
         } else if (strlen($degree) > 5) {
-            $msg = "Le degré ne doit pas dépasser 5 caractères.";
-        } else if (strlen($designation) > 50) {
-            $msg = "La désignation ne doit pas dépasser 50 caractères.";
+            $msg = "Le degré ne doit pas excéder 5 caractères.";
+        } else if (strlen($designation) > 70) {
+            $msg = "La désignation ne doit pas excéder 70 caractères.";
         } else if (strlen($unitPrice) > 5) {
-            $msg = "Le prix ne doit pas dépasser 5 caractères.";
+            $msg = "Le prix doit être de 5 caractères maximum.";
         } else {
-            // Toutes les validations réussies, appelez la fonction du modèle pour créer un nouveau produit dans la base de données
+            // All validations successful, call the model function to create a new product in the database
             $result = createProduct($name, $degree, $designation, $unitPrice, $pictureRef);
 
-            // Vérifiez si la création du produit a réussi
+            // Check if product creation was successful
             if ($result) {
                 $msg = "Produit ajouté avec succès.";
             } else {
-                $msg = "Erreur lors de l'ajout du produit.";
+                $msg = "L'ajout du produit a échoué.";
             }
         }
     } else {
-        // Afficher un message d'erreur si tous les champs ne sont pas renseignés
-        $msg = "Veuillez renseigner tous les champs.";
+        // Display an error message if all fields are not filled
+        $msg = "Veuillez remplir tous les champs.";
     }
 }
-// Incluez la vue du formulaire pour ajouter des produits
+// Include the view of the form to add products
 require_once RACINE . "/views/viewAdmin.php";
-?>
 
 
-
-
-
-
-
-
-// MODIFICATION DES PRODUITS
-// Vérifier si des données de formulaire ont été soumises pour la mise à jour du produit
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
-// Récupérer les données du formulaire
-$productId = $_POST["productId"];
-$newData = array(
-"name" => $_POST["name"],
-"degree" => $_POST["degree"],
-"designation" => $_POST["designation"],
-"unitPrice" => $_POST["unitPrice"],
-"pictureRef" => $_POST["pictureRef"]
-);
+// -------------------------------------------------------
 
 //affichage des produits
 $products = getProducts();
-// Appeler la fonction du modèle pour mettre à jour le produit dans la base de données
-$rowCount = updateProduct($productId, $newData);
 
-// Vérifier si la mise à jour a réussi
-if ($rowCount > 0) {
-$msg= "Produit ajouté avec succès.";
+// MODIFICATION / SUPRESSION DES PRODUITS
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
+    // Récupérer les données du formulaire
+    $productId = $_POST["productId"];
+    $newData = array(
+        "name" => $_POST["name"],
+        "degree" => $_POST["degree"],
+        "designation" => $_POST["designation"],
+        "unitPrice" => $_POST["unitPrice"],
+        "pictureRef" => $_POST["img"]
+    );
 
-} else {
-// Afficher un message d'erreur si la mise à jour a échoué
-$msg = "Erreur lors de la mise à jour du produit.";
+    // Appeler la fonction du modèle pour mettre à jour le produit dans la base de données
+    $rowCount = updateProduct($productId, $newData);
+
+    // Vérifier si la mise à jour a réussi
+    if ($rowCount > 0) {
+        $msg = "Product updated successfully.";
+    } else {
+        // Afficher un message d'erreur si la mise à jour a échoué
+        $msg = "Error updating product.";
+    }
 }
-}
 
+// Function to delete product from admin
 function deleteProductFromAdmin($productId){
-deleteProductById($productId);
-$msg="Produit mis à jour avec succès !"; //ne fonctionne pas si au sein d'une fonction
+    deleteProductById($productId);
+    $msg = "Product updated successfully!";
+    // Note: This message won't be displayed if called within a function unless you use it outside the function's scope.
 }
 
+// Include the view of the form to add products
+require_once RACINE . "/views/viewAdmin.php";
 ?>
