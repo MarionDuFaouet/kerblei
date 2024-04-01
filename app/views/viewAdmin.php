@@ -28,7 +28,7 @@ include RACINE . '/views/header.php' ?>
     <div class="tabContent activeTabContent" id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
         <!--------------------------- backOffice Order beginning ------------------------------->
         <h2>Gestion commandes</h2>
-        <p><?php echo $msg; ?></p>
+        <p class="msg"><?php echo $msg; ?></p>
         <h3>Nouvelles commandes</h3>
         
 
@@ -67,7 +67,7 @@ include RACINE . '/views/header.php' ?>
 
 
         <h2>Modifier les produits</h2>
-
+        <p class="msg"><?php echo $msg; ?></p>
         <!-- AFFICHAGE DES PRODUITS -->
         <table>
             <thead>
@@ -92,11 +92,10 @@ include RACINE . '/views/header.php' ?>
                         <td><?php echo $product['pictureRef']; ?></td>
                         <td>
                             <!-- Bouton de sélection du produit -->
-                            <button type="button" onclick="fillForm(<?php echo $product['productId']; ?>, '<?php echo addslashes($product['name']); ?>', '<?php echo addslashes($product['degree']); ?>', '<?php echo addslashes($product['designation']); ?>', '<?php echo addslashes($product['unitPrice']); ?>', '<?php echo addslashes($product['pictureRef']); ?>')">Modifier/Supprimer</button>
+                            <button type="checkbox">Modifier/Supprimer</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
-
             </tbody>
         </table>
 
