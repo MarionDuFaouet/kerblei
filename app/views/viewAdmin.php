@@ -78,7 +78,7 @@ include RACINE . '/views/header.php' ?>
                     <th>Description</th>
                     <th>Prix</th>
                     <th>Référence de l'image</th>
-                    <th>Action</th>
+                    <th>Sélectionner</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,7 +92,7 @@ include RACINE . '/views/header.php' ?>
                         <td><?php echo $product['pictureRef']; ?></td>
                         <td>
                             <!-- Bouton de sélection du produit -->
-                            <button type="checkbox">Modifier/Supprimer</button>
+                            <input type="checkbox"></button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -100,12 +100,12 @@ include RACINE . '/views/header.php' ?>
         </table>
 
         <!-- FORMULAIRE DE MODIFICATION / SUPPRESSION DES PRODUITS -->
-        <form method="post" action="admin.php">
+        <!-- <form method="post" action="admin.php"> -->
             <!-- Champ caché pour stocker l'ID du produit sélectionné -->
-            <input type="hidden" name="selectedProductId" id="selectedProductId">
+            <!-- <input type="hidden" name="selectedProductId" id="selectedProductId"> -->
 
             <!-- Champ de modification pré-rempli -->
-            <label for="productName">Nom</label>
+            <!-- <label for="productName">Nom</label>
             <input type="text" id="productName" name="productName"><br>
             <label for="productDegre">Degrés</label>
             <input type="text" id="productDegre" name="productDegre"><br>
@@ -114,28 +114,17 @@ include RACINE . '/views/header.php' ?>
             <label for="productPrice">Prix unitaire</label>
             <input type="text" id="productPrice" name="productPrice"><br>
             <label for="productPictureRef">Image</label>
-            <input type="text" id="productPictureRef" name="productPictureRef"><br>
+            <input type="text" id="productPictureRef" name="productPictureRef"><br> -->
 
             <!-- Boutons d'action -->
-            <button class="cta-button" type="submit" name="updateProduct">Valider les modifications</button>
+            <!-- <button class="cta-button" type="submit" name="updateProduct">Valider les modifications</button>
             <button class="cta-button" type="submit" name="deleteProduct">Supprimer le produit</button>
-        </form>
+        </form> -->
         <!----------------------------- backOffice Products end ----------------------------->
     </div>
 </div>
 
 <!-- src : youtube/Ecole du web/ coder des onglets en javasccript -->
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- view calling -->

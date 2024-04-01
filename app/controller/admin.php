@@ -106,3 +106,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 // Include the view of the form to add products
 require_once RACINE . "/views/viewAdmin.php";
+exit;
