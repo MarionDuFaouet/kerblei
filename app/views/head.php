@@ -1,8 +1,18 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <!-- <meta name="robots" content="noindex" />
-    <meta name="googlebot" content="noindex" />   -->
+    <!--noindex-->
+    <?php
+    // verify actual page
+    $currentPage = basename($_SERVER['PHP_SELF']);
+    // list pages where no index must be
+    $noIndexPages = array('login.php', 'logout.php', 'cart.php', 'account.php', 'admin.php', 'register.php', 'legalNotice.php');
+    // verifiy if actual page is in this list
+    if (in_array($currentPage, $noIndexPages)) {
+        echo '<meta name="robots" content="noindex" />';
+        echo '<meta name="googlebot" content="noindex" />';
+    }
+    ?>
     <meta name="description" content="<?php echo $description; ?>" />
     <meta name="author" content="Marion Lozach" />
     <title><?php echo $title; ?></title>
@@ -11,6 +21,5 @@
     <link rel="stylesheet" href="./statics/styles/style.css">   
     <script src="./statics/js/headerScript.js" defer></script>
     <script src="./statics/js/backoffice.js" defer></script>
-    <script src="./statics/js/admin.js"></script>
 
 </head>
