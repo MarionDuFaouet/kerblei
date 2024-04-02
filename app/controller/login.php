@@ -1,6 +1,8 @@
 <?php
 
 $msg = null;
+$products=[];
+
 
 // user already logged
 if (isset($_SESSION['mail'])) {
@@ -38,10 +40,13 @@ $_SESSION['admin'] = $user['isAdmin'];
 
 
 // ##DEBUG
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 if ($_SESSION['admin']==0){
     require RACINE . "/views/viewAccount.php";
 // logged Go to home page
 } else require RACINE . "/views/viewAdmin.php"; 
+// } else require RACINE . "admin.php"; 
 
+
+// pas au point mon affaire, ça m'envoie encore vers login
