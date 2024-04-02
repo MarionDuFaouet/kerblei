@@ -6,11 +6,6 @@ $title = "Kerblei Admin";
 // view calling
 include RACINE . '/views/header.php' ?>
 
-<!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->
-<!-- <head>
-    <meta name="robots" content="noindex" />
-    <meta name="googlebot" content="noindex" />
-</head> -->
 <!-- ---------------------------------------------------------------------- -->
 
 
@@ -46,10 +41,12 @@ include RACINE . '/views/header.php' ?>
     <div class="tabContent" id="panel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2">
         <!----------------------------- backOffice Products beginning -------------------------->
         <h2>Gestion produits</h2>
-        <!-- AJOUT DE PRODUITS -->
+
         <h2>Ajouter un produit</h2>
+        <!-- AJOUT DE PRODUITS -->
         <p class="msg"><?php echo $msg; ?></p>
-        <form action="./?action=admin" method="POST">
+
+        <form action="./?action=admin" class="forms" method="POST">
             <label for="name">Nom</label>
             <input type="text" name="name" placeholder="ex : Ambrée" /><br />
             <label for="degree">Degrés</label>
@@ -57,7 +54,7 @@ include RACINE . '/views/header.php' ?>
             <label for="designation">Désignation</label>
             <input type="text" name="designation" placeholder="texte max 50 car." /><br />
             <label for="unitPrice">Prix unitaire</label>
-            <input type="text" name="unitPrice" placeholder="00.00 euros" /><br />
+            <input type="text" name="unitPrice" placeholder="00.00" /><br />
             <label for="img">Image</label>
             <input type="text" name="img" placeholder="monimage.jpg" /><br />
             <input class="cta-button" type="submit" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
@@ -66,10 +63,14 @@ include RACINE . '/views/header.php' ?>
 
 
 
+
+
+        
+
         <h2>Modifier les produits</h2>
-        <p class="msg"><?php echo $msg; ?></p>
-        <?php var_dump($products); ?>
         <!-- AFFICHAGE DES PRODUITS -->
+        <p class="msg"><?php echo $msg; ?></p>
+        
         <table>
             <thead>
                 <tr>
@@ -83,6 +84,7 @@ include RACINE . '/views/header.php' ?>
                 </tr>
             </thead>
             <tbody>
+                <!-- MAIS WHY WHY WHY!!!!! -->
                 <?php foreach ($products as $product) : ?>
                     <tr>
                         <td><?php echo $product['productId']; ?></td>
@@ -102,8 +104,15 @@ include RACINE . '/views/header.php' ?>
             </tbody>
         </table>
 
+
+
+
+
+
+
+
         <!-- FORMULAIRE DE MODIFICATION / SUPPRESSION DES PRODUITS -->
-        <form id="productForm" method="post" action="admin.php">
+        <form id="productForm" method="post" class="forms" action="admin.php">
             <!-- Champ caché pour stocker l'ID du produit sélectionné -->
             <input type="hidden" name="selectedProductId" id="selectedProductId">
 
@@ -127,6 +136,9 @@ include RACINE . '/views/header.php' ?>
         <!----------------------------- backOffice Products end ----------------------------->
     </div>
 </div>
+<!-- ajouter bouton déconnexion!!! -->
+<!-- to logout -->
+<a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
 
 <!-- src : youtube/Ecole du web/ coder des onglets en javasccript -->
 
