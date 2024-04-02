@@ -2,7 +2,14 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
-// retrieve and return all about products from the database.
+###DEBUG
+// var_dump('coucou');
+
+/**
+ * Retrieve and return all products from the database.
+ *
+ * @return array An array containing all products fetched from the database.
+ */
 //me permet d'afficher les produits
 function getProducts() {
     $products = array();
@@ -17,10 +24,12 @@ function getProducts() {
     return $products;
 }
 
-
-
-// retrieve a product by its id
-// va me permettre de retrouver un produit dans ma base, afin de le modifier dans adminProduct
+/**
+ * Retrieve product information by its ID.
+ *
+ * @param int $productId The ID of the product to retrieve.
+ * @return array|null Returns an associative array containing product information if found, otherwise returns null.
+ */
 function getProductById($productId)
 {
     try {
@@ -29,10 +38,12 @@ function getProductById($productId)
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result; // Return product information
     } catch (PDOException $e) {
-        die("Erreur !: " . $e->getMessage());
+        // Instead of using die(), you can log the error and handle it more gracefully
+        error_log("Error fetching product: " . $e->getMessage());
+        return null; // Return null to indicate failure
     }
-    return $result;
 }
 
 // add products
