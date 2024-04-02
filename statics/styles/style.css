@@ -402,6 +402,12 @@ nav a {
 .mapContent p {
   margin-bottom: 30px;
 }
+.mapContent iframe {
+  width: 80%;
+  height: 390px;
+  margin-left: 60px;
+  margin-top: 80px;
+}
 
 @media (min-width: 768px) {
   .mapContent {
