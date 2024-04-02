@@ -8,20 +8,15 @@ require_once RACINE . '/views/header.php';
 
 ?>
 
-<!-- question : puis-je ajouter ici ce head? (pour ne pas indexer cette page) -->
-<!-- <head>
-    <meta name="robots" content="noindex" />
-    <meta name="googlebot" content="noindex" />
-</head> -->
 <!-- ------------------------------------------------------------------------ -->
 
 
 <h2>Je Possède un compte</h2>
-<form action="./?action=login" method="POST">
+<form class="forms" action="./?action=login " method="POST">
 
     <label for="mail">J'entre mon identifiant (mail)</label>
-    <input type="text" name="mail" placeholder="Mon Email" /><br />
-
+    <input type="text" name="mail" placeholder="Mon Email" 
+    value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail']) : ''; ?>" /><br />
     <label for="password">J'entre mon mot de passe</label>
     <input type="password" name="password" placeholder="Mon mot de passe" /><br />
 

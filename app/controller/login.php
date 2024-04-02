@@ -2,27 +2,27 @@
 
 $msg = null;
 
-// if the user applying is already logged in
+// user already logged
 if (isset($_SESSION['mail'])) {
     $msg = 'Vous êtes déjà connecté au compte associé à ce mail "' . $_SESSION['mail'] . '". Merci de vous déconnecter.';
     require RACINE .  "/views/viewLogin.php";
-    exit;                           // end of script  
+    exit;  
 }
 
-//  if not already is logged in
+//  if not already logged in
 if (!isset($_POST['mail']) || !isset($_POST['password'])) {
-    require RACINE .  "/views/viewLogin.php";   // stay on the same page
-    exit;                               // end of script
+    require RACINE .  "/views/viewLogin.php";
+    exit;
 }
 
-/* maintenant, soumission du formulaire de connexion */
-/* is one of the input fields empty ? */
+/* empty inputs? */
 if (empty($_POST['mail']) || empty($_POST['password'])) {
     $msg = 'Vos mail et mot de passe doivent être renseignés.';
     require RACINE .  "/views/viewLogin.php";
     exit;
 }
 
+/* Now, submit login form */
 require RACINE . "/model/db.user.php";
 // login($mail, $password);
 $user = getUserByMail($_POST['mail']);
@@ -42,6 +42,6 @@ var_dump($_SESSION);
 
 if ($_SESSION['admin']==0){
     require RACINE . "/views/viewAccount.php";
-} else require RACINE . "/views/viewAdmin.php"; // login is achieved. Go to the landing page (home)
-
+// logged Go to home page
+} else require RACINE . "/views/viewAdmin.php"; 
 
