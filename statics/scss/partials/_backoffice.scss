@@ -7,8 +7,9 @@
 }
 
 .tabs {
+    display: grid;
     background-color: #070707;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 100px auto 0;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -57,6 +58,7 @@
     -moz-transition: opacity 0.4s ease-out;
     -ms-transition: opacity 0.4s ease-out;
     -o-transition: opacity 0.4s ease-out;
+      /* position: absolute; */
 }
 
 .tabContent p {

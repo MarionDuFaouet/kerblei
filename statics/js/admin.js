@@ -8,3 +8,4 @@ function fillForm(productId) {
     document.getElementById("productPrice").value = "<?php echo $product['unitPrice']; ?>";
     document.getElementById("productPictureRef").value = "<?php echo $product['pictureRef']; ?>";
 }
+
