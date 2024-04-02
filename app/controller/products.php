@@ -7,6 +7,9 @@ require_once RACINE . "/model/db.product.php";
 // affichage des produits
 $products = getProducts();
 
+###DEBUG
+// var_dump($products);
+
 //ni fait ni à faire
 //IL faurdait que quand l'utilisateur est connecté ça fonctionne, 
 // sinon, message:"vous devez être connecté pour ajouter des 
@@ -27,7 +30,7 @@ function addToCart($productId)
         $_SESSION["cart"][$productId]++;
 
     } else {
-        // Si le produit n'est pas déjà dans le panier, ajoutez-le
+        // Si le produit n'est pas déjà dans le panier, ajoute-le
         $_SESSION["cart"][$productId] = 1;
     }
 
