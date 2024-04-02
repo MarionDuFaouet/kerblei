@@ -28,8 +28,9 @@
             <li class="hideOnMobile"><a href="./?action=products">Nos bières</a></li>
             <li class="hideOnMobile"><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
 
+            <!-- A retravailler -->
             <?php if (isset($_SESSION['mail'])) { ?>
-                <li class="hideOnMobile"><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
+                <li class="hideOnMobile"><a href="./?action=admin"><i class="fa-solid fa-user"></i></a></li>
             <?php } else { ?>
                 <li class="hideOnMobile"><a href="./?action=login"><i class="fa-solid fa-user"></i></a></li>
             <?php } ?>
