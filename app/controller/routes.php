@@ -11,10 +11,8 @@ function redirectTo($action="default") {
     $actions["cart"] = "cart.php";
     $actions["products"] = "products.php";
     $actions["register"] = "register.php";
-    $actions["map"] = "./views/map.php";
     $actions["legalNotices"] = "legalNotices.php";
 
-    
 
     //### DEBUG 4,5 de test d'existence du fichier de controleur
     // Si le fichier n'existe pas :
