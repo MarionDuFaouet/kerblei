@@ -3,13 +3,14 @@
 $registeredProduct = false;
 $msg = null;
 
+require RACINE . "/model/db.product.php";
 
 // -----------------------------------ADMIN ORDER-----------------------------------------
 
 // -----------------------------------ADMIN PRODUCT---------------------------------------
 
 // ADD PRODUCTS
-require RACINE . "/model/db.product.php";
+
 
 // Check if form data has been submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -51,27 +52,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-
-
-// -------------------------------------------------------
-// Inclure le fichier contenant les fonctions du modèle pour les produits
-require_once RACINE . "/model/db.product.php";
+// -------------------------------------------------------------------------------------------
+// MODIFICATION / SUPRESSION PRODUCTS
 
 // Récupérer les produits depuis la base de données
-$products = getProducts();
+// require RACINE . "/model/db.product.php";
 
-// MODIFICATION / SUPRESSION DES PRODUITS
+$products = getProducts();
+var_dump($products);
+
+// je dois insérer $products dans $newData
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Vérifier si le bouton de mise à jour du produit a été cliqué
     if (isset($_POST["updateProduct"])) {
         // Récupérer les données du formulaire
         $productId = $_POST["productId"];
         $newData = array(
-            "name" => $_POST["name"],
-            "degree" => $_POST["degree"],
-            "designation" => $_POST["designation"],
-            "unitPrice" => $_POST["unitPrice"],
-            "pictureRef" => $_POST["img"]
+           $products["name"]  => $_POST["name"],
+           $products["degree"] => $_POST["degree"],
+           $products["designation"] => $_POST["designation"],
+           $products["unitPrice"] => $_POST["unitPrice"],
+           $products["pictureRef"] => $_POST["img"]
         );
 
         // Appeler la fonction du modèle pour mettre à jour le produit dans la base de données
@@ -106,4 +108,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 // Include the view of the form to add products
 require_once RACINE . "/views/viewAdmin.php";
-exit;
