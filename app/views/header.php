@@ -13,7 +13,6 @@
             <li><a href="./?action=products">Nos bières</a></li>
             <li><a href="./?action=login"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
             <?php if (isset($_SESSION['mail']) &&($_SESSION['admin']==1)): ?>
-                <!-- pourquoi je ne suis pas redirigée vers l'admin alors que je suis connectée? -->
                 <li><a href="./?action=admin"><i class="fa-solid fa-user"></i></a></li>
                 <?php elseif(isset($_SESSION['mail'])&&($_SESSION['admin']==0)): ?>
                 <li><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
@@ -28,12 +27,14 @@
             <li class="hideOnMobile"><a href="./?action=products">Nos bières</a></li>
             <li class="hideOnMobile"><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
 
-            <!-- A retravailler -->
-            <?php if (isset($_SESSION['mail'])) { ?>
-                <li class="hideOnMobile"><a href="./?action=admin"><i class="fa-solid fa-user"></i></a></li>
-            <?php } else { ?>
-                <li class="hideOnMobile"><a href="./?action=login"><i class="fa-solid fa-user"></i></a></li>
-            <?php } ?>
+            <!-- A retravailler ? -->
+            <?php if (isset($_SESSION['mail']) &&($_SESSION['admin']==1)): ?>
+                <li><a href="./?action=admin"><i class="fa-solid fa-user"></i></a></li>
+                <?php elseif(isset($_SESSION['mail'])&&($_SESSION['admin']==0)): ?>
+                <li><a href="./?action=account"><i class="fa-solid fa-user"></i></a></li>
+            <?php else: ?>
+                <li><a href="./?action=login"><i class="fa-solid fa-user"></i></a></li>
+            <?php endif; ?>
 
             <li onclick=showSidebar()><i id="navBurger" class=" menuButton fa-solid fa-bars"></i></li>
         </ul>
