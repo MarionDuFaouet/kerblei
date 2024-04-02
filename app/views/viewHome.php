@@ -14,11 +14,10 @@ require_once RACINE . '/views/header.php';
         <p id="firstTitle">KERBLEI</h1>
 
         <p id="headerMainText">Une dégustation? <br> Venez visiter la brasserie !</p>
-       
+
         <a href="./?action=cart" title="Cliquez ici pour nous trouver" class="cta-button">Nous rencontrer</a>
     </div>
     <img src="./statics/images/tonneau.jpg" alt="Tonneaux de bières Brasserie Kerblei">
-
 </div>
 
 <section class="container" id="about">
@@ -36,7 +35,8 @@ require_once RACINE . '/views/header.php';
         </p>
     </div>
     <div id="about2">
-        <img src="./statics/images/presse.jpg" alt="Impression étiquettes Brasserie Kerblei">
+    <iframe src="https://www.youtube.com/embed/bWI72ymoiEw" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+
         <p>E gwelloc’h amañ distagañ metrad war start e genou, waz roched
             kreñv livañ speredekañ dad kenetre ar drezo, niz daouzek a bodet
             e bag vandenn. An c’haol linenn pepr penn lammat tresañ beajiñ
@@ -47,7 +47,7 @@ require_once RACINE . '/views/header.php';
             roc’h penaos trouz pepr pounner.
         </p>
     </div>
-    <a href="./?action=products" title="Cliquez ici pour découvrir notre gamme de bières" class="cta-button">Découvrez la gamme</a>
+    <a href="./?action=products" title="Cliquez ici pour découvrir notre gamme de bières" class="cta-button button">Découvrez la gamme</a>
 </section>
 
 

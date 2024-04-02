@@ -7,11 +7,6 @@ $title = "Micro-Brasserie Kerblei - Panier";
 require_once RACINE . '/views/header.php';
 ?>
 
-<!-- question : puis-je ajouter ce head? (pour ne pas indexer cette page) -->
-<!-- <head>
-    <meta name="robots" content="noindex" />
-    <meta name="googlebot" content="noindex" />
-</head> -->
 
 <!-- -------------------------------------------------------------------------- -->
 <section class="container">

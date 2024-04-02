@@ -1,10 +1,6 @@
-function validateForm() {
-    // Validation logique si nécessaire
-    return true;
-}
 
 function confirmDelete() {
-    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
+    let confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
     if (confirmation) {
         // Proceed with account deletion
         document.getElementById("deleteConfirmation").style.display = "block";

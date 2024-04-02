@@ -48,7 +48,7 @@ include RACINE . '/views/header.php' ?>
     <input type="password" id="password" name="password" placeholder="Mot de passe" required minlength="8"><br />
 
     <input class="cta-button" type="submit" title="Modification de vos données" value="Je valide ces modifications" />
-    <button class="cta-button" type="button" onclick="confirmDelete()">Je supprime mon compte</button>
+    <input class="cta-button" type="submit" onclick="confirmDelete()">Je supprime mon compte</button>
     <p id="deleteConfirmation" style="display: none;">Attention, cette action est irréversible. Confirmez-vous la suppression de votre compte ?</p>
 
     <!-- to logout -->

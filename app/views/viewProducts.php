@@ -9,9 +9,9 @@ $title = "Kerblei - Nos produits";
 require_once RACINE . "/views/header.php";
 ?>
 <h2>Nos produits</h2>
-<!-- affichage message -->
+<!-- show message -->
 <p class="msg"><?php echo $msg; ?></p>
-<!-- affichage de mes produits -->
+<!-- show products -->
 <section class="container product">
     <?php foreach ($products as $product) : ?>
         <div class="productShow">
@@ -25,15 +25,10 @@ require_once RACINE . "/views/header.php";
             <form action="./?action=products" method="POST">
                 <button type="submit" class="cta-button" name="addToCart" value="<?php echo $product['productId']; ?>">Ajouter au panier</button>
             </form>
-
-
-            
         </div>
     <?php endforeach; ?>
-    
-    
-
 </section>
 
 
+<!-- view calling -->
 <?php require_once RACINE . "/views/footer.php"; ?>
