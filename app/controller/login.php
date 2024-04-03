@@ -1,7 +1,6 @@
 <?php
 
 $msg = null;
-// $products=[];
 
 
 // // user already logged
@@ -17,7 +16,6 @@ if (!isset($_POST['mail']) || !isset($_POST['password'])) {
     exit;
 }
 
-
 /* empty inputs? */
 if (empty($_POST['mail']) || empty($_POST['password'])) {
     $msg = 'Vos mail et mot de passe doivent être renseignés.';
@@ -25,10 +23,8 @@ if (empty($_POST['mail']) || empty($_POST['password'])) {
     exit;
 }
 
-
 /* Now, submit login form */
 require RACINE . "/model/db.user.php";
-// login($mail, $password);
 $user = getUserByMail($_POST['mail']);
 
 if (($user == null) || ($_POST['password'] != $user['password'])) {
@@ -45,7 +41,7 @@ $_SESSION['admin'] = $user['isAdmin'];
 // ##DEBUG
 // var_dump($_SESSION);
 
-// Redirection en fonction du type d'utilisateur (client ou administrateur)
+// when isAdmin and when not
 if ($_SESSION['admin'] == 0) {
     header("Location: ./?action=account");
 } else {
