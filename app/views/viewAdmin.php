@@ -46,7 +46,7 @@ include RACINE . '/views/header.php' ?>
         <!-- ADD PRODUCTS -->
         <p class="msg"><?php echo $msg; ?></p>
 
-        <form action="./?action=admin" class="forms" method="POST">
+        <form action="./?action=admin" class="forms" method="POST" id="add">
             <label for="name">Nom</label>
             <input type="text" name="name" placeholder="ex : Ambrée" /><br />
             <label for="degree">Degrés</label>
@@ -55,7 +55,7 @@ include RACINE . '/views/header.php' ?>
             <input type="text" name="designation" placeholder="texte max 50 car." /><br />
             <label for="unitPrice">Prix unitaire</label>
             <input type="text" name="unitPrice" placeholder="00.00" /><br />
-            <label for="img">Image</label>
+            <label for="PictureRef">Image</label>
             <input type="text" name="pictureRef" placeholder="monimage.jpg" /><br />
             <input class="cta-button" type="submit" name="addProduct" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
         </form>
@@ -74,8 +74,8 @@ include RACINE . '/views/header.php' ?>
                     <th>Degrés</th>
                     <th>Description</th>
                     <th>Prix</th>
-                    <th>Référence de l'image</th>
-                    <th>Sélectionner</th>
+                    <th>Réf image</th>
+                    <th>Select</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,7 +100,7 @@ include RACINE . '/views/header.php' ?>
 
 
         <!-- MODIFY / DELETE PRODUCT -->
-        <form action="./?action=admin" class="forms" method="POST" id="productForm">
+        <form action="./?action=admin" class="forms" method="POST" id="updateDelete">
             <!-- selected product ID hidden field -->
             <input type="hidden" name="selectedProductId" id="selectedProductId">
             <!-- Pre-filled modification fields -->

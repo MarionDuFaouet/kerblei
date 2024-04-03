@@ -18,6 +18,7 @@ function getProducts() {
         $query = $cnx->prepare("SELECT productId, name, degree, designation, unitPrice, pictureRef FROM Product");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
+        
     } catch (PDOException $e) {
         die("Erreur !: " . $e->getMessage());
     }
@@ -76,12 +77,6 @@ function updateProduct($productId, $productName, $productDegree, $productDescrip
         $query->bindValue(':unitPrice', $productPrice, PDO::PARAM_STR);
         $query->bindValue(':pictureRef', $productPictureRef, PDO::PARAM_STR);
         $query->execute();
-        // Check the number of affected rows (to confirm the success of the update)
-        $rowCount = $query->rowCount();
-        // Close the database connection
-        $cnx = null;
-        // Return the number of affected rows (0 if the update failed)
-        return $rowCount;
     } catch (PDOException $e) {
         die("Error updating the product: " . $e->getMessage());
     }

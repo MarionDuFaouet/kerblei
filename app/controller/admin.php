@@ -3,7 +3,6 @@
 $registeredProduct = false;
 $msg = null;
 
-require RACINE . "/model/db.product.php";
 
 // -----------------------------------ADMIN ORDER-----------------------------------------
 
@@ -12,15 +11,15 @@ require RACINE . "/model/db.product.php";
 // ADD PRODUCTS
 // Check if form data has been submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
+    
     if (!empty($_POST["name"]) && !empty($_POST["degree"]) && !empty($_POST["designation"])
-        && !empty($_POST["unitPrice"]) && !empty($_POST["img"])) {
-
+        && !empty($_POST["unitPrice"]) && !empty($_POST["pictureRef"])) {
         // Get form data
         $name = $_POST["name"];
         $degree = $_POST["degree"];
         $designation = $_POST["designation"];
         $unitPrice = $_POST["unitPrice"];
-        $pictureRef = $_POST["img"];
+        $pictureRef = $_POST["pictureRef"];
 
         // Check field
         if (strlen($name) > 20) {
@@ -47,11 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
         $msg = "Veuillez remplir tous les champs.";
     }
 }
+###DEBUG
+// var_dump($name, $degree, $designation );
 
 // -------------------------------------------------------------------------------------------
 // MODIFICATION / SUPRESSION PRODUCTS
 
 
+require RACINE . "/model/db.product.php";
 
 $products = getProducts();
 
@@ -63,10 +65,9 @@ $products = getProducts();
 ###DEBUG
 // var_dump($productsJSON);
 
-
-
 // Form processing for product modification or deletion
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
+
     // Retrieve form data
     $productId = $_POST["selectedProductId"];
     $productName = $_POST["productName"];
@@ -77,6 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
 
     // Call the model function to update the product
     updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef);
+    var_dump(getProducts());
+
 } elseif (isset($_POST["deleteProduct"])) {
     // Retrieve the ID of the product to delete
     $productIdToDelete = $_POST["selectedProductId"];
@@ -85,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
     deleteProduct($productIdToDelete);
 }
 
+$products = getProducts();
 
 // Include the view of the form to add products
 require_once RACINE . "/views/viewAdmin.php";
