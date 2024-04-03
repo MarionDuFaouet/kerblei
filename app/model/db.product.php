@@ -44,7 +44,7 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
         $query->bindValue(':name', $name, PDO::PARAM_STR);
         $query->bindValue(':degree', $degree, PDO::PARAM_STR);
         $query->bindValue(':designation', $designation, PDO::PARAM_STR);
-        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR); // Change to PDO::PARAM_DECIMAL if the price is stored as a DECIMAL in the database
+        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR); // ??? dans ma bdd, le type est en decimal!!!
         $query->bindValue(':pictureRef', $pictureRef, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
