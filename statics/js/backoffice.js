@@ -59,15 +59,12 @@ function arrowNavigation(e){
 
 
 // PRODUCT SELECTION---------------------------------------------------------------------------------
-// Function to fill the form with the data of the selected product
-function fillForm(productId) {
-    // Set the value of the hidden input field for the selected product ID
-    document.getElementById("selectedProductId").value = productId;
-
-    // Set the values of form fields with PHP echo statements
-    document.getElementById("productName").value = "<?php echo $product['name']; ?>";
-    document.getElementById("productDegre").value = "<?php echo $product['degree']; ?>";
-    document.getElementById("productDescription").value = "<?php echo $product['designation']; ?>";
-    document.getElementById("productPrice").value = "<?php echo $product['unitPrice']; ?>";
-    document.getElementById("productPictureRef").value = "<?php echo $product['pictureRef']; ?>";
+// to fill the form with selected product's data
+function fillForm(product) {
+    document.getElementById("selectedProductId").value = product.productId;
+    document.getElementById("productName").value = product.name;
+    document.getElementById("productDegre").value = product.degree;
+    document.getElementById("productDescription").value = product.designation;
+    document.getElementById("productPrice").value = product.unitPrice;
+    document.getElementById("productPictureRef").value = product.pictureRef;
 }
