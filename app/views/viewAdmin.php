@@ -35,15 +35,15 @@ include RACINE . '/views/header.php' ?>
 
 
 
+    <!----------------------------- backOffice Products beginning -------------------------->
 
     <!-- TAB CONTENT -->
     <!-- accessibility -->
     <div class="tabContent" id="panel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2">
-        <!----------------------------- backOffice Products beginning -------------------------->
         <h2>Gestion produits</h2>
 
         <h2>Ajouter un produit</h2>
-        <!-- AJOUT DE PRODUITS -->
+        <!-- ADD PRODUCTS -->
         <p class="msg"><?php echo $msg; ?></p>
 
         <form action="./?action=admin" class="forms" method="POST">
@@ -56,21 +56,16 @@ include RACINE . '/views/header.php' ?>
             <label for="unitPrice">Prix unitaire</label>
             <input type="text" name="unitPrice" placeholder="00.00" /><br />
             <label for="img">Image</label>
-            <input type="text" name="img" placeholder="monimage.jpg" /><br />
-            <input class="cta-button" type="submit" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
+            <input type="text" name="pictureRef" placeholder="monimage.jpg" /><br />
+            <input class="cta-button" type="submit" name="addProduct" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
         </form>
+        <!-- -------------------------------------------------------------------------- -->
 
-
-
-
-
-
-        
 
         <h2>Modifier les produits</h2>
-        <!-- AFFICHAGE DES PRODUITS -->
+        <!-- SHOW PRODUCTS -->
         <p class="msg"><?php echo $msg; ?></p>
-        
+
         <table>
             <thead>
                 <tr>
@@ -84,7 +79,7 @@ include RACINE . '/views/header.php' ?>
                 </tr>
             </thead>
             <tbody>
-                <!-- MAIS WHY WHY WHY!!!!! -->
+
                 <?php foreach ($products as $product) : ?>
                     <tr>
                         <td><?php echo $product['productId']; ?></td>
@@ -94,10 +89,8 @@ include RACINE . '/views/header.php' ?>
                         <td><?php echo $product['unitPrice']; ?> €</td>
                         <td><?php echo $product['pictureRef']; ?></td>
                         <td>
-                            <!-- Bouton de sélection du produit -->
-                            <input type="radio" name="selectedProduct" 
-                            value="<?php echo $product['productId']; ?>" 
-                            onclick="fillForm(<?php echo $product['productId']; ?>)">
+                            <!-- product selection button -->
+                            <input type="radio" name="selectedProduct" value="<?php echo $product['productId']; ?>" onclick="fillForm(<?php echo htmlspecialchars(json_encode($product)); ?>)">
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -106,17 +99,11 @@ include RACINE . '/views/header.php' ?>
 
 
 
-
-
-
-
-
-        <!-- FORMULAIRE DE MODIFICATION / SUPPRESSION DES PRODUITS -->
-        <form id="productForm" method="post" class="forms" action="admin.php">
-            <!-- Champ caché pour stocker l'ID du produit sélectionné -->
+        <!-- MODIFY / DELETE PRODUCT -->
+        <form action="./?action=admin" class="forms" method="POST" id="productForm">
+            <!-- selected product ID hidden field -->
             <input type="hidden" name="selectedProductId" id="selectedProductId">
-
-            <!-- Champ de modification pré-rempli -->
+            <!-- Pre-filled modification fields -->
             <label for="productName">Nom</label>
             <input type="text" id="productName" name="productName"><br>
             <label for="productDegre">Degrés</label>
@@ -127,21 +114,22 @@ include RACINE . '/views/header.php' ?>
             <input type="text" id="productPrice" name="productPrice"><br>
             <label for="productPictureRef">Image</label>
             <input type="text" id="productPictureRef" name="productPictureRef"><br>
+            <!-- to submit modifications and delete the product -->
+            <input class="cta-button" type="submit" name="updateProduct" title="Modification de produit" value="Modifier" />
+            <input class="cta-button" type="submit" name="deleteProduct" title="Suppression de produit" value="Supprimer" />
 
-            <!-- Boutons d'action -->
-            <button class="cta-button" type="submit" name="updateProduct">Valider les modifications</button>
-            <button class="cta-button" type="submit" name="deleteProduct">Supprimer le produit</button>
         </form>
 
-        <!----------------------------- backOffice Products end ----------------------------->
     </div>
+    <!----------------------------- backOffice Products end ----------------------------->
+
 </div>
-<!-- ajouter bouton déconnexion!!! -->
+
+
 <!-- to logout -->
 <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
 
 <!-- src : youtube/Ecole du web/ coder des onglets en javasccript -->
-
 
 <!-- view calling -->
 <?php require_once RACINE . '/views/footer.php' ?>

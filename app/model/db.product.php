@@ -10,7 +10,7 @@ include_once RACINE . "/model/connec.inc.php";
  *
  * @return array An array containing all products fetched from the database.
  */
-//me permet d'afficher les produits
+// to show all products in admin list and shop
 function getProducts() {
     $products = array();
     try {
@@ -24,30 +24,7 @@ function getProducts() {
     return $products;
 }
 
-/**
- * Retrieve product information by its ID.
- *
- * @param int $productId The ID of the product to retrieve.
- * @return array|null Returns an associative array containing product information if found, otherwise returns null.
- */
-function getProductById($productId)
-{
-    try {
-        $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT name, degree, designation, unitPrice, pictureRef FROM Product WHERE productId=:productId");
-        $query->bindValue(':productId', $productId, PDO::PARAM_INT);
-        $query->execute();
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-        return $result; // Return product information
-    } catch (PDOException $e) {
-        // Instead of using die(), you can log the error and handle it more gracefully
-        error_log("Error fetching product: " . $e->getMessage());
-        return null; // Return null to indicate failure
-    }
-}
 
-// add products
-// va enregistrer un nouveau produit depuis adminProduct
 /**
  * Creates a new product in the database.
  *
@@ -58,7 +35,8 @@ function getProductById($productId)
  * @param string $pictureRef Reference of the product image.
  * @return bool Returns true if the product was successfully created, otherwise returns false.
  */
-function createProduct($name, $degree, $designation, $unitPrice, $pictureRef)
+// to add product in admin
+function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
 {
     try {
         $cnx = connexionPDO();
@@ -66,7 +44,7 @@ function createProduct($name, $degree, $designation, $unitPrice, $pictureRef)
         $query->bindValue(':name', $name, PDO::PARAM_STR);
         $query->bindValue(':degree', $degree, PDO::PARAM_STR);
         $query->bindValue(':designation', $designation, PDO::PARAM_STR);
-        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR); // ??? dans ma bdd, le type est en decimal!!!
+        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR); // Change to PDO::PARAM_DECIMAL if the price is stored as a DECIMAL in the database
         $query->bindValue(':pictureRef', $pictureRef, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
@@ -75,46 +53,56 @@ function createProduct($name, $degree, $designation, $unitPrice, $pictureRef)
     return $result;
 }
 
-// va me permettre de mettre à jour un produit
-function updateProduct($productId, $newData){
+
+/**
+ * Updates a product in the database.
+ *
+ * @param int $productId The ID of the product to update.
+ * @param string $productName The updated name of the product.
+ * @param string $productDegree The updated degree of the product.
+ * @param string $productDescription The updated description of the product.
+ * @param string $productPrice The updated unit price of the product.
+ * @param string $productPictureRef The updated picture reference of the product.
+ * @return int The number of rows affected by the update operation.
+ */
+function updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef) {
     try {
         $cnx = connexionPDO();
-
         $query = $cnx->prepare("UPDATE Product SET name = :name, degree = :degree, designation = :designation, unitPrice = :unitPrice, pictureRef = :pictureRef WHERE productId = :productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
-        $query->bindValue(':name', $newData['name'], PDO::PARAM_STR);
-        $query->bindValue('degree', $newData['degree'], PDO::PARAM_STR);
-        $query->bindValue(':designation', $newData['designation'], PDO::PARAM_STR);
-        $query->bindValue(':unitPrice', $newData['unitPrice'], PDO::PARAM_STR);
-        $query->bindValue(':pictureRef', $newData['pictureRef'], PDO::PARAM_STR);
-
+        $query->bindValue(':name', $productName, PDO::PARAM_STR);
+        $query->bindValue(':degree', $productDegree, PDO::PARAM_STR);
+        $query->bindValue(':designation', $productDescription, PDO::PARAM_STR);
+        $query->bindValue(':unitPrice', $productPrice, PDO::PARAM_STR);
+        $query->bindValue(':pictureRef', $productPictureRef, PDO::PARAM_STR);
         $query->execute();
-
-        // Vérification du nombre de lignes affectées (pour confirmer la réussite de la mise à jour)
+        // Check the number of affected rows (to confirm the success of the update)
         $rowCount = $query->rowCount();
-
-        // Fermeture de la connexion à la base de données
+        // Close the database connection
         $cnx = null;
-
-        // Retourner le nombre de lignes affectées (0 si la mise à jour a échoué)
+        // Return the number of affected rows (0 if the update failed)
         return $rowCount;
     } catch (PDOException $e) {
-        die("Erreur lors de la mise à jour du produit : " . $e->getMessage());
+        die("Error updating the product: " . $e->getMessage());
     }
 }
 
-
-// delete product
-// va me permettre de supprimer un produit depuis adminProduct
-function deleteProductById($productId)
-{
+/**
+ * Deletes a product from the database.
+ *
+ * @param int $productId The ID of the product to delete.
+ * @return bool True if the deletion was successful, false otherwise.
+ */
+function deleteProduct($productId) {
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("DELETE FROM Product WHERE productId=:productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $result = $query->execute();
+        // Return true if the deletion was successful
+        return $result;
     } catch (PDOException $e) {
-        die("Erreur !: " . $e->getMessage());
+        // Handle any errors that occur during deletion
+        die("Error deleting the product: " . $e->getMessage());
     }
-    return $result;
 }

@@ -10,11 +10,8 @@ require RACINE . "/model/db.product.php";
 // -----------------------------------ADMIN PRODUCT---------------------------------------
 
 // ADD PRODUCTS
-
-
 // Check if form data has been submitted
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Check if all fields are filled
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {    // Check if all fields are filled
     if (
         !empty($_POST["name"]) && !empty($_POST["degree"]) && !empty($_POST["designation"])
         && !empty($_POST["unitPrice"]) && !empty($_POST["img"])
@@ -37,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $msg = "Le prix doit être de 5 caractères maximum.";
         } else {
             // All validations successful, call the model function to create a new product in the database
-            $result = createProduct($name, $degree, $designation, $unitPrice, $pictureRef);
+            $result = addProduct($name, $degree, $designation, $unitPrice, $pictureRef);
 
             // Check if product creation was successful
             if ($result) {
@@ -55,56 +52,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 // -------------------------------------------------------------------------------------------
 // MODIFICATION / SUPRESSION PRODUCTS
 
-// Récupérer les produits depuis la base de données
-// require RACINE . "/model/db.product.php";
+
 
 $products = getProducts();
-var_dump($products);
 
-// je dois insérer $products dans $newData
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Vérifier si le bouton de mise à jour du produit a été cliqué
-    if (isset($_POST["updateProduct"])) {
-        // Récupérer les données du formulaire
-        $productId = $_POST["productId"];
-        $newData = array(
-           $products["name"]  => $_POST["name"],
-           $products["degree"] => $_POST["degree"],
-           $products["designation"] => $_POST["designation"],
-           $products["unitPrice"] => $_POST["unitPrice"],
-           $products["pictureRef"] => $_POST["img"]
-        );
+###DEBUG
+// var_dump($products);
+// Convertir les données des produits en JSON
+// $productsJSON = json_encode($products);
+###DEBUG
+// var_dump($productsJSON);
 
-        // Appeler la fonction du modèle pour mettre à jour le produit dans la base de données
-        $rowCount = updateProduct($productId, $newData);
 
-        // Vérifier si la mise à jour a réussi
-        if ($rowCount > 0) {
-            $msg = "Mise à jour réussie.";
-        } else {
-            // Afficher un message d'erreur si la mise à jour a échoué
-            $msg = "La mise à jour a échoué.";
-        }
+
+// Form processing for product modification or deletion
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) { 
+        // Retrieve form data
+        $productId = $_POST["selectedProductId"];
+        $productName = $_POST["productName"];
+        $productDegree = $_POST["productDegre"];
+        $productDescription = $_POST["productDescription"];
+        $productPrice = $_POST["productPrice"];
+        $productPictureRef = $_POST["productPictureRef"];
+
+        // Call the model function to update the product
+        updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef);
+    } elseif (isset($_POST["deleteProduct"])) {
+        // Retrieve the ID of the product to delete
+        $productIdToDelete = $_POST["selectedProductId"];
+
+        // Call the model function to delete the product
+        deleteProduct($productIdToDelete);
     }
 
-    // Vérifier si le bouton de suppression du produit a été cliqué
-    if (isset($_POST["deleteProduct"])) {
-        // Récupérer l'ID du produit à supprimer
-        $productIdToDelete = $_POST["productIdToDelete"];
-
-        // Appeler la fonction du modèle pour supprimer le produit de la base de données
-        $rowCount = deleteProductById($productIdToDelete);
-
-        // Vérifier si la suppression a réussi
-        if ($rowCount > 0) {
-            $msg = "Produit supprimé avec succès.";
-        } else {
-            // Afficher un message d'erreur si la suppression a échoué
-            $msg = "La suppression du produit a échoué.";
-        }
-    }
-}
 
 // Include the view of the form to add products
 require_once RACINE . "/views/viewAdmin.php";
