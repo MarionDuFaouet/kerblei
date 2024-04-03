@@ -36,8 +36,6 @@ function addUser($mail, $password, $name, $firstname) {
         $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
         $query->bindValue(':name', $name, PDO::PARAM_STR);
         $query->bindValue(':firstname', $firstname, PDO::PARAM_STR);
-
-
         $result = $query->execute();
     } catch (PDOException $e) {
         die( "Erreur !: " . $e->getMessage() );

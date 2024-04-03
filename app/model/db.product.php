@@ -45,11 +45,11 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
         $query->bindValue(':name', $name, PDO::PARAM_STR);
         $query->bindValue(':degree', $degree, PDO::PARAM_STR);
         $query->bindValue(':designation', $designation, PDO::PARAM_STR);
-        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR); // ??? dans ma bdd, le type est en decimal!!!
+        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR);
         $query->bindValue(':pictureRef', $pictureRef, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
-        die("Erreur !: " . $e->getMessage());
+        throw new Exception("Erreur PDO : " . $e->getMessage());   
     }
     return $result;
 }
@@ -64,7 +64,6 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
  * @param string $productDescription The updated description of the product.
  * @param string $productPrice The updated unit price of the product.
  * @param string $productPictureRef The updated picture reference of the product.
- * @return int The number of rows affected by the update operation.
  */
 function updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef) {
     try {
@@ -78,8 +77,7 @@ function updateProduct($productId, $productName, $productDegree, $productDescrip
         $query->bindValue(':pictureRef', $productPictureRef, PDO::PARAM_STR);
         $query->execute();
     } catch (PDOException $e) {
-        die("Error updating the product: " . $e->getMessage());
-    }
+        throw new Exception("Erreur PDO : " . $e->getMessage());    }
 }
 
 /**
@@ -98,6 +96,5 @@ function deleteProduct($productId) {
         return $result;
     } catch (PDOException $e) {
         // Handle any errors that occur during deletion
-        die("Error deleting the product: " . $e->getMessage());
-    }
+        throw new Exception("Erreur PDO : " . $e->getMessage());    }
 }

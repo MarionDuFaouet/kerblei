@@ -3,25 +3,25 @@
 $registeredProduct = false;
 $msg = null;
 
-
+// !!! Mieux nommer mes variables, moins de commentaires
+//commentaires sur fonctionnalités, facilitent la lecture
 // -----------------------------------ADMIN ORDER-----------------------------------------
 
 // -----------------------------------ADMIN PRODUCT---------------------------------------
+require RACINE . "/model/db.product.php";
 
 // ADD PRODUCTS
 // Check if form data has been submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
-    
+
     if (!empty($_POST["name"]) && !empty($_POST["degree"]) && !empty($_POST["designation"])
         && !empty($_POST["unitPrice"]) && !empty($_POST["pictureRef"])) {
-        // Get form data
         $name = $_POST["name"];
         $degree = $_POST["degree"];
         $designation = $_POST["designation"];
         $unitPrice = $_POST["unitPrice"];
         $pictureRef = $_POST["pictureRef"];
 
-        // Check field
         if (strlen($name) > 20) {
             $msg = "Le nom ne doit pas excéder 20 caractères";
         } else if (strlen($degree) > 5) {
@@ -31,10 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
         } else if (strlen($unitPrice) > 5) {
             $msg = "Le prix doit être de 5 caractères maximum.";
         } else {
-            // All validations successful, call function to create a new product in the database
             $result = addProduct($name, $degree, $designation, $unitPrice, $pictureRef);
 
-            // Check if product creation was successful
             if ($result) {
                 $msg = "Produit ajouté avec succès.";
             } else {
@@ -47,13 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
     }
 }
 ###DEBUG
-// var_dump($name, $degree, $designation );
+// var_dump($name, $degree, $designation, $unitPrice, $pictureRef );
 
 // -------------------------------------------------------------------------------------------
 // MODIFICATION / SUPRESSION PRODUCTS
 
 
-require RACINE . "/model/db.product.php";
 
 $products = getProducts();
 
