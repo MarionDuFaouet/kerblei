@@ -58,7 +58,7 @@
     -moz-transition: opacity 0.4s ease-out;
     -ms-transition: opacity 0.4s ease-out;
     -o-transition: opacity 0.4s ease-out;
-      /* position: absolute; */
+    /* position: absolute; */
 }
 
 .tabContent p {
@@ -75,7 +75,29 @@
     font-weight: bolder;
     color: $font-color;
 }
-.activeTabContent{
+
+.activeTabContent {
     visibility: visible;
     opacity: 1;
+}
+
+table{
+    width: 100%;
+}
+thead {
+    th {
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        
+        tr {
+            padding: 10px;
+        }
+        
+    }
+}
+// comment centrer ce truc???
+th:last-child {
+    text-align: center;
 }

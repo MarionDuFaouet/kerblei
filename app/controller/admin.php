@@ -3,9 +3,14 @@
 $registeredProduct = false;
 $msg = null;
 
-// !!! Mieux nommer mes variables, moins de commentaires
+// !!! Mieux nommer mes variables === moins de commentaires !!!
 //commentaires sur fonctionnalités, facilitent la lecture
 // -----------------------------------ADMIN ORDER-----------------------------------------
+
+
+
+
+
 
 // -----------------------------------ADMIN PRODUCT---------------------------------------
 require RACINE . "/model/db.product.php";
@@ -40,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
             }
         }
     } else {
-        // Display an error message if all fields are not filled
         $msg = "Veuillez remplir tous les champs.";
     }
 }

@@ -281,15 +281,15 @@ nav a {
 .productShow button {
   border: none;
 }
+.productShow img {
+  max-width: 200px;
+}
 
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .product {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-  }
-  .productShow {
-    width: 26%;
   }
 }
 *,
@@ -372,6 +372,24 @@ nav a {
 .activeTabContent {
   visibility: visible;
   opacity: 1;
+}
+
+table {
+  width: 100%;
+}
+
+thead th {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+thead th tr {
+  padding: 10px;
+}
+
+th:last-child {
+  text-align: center;
 }
 
 .forms {

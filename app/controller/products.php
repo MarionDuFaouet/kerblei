@@ -10,12 +10,18 @@ $products = getProducts();
 ###DEBUG
 // var_dump($products);
 
-//ni fait ni à faire
-//IL faurdait que quand l'utilisateur est connecté ça fonctionne, 
-// sinon, message:"vous devez être connecté pour ajouter des 
-// produits au panier"
+// mise en panier si session exists,
+// et validation de panier possible depuis page panier 
+// si utilisateur connecté
 
 
+
+/**
+ * Add product to cart
+ *
+ * @param int $productId L'identifiant du produit à ajouter.
+ * @return void
+ */
 // ajout de produits au panier
 function addToCart($productId)
 {
@@ -23,45 +29,39 @@ function addToCart($productId)
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-
     // Vérifier si le produit est déjà présent dans le panier
     if (isset($_SESSION["cart"][$productId])) {
         // Si oui, incrémente simplement la quantité
         $_SESSION["cart"][$productId]++;
-
     } else {
         // Si le produit n'est pas déjà dans le panier, ajoute-le
         $_SESSION["cart"][$productId] = 1;
     }
 
-    // Afficher les informations du panier après l'ajout du produit
-    var_dump($_SESSION["cart"]);
+    ###DEBUG
+    var_dump($_SESSION["cart"],'youhou');
+    // à chaque fois que je refresh, ça me rajoute un produit dans mon panier???
 }
 
 
-
-// require_once RACINE . "/model/db.cart.php";
 // Vérifie si le formulaire a été soumis et si l'action est d'ajouter au panier
 if (isset($_POST['addToCart'])) {
+
     // Vérifie si productId est défini dans les données postées
     if (isset($_POST['productId'])) {
         // Récupère l'identifiant du produit depuis les données postées
         $productId = $_POST['productId'];
-        // Appele la fonction addToCart avec l'identifiant du produit
+        // Appelle la fonction addToCart avec l'identifiant du produit
         addToCart($productId);
-        var_dump($productId);
+        // var_dump($productId);
+        // var_dump($product);
+        var_dump('coucoucoucoucoucoucoucoucoucou');
+        // Afficher un message de succès
+        $msg = 'Produit ajouté avec succès !';
     }
-    
 }
-
-// 
-/* successfull add product to cart */
-$_SESSION['cart'] = $user['cart'];
-// Afficher un message de succès
-$msg = 'Produit ajouté avec succès !';
 
 // Inclure la vue des produits
 require_once RACINE . "/views/viewProducts.php";
-exit;
 
-?>
+exit;

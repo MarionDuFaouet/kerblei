@@ -10,19 +10,35 @@
     button{
         border: none;
     }
-
+    img{
+        max-width: 200px;
+    }
 
 }
+// .cards {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+//     grid-gap: 20px;
+// }
+
+// .card {
+//     display: grid;
+//     grid-template-rows: max-content 400px 1fr;
+// }
+
+// .card img {
+//     object-fit: cover;
+//     width: 100%;
+//     height: 100%;
+// }
 
 
-@media(min-width: 768px) {
-    .product {
+
+@media(min-width: 500px) {
+    .product{
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
     }
-    
-    .productShow {
-        width: 26%;
-    }
+
 }

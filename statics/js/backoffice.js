@@ -1,4 +1,6 @@
 // ADMIN TAB-------------------------------------------------------------------------------------
+// commentaire global, ou variables plus parlantes
+
 // Get all tab elements and convert the NodeList to an array
 const tabs = [...document.querySelectorAll('.tab')];
 
