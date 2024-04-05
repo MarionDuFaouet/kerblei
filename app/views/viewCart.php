@@ -28,7 +28,7 @@ require_once RACINE . '/views/header.php';
             <tr>
                 <th scope="row">blonde</th>
                 <td>5 &#x20AC</td>
-                <td><input type="number"></td>
+                <td><i class="fa-solid fa-minus"> 5 <i class="fa-solid fa-plus"></i></i></td>
                 <td>5 &#x20AC</td>
                 <td><i class="fa-solid fa-trash"></i></td>
             </tr>
