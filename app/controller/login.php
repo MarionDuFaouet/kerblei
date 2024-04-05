@@ -27,7 +27,7 @@ if (empty($_POST['mail']) || empty($_POST['password'])) {
 require RACINE . "/model/db.user.php";
 $user = getUserByMail($_POST['mail']);
 
-if (($user == null) || ($_POST['password'] != $user['password'])) {
+if (($user == null) || !(password_verify($_POST['password'], $user['password']))) {
     $msg = 'Identifiant ou mot de passe erroné';
     require RACINE . "/views/viewLogin.php";
     exit;
@@ -37,6 +37,10 @@ if (($user == null) || ($_POST['password'] != $user['password'])) {
 /* successfull login */
 $_SESSION['mail'] = $user['mail'];
 $_SESSION['admin'] = $user['isAdmin'];
+$_SESSION['phone'] = $user['phone'];
+$_SESSION['name'] = $user['name'];
+$_SESSION['firstname'] = $user['firstname'];
+
 
 // ##DEBUG
 // var_dump($_SESSION);

@@ -9,9 +9,14 @@ function redirectTo($action="default") {
     $actions["login"] = "login.php";
     $actions["logout"] = "logout.php";
     $actions["cart"] = "cart.php";
+    $actions["cartAdd"] = "cartAdd.php";
+    $actions["cartModify"] = "cartModify.php";
+    $actions["cartDelete"] = "cartDelete.php";
     $actions["products"] = "products.php";
     $actions["register"] = "register.php";
     $actions["legalNotices"] = "legalNotices.php";
+    $actions["map"] = "map.php";
+
 
 
     //### DEBUG 4,5 de test d'existence du fichier de controleur

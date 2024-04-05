@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 // Modifications des données
-// comment gérer le mail de l'utilisateur nécéssaire à la fonction? En hiden?
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateUser"])) {
     if (isset($_POST["name"]) || isset($_POST["firstname"]) || isset($_POST["phone"]) || isset($_POST["password"])) {
         // Retrieve form data

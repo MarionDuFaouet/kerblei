@@ -52,12 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
 // var_dump($name, $degree, $designation, $unitPrice, $pictureRef );
 
 // -------------------------------------------------------------------------------------------
+
+
+
+
 // MODIFICATION / SUPRESSION PRODUCTS
-
-
-
 $products = getProducts();
-
 
 ###DEBUG
 // var_dump($products);

@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["firstname"])) {
 
         // Data cleaning
-        $mail = htmlspecialchars($_POST["mail"]);
-        $password = htmlspecialchars($_POST["password"]);
+        $mail = $_POST["mail"];
+        $password = $_POST["password"];
         $name = htmlspecialchars($_POST["name"]);
         $firstname = htmlspecialchars($_POST["firstname"]);
 
@@ -45,7 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $ret = addUser($mail, $password, $name, $firstname);
             if ($ret) {
                 $registered = true;
+                require RACINE . "/views/viewAccount.php";
                 $msg = "Inscription réussie.";
+
             } else {
                 $msg = "L'utilisateur n'a pas pu être enregistré.";
             }
