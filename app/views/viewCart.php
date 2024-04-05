@@ -28,7 +28,7 @@ require_once RACINE . '/views/header.php';
             <tr>
                 <th scope="row">blonde</th>
                 <td>5 &#x20AC</td>
-                <td>curseur quantité</td>
+                <td><input type="number"></td>
                 <td>5 &#x20AC</td>
                 <td><i class="fa-solid fa-trash"></i></td>
             </tr>
@@ -40,7 +40,7 @@ require_once RACINE . '/views/header.php';
             </tr>
             <tr>
                 <th scope="row" colspan="3">Date de retrait</th>
-                <td colspan="1">curseur date</td>
+                <td colspan="1"><input type="date"></td>
             </tr>
             <tr>
                 <th scope="row" colspan="3"></th>
