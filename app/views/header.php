@@ -25,7 +25,7 @@
         <ul>
             <li class="hideOnMobile"><a href="./?action=default">Accueil</a></li>
             <li class="hideOnMobile"><a href="./?action=products">Nos bières</a></li>
-            <li class="hideOnMobile"><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier / Nous trouver</a></li>
+            <li class="hideOnMobile"><a href="./?action=cart"><i class="fa-solid fa-basket-shopping"></i> Panier</a></li>
 
             <!-- A retravailler ? -->
             <?php if (isset($_SESSION['mail']) &&($_SESSION['admin']==1)): ?>

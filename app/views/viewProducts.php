@@ -12,9 +12,9 @@ require_once RACINE . "/views/header.php";
 
 <header class="container">
     <p>Chers clients, ici vous pouvez réserver vos bières en quelques clic. <br>
-        Nous préparons votre commmande et vous la livrons le samedi de votre choix au marché de Baden.</p>
-    <p class="msg">Paiement sur place à la récupération de votre commande.</p>
-    <p class="msg"><?php echo $msg; ?></p>
+        Nous préparons votre commmande et vous venez la récupérer le jour de votre choix à la brasserie.</p>
+    <p class="msg">Paiement au retrait.</p>
+    <!-- <p class="msg"><?php echo $msg; ?></p> -->
 
 </header>
 
@@ -24,21 +24,30 @@ require_once RACINE . "/views/header.php";
     <?php foreach ($products as $product) : ?>
         <div class="productShow">
 
-            <form action="./?action=products" method="POST">
+            <!-- <form action="./?action=products" method="POST">
 
                 <img src="./statics/images/<?php echo $product['pictureRef']; ?>" alt="<?php echo $product['name'] ?>">
                 <p><?php echo $product['name']; ?></p>
                 <p><?php echo $product['degree']; ?>&#37 vol</p>
                 <p><?php echo $product['designation']; ?></p>
-                <p><?php echo $product['unitPrice']; ?> &#x20AC</p>
-                <!-- Champ de formulaire caché pour productId -->
-                <input type="hidden" name="productId" value="<?php echo $product['productId']; ?>">
-                
-                <!-- bouton panier -->
-                <button type="submit" class="cta-button" name="addToCart" value="<?php echo $product['productId']; ?>">Ajouter au panier</button>
-            
-            </form>
+                <p><?php echo $product['unitPrice']; ?> &#x20AC</p> -->
+            <!-- Champ de formulaire caché pour productId -->
+            <!-- <input type="hidden" name="productId" value="<?php echo $product['productId']; ?>"> -->
 
+            <!-- bouton panier -->
+            <!-- <button type="submit" class="cta-button" name="addToCart" value="<?php echo $product['productId']; ?>">Ajouter au panier</button>
+            
+            </form> -->
+            <img src="./statics/images/<?php echo $product['pictureRef']; ?>" alt="<?php echo $product['name'] ?>">
+            <p><?php echo $product['name']; ?></p>
+            <p><?php echo $product['degree']; ?>&#37 vol</p>
+            <p><?php echo $product['designation']; ?></p>
+            <p><?php echo $product['unitPrice']; ?> </p>
+
+            <!-- bouton panier -->
+            <a href="./?action=cartAdd&id=<?php echo $product['productId']; ?>" 
+                class="cta-button" 
+                title="Cliquez ici pour créer un compte">Ajouter au panier</a>
         </div>
 
     <?php endforeach; ?>

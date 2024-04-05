@@ -118,7 +118,8 @@ include RACINE . '/views/header.php' ?>
             <input class="cta-button" type="submit" name="deleteProduct" title="Suppression de produit" value="Supprimer" />
 
         </form>
-
+        
+        
     </div>
     <!----------------------------- backOffice Products end ----------------------------->
 

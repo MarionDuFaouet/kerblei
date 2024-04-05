@@ -3,6 +3,8 @@
     <footer>
         <div id="footerMenu">
             <a href="./?action=legalNotices">Mentions légales</a>
+            <a href="./?action=map">Nous trouver</a>
+
             <!-- mais pourquoi pourquoi j'arrive pas à le dimensionner??? -->
             <a href="https://github.com/MarionDuFaouet"><img src="./statics/images/signature.png" alt="Kevnidenn Kenavedenn"></a>
         </div>
