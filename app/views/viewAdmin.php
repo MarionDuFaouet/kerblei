@@ -74,6 +74,10 @@ include RACINE . '/views/header.php' ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
+
+        <!-- to logout -->
+        <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
+
     </div>
     <!---------------------------- backOffice Order end ------------------------------>
 
@@ -163,6 +167,8 @@ include RACINE . '/views/header.php' ?>
 
         </form>
 
+        <!-- to logout -->
+        <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
 
     </div>
     <!----------------------------- backOffice Products end ----------------------------->
@@ -170,8 +176,6 @@ include RACINE . '/views/header.php' ?>
 </div>
 
 
-<!-- to logout -->
-<a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
 
 <!-- src : youtube/Ecole du web/ coder des onglets en javasccript -->
 
