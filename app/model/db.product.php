@@ -20,7 +20,7 @@ function getProducts() {
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
         
     } catch (PDOException $e) {
-        die("Erreur !: " . $e->getMessage());
+        throw new Exception("Erreur !: " . $e->getMessage());    
     }
     return $products;
 }
@@ -49,7 +49,7 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
         $query->bindValue(':pictureRef', $pictureRef, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
-        throw new Exception("Erreur PDO : " . $e->getMessage());   
+        throw new Exception("Erreur !: " . $e->getMessage());    
     }
     return $result;
 }

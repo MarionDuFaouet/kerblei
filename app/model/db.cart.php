@@ -43,7 +43,7 @@ function getCartByAccountId($accountId) {
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        die("Erreur !: " . $e->getMessage());
+        throw new Exception("Erreur !: " . $e->getMessage());    
     }
     return $result;
 }
@@ -62,7 +62,7 @@ function getCartByStatement($statement){
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        die( "Erreur !: " . $e->getMessage() );
+        throw new Exception("Erreur !: " . $e->getMessage());    
     }
     return $result;
 }
@@ -81,7 +81,7 @@ function updateCartStatement($cartId, $newStatus){
         $query->execute();
         return true;
     } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
+        throw new Exception("Erreur !: " . $e->getMessage());    
         return false;
     }
 }
@@ -134,7 +134,7 @@ function addProductToCart($cartId, $productId, $quantity) {
         }
         return true;
     } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
+        throw new Exception("Erreur !: " . $e->getMessage());    
         return false;
     }
 }
@@ -165,7 +165,7 @@ function updateProductQuantity($cartId, $productId, $newQuantity) {
         }
     } catch (PDOException $e) {
         // En cas d'erreur, affiche un message d'erreur et retourne faux
-        echo "Erreur : " . $e->getMessage();
+        throw new Exception("Erreur !: " . $e->getMessage());    
         return false;
     }
 }
@@ -183,7 +183,7 @@ function removeProductsById($cartId, $productId) {
         // Vérifier si des produits ont été supprimés avec succès
         return $query->rowCount() > 0;
     } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
+        throw new Exception("Erreur !: " . $e->getMessage());    
         return false;
     }
 }

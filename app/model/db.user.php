@@ -32,7 +32,8 @@ function getUserByMail($mail) {
         
         $result = $req->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    }
+        throw new Exception("Erreur !: " . $e->getMessage());    
+    }
     return $result;
 }
 
@@ -50,7 +51,8 @@ function addUser($mail, $password, $name, $firstname) {
         $query->bindValue(':firstname', htmlspecialchars($firstname), PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    }
+        throw new Exception("Erreur !: " . $e->getMessage());    
+    }
     return $result;
 }
 
@@ -68,7 +70,8 @@ function deleteUser($mail) {
         session_unset();
         
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    }
+        throw new Exception("Erreur !: " . $e->getMessage());    
+    }
     return $result;
 }
 
@@ -95,7 +98,8 @@ function updateUser($mail, $name, $firstname, $phone, $password){
         $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    }
+        throw new Exception("Erreur !: " . $e->getMessage());    
+    }
     return $result;
 }
 
