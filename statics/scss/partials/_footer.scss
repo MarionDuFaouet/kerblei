@@ -1,16 +1,26 @@
 footer {
     padding-top: 30px;
-    // border-top: 1px solid white;
 
     #footerMenu {
         display: flex;
         align-items: center;
         padding-left: 30px;
         justify-content: space-between;
-
+        a{
+            text-align: right;
+            margin-right: 50px;
+        }
         img {
-            // display: inline;
             max-width: 25%;
+        }
+
+        #footerMenuNav {
+            display: flex;
+            flex-direction: column;
+            a{
+                padding: 10px;
+                text-align: left;
+            }
         }
     }
 
