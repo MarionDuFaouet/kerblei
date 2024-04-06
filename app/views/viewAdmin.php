@@ -18,19 +18,64 @@ include RACINE . '/views/header.php' ?>
         <button class="tab" role="tab" aria-controls="panel-2" id="tab-2" type="button" aria-selected="false" tabindex="-1">Gestion des produits🧴</button>
     </div>
 
+    <!--------------------------- backOffice Order beginning ------------------------------->
     <!-- TAB CONTENT -->
     <!-- accessibility -->
     <div class="tabContent activeTabContent" id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
-        <!--------------------------- backOffice Order beginning ------------------------------->
         <h2>Gestion commandes</h2>
         <p class="msg"><?php echo $msg; ?></p>
         <h3>Nouvelles commandes</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ref</th>
+                    <th>Date de commande</th>
+                    <th>Client</th>
+                    <th>Contenu</th>
+                    <th>Prix total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($orders as $order) : ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
 
 
         <h3>Commandes livrées</h3>
-
-        <!---------------------------- backOffice Order end ------------------------------>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ref</th>
+                    <th>Date de commande</th>
+                    <th>Client</th>
+                    <th>Contenu</th>
+                    <th>Prix total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($orders as $order) : ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
+    <!---------------------------- backOffice Order end ------------------------------>
 
 
 
@@ -79,7 +124,6 @@ include RACINE . '/views/header.php' ?>
                 </tr>
             </thead>
             <tbody>
-
                 <?php foreach ($products as $product) : ?>
                     <tr>
                         <td><?php echo $product['productId']; ?></td>
@@ -118,8 +162,8 @@ include RACINE . '/views/header.php' ?>
             <input class="cta-button" type="submit" name="deleteProduct" title="Suppression de produit" value="Supprimer" />
 
         </form>
-        
-        
+
+
     </div>
     <!----------------------------- backOffice Products end ----------------------------->
 
