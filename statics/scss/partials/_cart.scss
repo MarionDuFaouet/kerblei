@@ -46,3 +46,6 @@ tbody td {
   tfoot td {
     text-align: center;
   }
+  tfoot tr:last-child{
+    text-align: right;
+  }

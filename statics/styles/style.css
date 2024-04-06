@@ -494,4 +494,15 @@ tfoot th {
 
 tfoot td {
   text-align: center;
+}
+
+tfoot tr:last-child {
+  text-align: right;
+}
+
+.accountAction {
+  margin: 25px;
+}
+.accountAction input {
+  margin: 10px;
 }/*# sourceMappingURL=style.css.map */
