@@ -107,8 +107,20 @@ footer #footerMenu {
   padding-left: 30px;
   justify-content: space-between;
 }
+footer #footerMenu a {
+  text-align: right;
+  margin-right: 50px;
+}
 footer #footerMenu img {
   max-width: 25%;
+}
+footer #footerMenu #footerMenuNav {
+  display: flex;
+  flex-direction: column;
+}
+footer #footerMenu #footerMenuNav a {
+  padding: 10px;
+  text-align: left;
 }
 footer #copyright {
   margin-top: 30px;
