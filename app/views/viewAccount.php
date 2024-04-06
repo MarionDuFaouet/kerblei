@@ -12,13 +12,54 @@ include RACINE . '/views/header.php' ?>
 
 <h2>Mes commandes</h2>
 <section class="container">
+
     <h3>Commandes en cours</h3>
-    <h3>Commandes passées</h3>
+    <h3>Nouvelles commandes</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date de commande</th>
+                    <th>Contenu</th>
+                    <th>Prix total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($orders as $order) : ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+
+        <h3>Commandes livrées</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date de retrait</th>
+                    <th>Contenu</th>
+                    <th>Prix total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($orders as $order) : ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
 </section>
 
 
 <hr>
-
+<!-- --------------------------------------------------------------------------- -->
 <h2>Modifier mes données personnelles</h2>
 
 
