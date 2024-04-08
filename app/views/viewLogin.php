@@ -24,10 +24,7 @@ require_once RACINE . '/views/header.php';
     
     <!-- message -->
     <p><?php echo $msg; ?></p>
-
-    <!-- to logout
-    <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a> -->
-
+    
     <!-- to create account -->
     <a href="./?action=register" class="cta-button" title="Cliquez ici pour créer un compte">Pas encore de compte ?</a>
 
