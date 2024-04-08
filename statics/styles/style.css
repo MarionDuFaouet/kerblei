@@ -436,17 +436,25 @@ th:last-child {
 .mapContent p {
   margin-bottom: 30px;
 }
-.mapContent iframe {
-  width: 80%;
-  height: 390px;
-  margin-left: 60px;
-  margin-top: 80px;
+.mapContent #myMap {
+  margin-top: 40px;
+  height: 250px;
+  width: 70%;
 }
 
 @media (min-width: 768px) {
   .mapContent {
     flex-direction: row;
     margin-top: 50px;
+    align-items: center;
+  }
+  .mapContent img {
+    margin-right: 30px;
+  }
+  .mapContent #myMap {
+    margin-top: 80px;
+    height: 435px;
+    width: 60%;
   }
 }
 #cart {
@@ -490,6 +498,71 @@ th:last-child {
 }
 #cart tfoot tr:last-child {
   text-align: right;
+}
+
+.icon {
+  margin-right: 7px;
+  vertical-align: bottom;
+}
+
+.badge {
+  font-size: 13px;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  background: #C40099;
+  /* padding: 1px 6px; */
+  text-align: center;
+  opacity: 1;
+  margin-left: -14px;
+  margin-right: 7px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 120px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  /* Modal Content */
+}
+.modal .modal-content {
+  background-color: #333333;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #C40099;
+  width: 80%;
+  border-radius: 6px;
+  /* The Close Button */
+}
+.modal .modal-content .close {
+  color: #C40099;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.modal .modal-content .close:hover, .modal .modal-content .close:focus {
+  color: #af639f;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .accountAction {
