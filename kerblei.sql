@@ -126,7 +126,7 @@ INSERT INTO `product` (`productId`, `name`, `designation`, `unitPrice`, `picture
 (4, 'Blonde d \'été', 'Corps léger, notes d\'agrumes, rafraichissante', 5.00, 'blondeEte.jpg', '5,5'),
 (8, 'Blonde des sept Iles', 'Lager, à base de 3 céréales (blé, orge et seigle),', 5.00, 'blonde7iles.jpg', '5'),
 (11, 'Brune', 'Houblon floral, notes de café et chocolat', 5.00, 'brune.jpg', '6,3'),
-(13, 'Rigad\'elle', 'Ambrée au miel de Baden', 5.00, 'bRigadElle.jpg', '7'),
+(13, 'Rigadelle', 'Ambrée au miel de Baden', 5.00, 'bRigadElle.jpg', '7'),
 (14, 'Rousse', 'Caractère fleuri,robe rougeoyante,houblon plus aromatique', 5.00, 'bRousse.jpg', '5,4'),
 (15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 5.00, 'bTriple.jpg', '7,5');
 

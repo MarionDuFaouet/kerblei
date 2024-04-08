@@ -1,7 +1,7 @@
 <?php
 
 // meta description and title
-$title = "Micro-Brasserie Kerblei - Mon compte";
+$title = "Kerblei - Mon compte";
 $description = "Mon compte Kerblei";
 include RACINE . '/views/header.php' ?>
 
@@ -14,7 +14,6 @@ include RACINE . '/views/header.php' ?>
 <section class="container">
 
     <h3>Commandes en cours</h3>
-    <h3>Nouvelles commandes</h3>
         <table>
             <thead>
                 <tr>

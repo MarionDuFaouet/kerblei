@@ -2,10 +2,10 @@
 
 // Session beginning
 session_start();
+if (!isset($_SESSION['cart'])) $_SESSION['cart'] = array();
 
 //###DEBUG
-// var_dump($_SESSION);
-
+var_dump($_SESSION);
 
 // Loading environment variables
 use Dotenv\Dotenv;

@@ -2,7 +2,7 @@
 
 // meta description and title
 $description = "Découvrez notre gamme de bières artisanales.";
-$title = "Micro-Brasserie Kerblei Bienvenue";
+$title = "Kerblei Bienvenue";
 
 require_once RACINE . '/views/header.php';
 ?>

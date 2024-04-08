@@ -4,7 +4,7 @@
         <div id="footerMenu">
             <div id="footerMenuNav">
                 <a href="./?action=legalNotices">Mentions légales</a>
-                <a href="./?action=map">Nous trouver</a>
+                <a href="./?action=map">Contact</a>
             </div>
             <a href="https://github.com/MarionDuFaouet"><img src="./statics/images/signature.png" alt="Kevnidenn Kenavedenn"></a>
         </div>

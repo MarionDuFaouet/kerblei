@@ -1,7 +1,7 @@
 <?php
 
 // meta description and title
-$description = "Bienvenue Kerblei Admin.";
+$description = "Kerblei Admin.";
 $title = "Kerblei Admin";
 // view calling
 include RACINE . '/views/header.php' ?>
