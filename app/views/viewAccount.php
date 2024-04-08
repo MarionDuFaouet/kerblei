@@ -10,9 +10,16 @@ include RACINE . '/views/header.php' ?>
 <h2>Bienvenue <?php echo ($user['firstname']); ?></h2>
 
 
+
 <h2>Mes commandes</h2>
 <section class="container">
 
+
+<!-- Je sais sortir les infos d'une commande par identifiant client 
+maintenant, je dois sortir le contenu? le coût total? le statut...
+pour cela, modifier ma fonction dans db.cart
+ainsi que mon tableau et un fonction js qui passe la commande d'un tableau
+à l'autre selon son statut -->
     <h3>Commandes en cours</h3>
         <table>
             <thead>
@@ -25,9 +32,8 @@ include RACINE . '/views/header.php' ?>
             <tbody>
                 <?php foreach ($orders as $order) : ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo $order['orderDate']; ?></td>
+                        <td><?php echo $order['statement']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -46,9 +52,8 @@ include RACINE . '/views/header.php' ?>
             <tbody>
                 <?php foreach ($orders as $order) : ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo $order['deliveryDate']; ?></td>
+                        <td><?php echo $order['statement']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

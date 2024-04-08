@@ -4,36 +4,39 @@ include_once RACINE . "/model/connec.inc.php";
 
 // TOUT CE QUI CONCERNE LA PAGE PANIER ET NON PRODUCTS
 
+
+
+
+
+
 // retrieve an cart
 // retourne dans un tableau le détail de la commande d'un client
 // va me permettre de récupérer une commande depuis adminCart
-function getCartDetails() {
-    $result = array();
-    try {
-        $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT K.name K.firstname AS userName, P.name AS productName, 
-        P.designation AS designation, C.statement AS statement, C.orderDate AS orderDate, C.deliveryDate AS deliveryDate
-            FROM Cart C
-            JOIN KerbleiUser K ON C.userId = K.userId
-            JOIN OrderProduct OP ON C.cartId = OP.cartId
-            JOIN Product P ON OP.productId = P.productId
-            ORDER BY C.orderDate DESC");
-        $query->execute();
-        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-            $result[] = $row;
-        }
+// function getCartDetails() {
+//     $result = array();
+//     try {
+//         $cnx = connexionPDO();
+//         $query = $cnx->prepare("SELECT K.name K.firstname AS userName, P.name AS productName, 
+//         P.designation AS designation, C.statement AS statement, C.orderDate AS orderDate, C.deliveryDate AS deliveryDate
+//             FROM Cart C
+//             JOIN KerbleiUser K ON C.userId = K.userId
+//             JOIN OrderProduct OP ON C.cartId = OP.cartId
+//             JOIN Product P ON OP.productId = P.productId
+//             ORDER BY C.orderDate DESC");
+//         $query->execute();
+//         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+//             $result[] = $row;
+//         }
 
-        // !!! message d'erreur plus sécure? à faire valider !!!
-    } catch (PDOException $e) {
-        error_log("Erreur PDO : " . $e->getMessage());
-        die("Une erreur s'est produite lors du traitement de votre requête.");
-    }
-    return $result;
-}
+//         // !!! message d'erreur plus sécure? à faire valider !!!
+//     } catch (PDOException $e) {
+//         error_log("Erreur PDO : " . $e->getMessage());
+//         die("Une erreur s'est produite lors du traitement de votre requête.");
+//     }
+//     return $result;
+// }
 
-// retrieve an cart by its id
-// récupère et retourne dans un tableau les dates de commande 
-// et la date choisie pour la livraison d'une commande identifiée
+
 function getCartByAccountId($accountId) {
     $result = array();
     try {
@@ -86,15 +89,7 @@ function updateCartStatement($cartId, $newStatus){
     }
 }
 
-// calcul price of an cart
-// va me permettre de calculer le prix total  d'une commande depuis cart
-function calculateCartTotal($cart){
-    $totalPrice = 0;
-    foreach ($cart as $product) {
-        $totalPrice += $product['unitPrice'];
-    }
-    return $totalPrice;
-}
+
 // Exemple d'utilisation
 // $cart = [
 //     ['name' => 'Product 1', 'unitPrice' => 5],

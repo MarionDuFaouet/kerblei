@@ -1,21 +1,23 @@
 <?php
 
-// require_once RACINE . "/model/db.product.php";
-// require_once RACINE . "/model/db.cart.php";
-// obtenir l'identifiant de compte de l'utilisateur authentifié
-
-
-
 require_once RACINE . "/model/db.user.php";
 $msg = null;
 
-// Récupérer les données de l'utilisateur depuis la base de données
-// $user = getUser();
+
 $mail = $_SESSION['mail'];
 ###DEBUG
-var_dump($mail);
+// Récupérer les données de l'utilisateur depuis la base de données
+// var_dump($mail);
 $user = getUserByMail($mail);
 
+
+
+// Obtenir la liste des commandes
+require_once RACINE . "/model/db.cart.php";
+$accountId= $user['accountId'];
+###DEBUG
+// var_dump($accountId);
+$orders = getCartByAccountId($accountId);
 
 
 // Préremplir le formulaire si les champs sont vides et si l'utilisateur existe dans la base de données
@@ -54,8 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateUser"])) {
     exit;
 }
 
-// Obtenir la liste des commandes
-// $orderProducts = getCartByAccountId($accountId);
+
+
 
 // Inclure la vue du compte client
 require_once RACINE . "/views/viewAccount.php";
