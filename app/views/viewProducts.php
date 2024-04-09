@@ -14,18 +14,15 @@ require_once RACINE . "/views/header.php";
     <p>Chers clients, ici vous pouvez réserver vos bières en quelques clic. <br>
         Nous préparons votre commmande et vous venez la récupérer le jour de votre choix à la brasserie.</p>
     <p class="msg">Paiement au retrait.</p>
-    <!-- <p class="msg"><?php echo $msg; ?></p> -->
 
 </header>
-<!-- ----------------------------------------- -->
-<!-- ------------------------------------------- -->
+
 <!-- show products -->
 <section class="container">
     <div class="cards">
 
         <?php foreach ($products as $product) : ?>
             <article class="card">
-
                 <img src="./statics/images/<?php echo $product['pictureRef']; ?>" alt="<?php echo $product['name'] ?>">
                 <div class="content">
                     <p><?php echo $product['name']; ?></p>
@@ -35,7 +32,9 @@ require_once RACINE . "/views/header.php";
                 </div>
                 <footer>
                     <!-- bouton panier -->
-                    <a href="./?action=cartAdd&id=<?php echo $product['productId']; ?>" class="cta-button" title="Cliquez ici pour créer un compte">Ajouter au panier</a>
+                    <a onclick = "addProductInCart (<?php echo $product['productId']; ?>)"
+                    class="cta-button" 
+                    title="Cliquez ici pour ajouter au panier">Ajouter au panier</a>
                 </footer>
             </article>
         <?php endforeach; ?>
