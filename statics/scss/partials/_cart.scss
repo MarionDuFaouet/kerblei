@@ -1,11 +1,7 @@
 #cart {
   table-layout: fixed;
-  width: 100%;
   border-collapse: collapse;
-  border: 1px solid $font-color;
-  font-size: 0.8em;
 
-  th,
   td {
     padding: 20px;
   }
@@ -14,11 +10,8 @@
     th {
       font-family: $title;
 
-
-
-
       &:nth-child(1) {
-        width: 30%;
+        width: 40%;
       }
 
       &:nth-child(2) {
@@ -26,7 +19,7 @@
       }
 
       &:nth-child(3) {
-        width: 30%;
+        width: 15%;
       }
 
       &:nth-child(4) {
@@ -40,21 +33,22 @@
   }
 
   tbody td {
-    text-align: center;
+
+    &:nth-child(2),
+    &:nth-child(4) {
+      text-align: right;
+    }
+
+    &:nth-child(5) {
+      text-align: center;
+    }
   }
 
   tfoot {
-    th {
+    th,
+    td {
       text-align: right;
       font-family: $title;
-    }
-
-    td {
-      text-align: center;
-    }
-
-    tr:last-child {
-      text-align: right;
     }
   }
 }
@@ -84,13 +78,9 @@
 /* The Modal (background) */
 .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
+  z-index: 2;
   padding-top: 120px;
-  /* Location of the box */
   left: 0;
   top: 0;
   width: 100%;
@@ -111,6 +101,7 @@
     width: 80%;
     border-radius: 6px;
 
+
     /* The Close Button */
     .close {
       color: #C40099;
@@ -123,6 +114,22 @@
         color: #af639f;
         text-decoration: none;
         cursor: pointer;
+      }
+    }
+
+    #modalFooter {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      margin: auto;
+      margin-top: 40px;
+
+      label {
+        padding-bottom: 10px;
+      }
+
+      input {
+        padding: 4px 0;
       }
     }
   }
