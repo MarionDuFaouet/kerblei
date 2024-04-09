@@ -5,6 +5,21 @@ include_once RACINE . "/model/connec.inc.php";
 ###DEBUG
 // var_dump('coucou');
 
+function getProductById($productId) {
+    try {
+        $cnx = connexionPDO();
+        $query = $cnx->prepare("SELECT productId, name, unitPrice FROM Product WHERE productId = :productId");
+        $query->bindParam(':productId', $productId);
+        $query->execute();
+        $product = $query->fetch(PDO::FETCH_ASSOC);
+        
+        return $product;
+    } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la récupération du produit: " . $e->getMessage());    
+    }
+}
+
+
 /**
  * Retrieve and return all products from the database.
  *

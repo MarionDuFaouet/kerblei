@@ -14,9 +14,7 @@ if ($idProduct != 0) {
     $product = getProductById($idProduct);
 
     if ($product) {
-        // Check if the product already exists in the cart
         if (isset($_SESSION['cart'][$idProduct])) {
-            // Increment the quantity of the product in the cart
             $_SESSION['cart'][$idProduct]['quantity']++;
         } else {
             // Add the product to the cart with a quantity of 1

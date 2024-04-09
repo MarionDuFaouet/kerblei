@@ -89,6 +89,45 @@ function addProductInCart(productId) {
 
 
 
+function updateProductInCart(productId) {
+    const quantity = document.querySelector("#item"+productId).value;
+    fetch('?action=cartUpdate&productId=' + productId + '&quantity=' + quantity,    // URL
+        {
+            method: 'GET', // GET, POST, PUT, DELETE, etc.
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    )
+        .then(response => {
+            if (response.ok) {
+                return (response.json());       // return the Promise that contains the jsonObject of the response
+            }
+            return Promise.reject(new Error('status != 200'));    // reject if response not ok (ie. status != 200)
+        })
+        .then(jsonObject => {   // jsonObject contains the JavaScript literal object that contains the updated cart
+            // update the (front-end) cart by DOM manipulation
+
+            //###DEBUG
+            console.log(jsonObject);
+
+        })
+
+        // faire valider mon catch par Thierry
+        .catch(error => {
+            // console.log(error.message);
+            window.alert("Une erreur s'est produite lors de l'ajout du produit au panier. Veuillez réessayer plus tard.")
+            // logErrorOnServer(error);
+            // if (error instanceof NetworkError) {
+            //     // Désactiver des fonctionnalités spécifiques qui nécessitent une connexion réseau
+            //     disableNetworkDependentFeatures();
+            // }
+        })
+}
+
+
+
+
 
 
 

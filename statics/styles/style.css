@@ -522,7 +522,7 @@ th:last-child {
   display: none;
   position: fixed;
   z-index: 2;
-  padding-top: 120px;
+  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
