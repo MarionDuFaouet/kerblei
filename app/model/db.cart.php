@@ -10,11 +10,25 @@ include_once RACINE . "/model/connec.inc.php";
  * @return array Les informations du panier sous forme d'un tableau associatif
  * @throws Exception Si une erreur PDO survient lors de l'exécution de la requête SQL
  */
-function getCartByAccountId($accountId) {
+function getOrdersByAccountId($accountId) {
     $result = array();
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT orderDate, deliveryDate, statement FROM `Cart` WHERE accountId=:accountId");
+        $query = $cnx->prepare("SELECT 
+        c.orderDate,
+        c.deliveryDate,
+        c.statement,
+        p.name AS productName,
+        op.quantity AS productQuantity,
+        p.unitPrice AS productUnitPrice
+    FROM 
+        Cart AS c
+    JOIN 
+        orderproduct AS op ON c.cartId = op.cartId
+    JOIN 
+        product AS p ON op.productId = p.productId
+    WHERE 
+        c.accountId = :accountId;");
         $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -25,6 +39,22 @@ function getCartByAccountId($accountId) {
 }
 
 
+// SELECT orderDate, deliveryDate, statement FROM `Cart` WHERE accountId=:accountId
+// SELECT 
+//     c.orderDate,
+//     c.deliveryDate,
+//     c.statement,
+//     p.name AS productName,
+//     op.quantity AS productQuantity,
+//     p.unitPrice AS productUnitPrice
+// FROM 
+//     Cart AS c
+// JOIN 
+//     orderProduct AS op ON c.cartId = op.cartId
+// JOIN 
+//     product AS p ON op.productId = p.productId
+// WHERE 
+//     c.accountId = :accountId;
 
 
 // TOUT CE QUI CONCERNE LA PAGE PANIER ET NON PRODUCTS

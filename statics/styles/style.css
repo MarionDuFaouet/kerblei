@@ -583,17 +583,20 @@ th:last-child {
   font-family: "antroposfreefont";
 }
 .accountTable thead th:nth-child(1) {
-  width: 13%;
+  width: 15%;
 }
 .accountTable thead th:nth-child(2) {
-  width: 50%;
+  width: 45%;
 }
 .accountTable thead th:nth-child(3) {
   width: 9%;
 }
-.accountTable thead th:nth-child(3) {
-  width: 13%;
-}
-.accountTable thead th:nth-child(3) {
+.accountTable thead th:nth-child(4) {
   width: 15%;
+}
+.accountTable thead th:nth-child(5) {
+  width: 16%;
+}
+.accountTable tbody td {
+  padding: 5px 10px;
 }/*# sourceMappingURL=style.css.map */
