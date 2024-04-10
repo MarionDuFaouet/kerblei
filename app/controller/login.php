@@ -40,6 +40,7 @@ $_SESSION['admin'] = $user['isAdmin'];
 $_SESSION['phone'] = $user['phone'];
 $_SESSION['name'] = $user['name'];
 $_SESSION['firstname'] = $user['firstname'];
+$_SESSION['accountId'] = $user['accountId'];
 
 
 // ##DEBUG

@@ -1,19 +1,3 @@
-function updateCartBadge(count) {
-    const badge = document.querySelector('#cartBadge');
-    badge.innerHTML = count;
-}
-
-/*------ Cart display -------*/
-function showCart(event) {
-    cartModal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-function hideCart(event) {
-    cartModal.style.display = "none";
-}
-
-
 // Ce code JavaScript est une fonction nommée addProductInCart qui est utilisée 
 // pour ajouter un produit au panier dans une application web. Voici une explication ligne par ligne :
 // La fonction addProductInCart prend en paramètre l'ID du produit à ajouter au panier.
@@ -34,7 +18,6 @@ function hideCart(event) {
 // l'interface utilisateur en fonction de la réponse serveur et gère les erreurs qui pourraient 
 // survenir lors du processus.
 
-
 /**
  * Ajoute un produit au panier.
  * @param {string} productId - L'identifiant du produit à ajouter au panier.
@@ -54,33 +37,33 @@ function addProductInCart(productId) {
             }
             return Promise.reject(new Error('status != 200'));    // reject if response not ok (ie. status != 200)
         })
-        .then(jsonObject => {
+        .then(jsonObject => {   // jsonObject contains the JavaScript literal object that contains the updated cart
+            // update the (front-end) cart by DOM manipulation
 
             //###DEBUG
+            
             console.log(jsonObject);
-            // CONSTRUCTION DE MON PANIER
-            let cart1 = document.querySelector("#cart1ProductName");
-            let cart2 = document.querySelector("#cart2UnitPrice");
-
-            cart1.innerHTML = jsonObj.cart.name;
-            cart2.innerHTML = jsonObj.cart.unitPrice;
-
-
             // update the badge value
             let badge = document.querySelector(`#cartBadge`);
             //.innerHTML = jsonObject.length;
             //badge.innerHTML = parseInt(badge.innerHTML) + 1;
             badge.innerHTML = Object.keys(jsonObject).length;
-        })
+            // test
+            let input = document.querySelector(`#item2`);
+            let td = input.parentElement;
+            input.remove();
+            td.innerHTML = "<a class='cta-button' onclick = 'myAlert (56);'>click</a>";
+            
 
+        })
         .catch(error => {
             console.log(error.message);
         })
 }
 
-
-
-
+function myAlert (text){
+    alert("new test: " + text);
+}
 
 
 
@@ -103,8 +86,10 @@ function updateProductInCart(productId) {
         .then(jsonObject => {   // jsonObject contains the JavaScript literal object that contains the updated cart
             // update the (front-end) cart by DOM manipulation
 
+            cartContent(response);
             //###DEBUG
             console.log(jsonObject);
+
         })
         .catch(error => {
             console.log(error.message);
@@ -115,6 +100,26 @@ function updateProductInCart(productId) {
 
 
 
+
+
+
+
+
+// Badge
+function updateCartBadge(count) {
+    const badge = document.querySelector('#cartBadge');
+    badge.innerHTML = count;
+}
+
+/*------ Cart display -------*/
+function showCart(event) {
+    cartModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+function hideCart(event) {
+    cartModal.style.display = "none";
+}
 
 
 // ouverture et fermeture du panier

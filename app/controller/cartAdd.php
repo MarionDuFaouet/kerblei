@@ -2,14 +2,12 @@
 
 require_once RACINE . "/model/db.product.php";
 
-
+// SOS clean cart from SESSION
+if (isset($_SESSION['cart'])) unset($_SESSION['cart']);
 
 $idProduct = isset($_GET["productId"]) ? $_GET["productId"] : 0;
 
 if ($idProduct != 0) {
-
-    // if (isset($_SESSION['cart'][$idProduct])) $_SESSION['cart'][$idProduct]++;
-    // else $_SESSION['cart'][$idProduct] = 1;
 
     $product = getProductById($idProduct);
 
@@ -30,7 +28,5 @@ if ($idProduct != 0) {
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($_SESSION['cart']);
-
-
 
 exit;

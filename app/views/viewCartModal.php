@@ -18,6 +18,17 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- ici je dois construire mon panier en récupérant du json -->
+                <!-- <tr>
+                    <td id="cart1ProductName"></td>
+                    <td id="cart2UnitPrice"></td>
+                    <td id="cart3Quantity"></td>
+                    <td id="cart4 SubTotal"></td>
+                    <td><i onclick="deleteProductInCart (<?php echo $product['productId']; ?>)" class="fa-solid fa-trash"></i></td>
+                </tr> -->
+                <!-- ici je dois construire mon panier en récupérant du json -->
+
+
                 <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                     foreach ($_SESSION['cart'] as $productId => $product) { ?>
                         <tr>
@@ -46,6 +57,8 @@
                 <?php
                 }
                 ?>
+
+
             </tbody>
 
             <tfoot>

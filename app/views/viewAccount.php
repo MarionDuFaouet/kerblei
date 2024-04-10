@@ -1,10 +1,12 @@
 <?php
-
 // meta description and title
 $title = "Kerblei - Mon compte";
 $description = "Mon compte Kerblei";
-include RACINE . '/views/header.php' ?>
 
+require_once RACINE . '/views/head.start.php';
+require_once RACINE . '/views/head.stop.php';
+require_once RACINE . '/views/menu.php';
+?>
 
 <!-- --------------------------------------------------------------------------- -->
 <h2>Bienvenue <?php echo ($user['firstname']); ?></h2>
@@ -15,49 +17,31 @@ include RACINE . '/views/header.php' ?>
 <section class="container">
 
 
-<!-- Je sais sortir les infos d'une commande par identifiant client 
-maintenant, je dois sortir le contenu? le coût total? le statut...
-pour cela, modifier ma fonction dans db.cart
-ainsi que mon tableau et un fonction js qui passe la commande d'un tableau
-à l'autre selon son statut -->
-    <h3>Commandes en cours</h3>
-        <table>
-            <thead>
+    <table class="accountTable">
+        <thead>
+            <tr>
+                <th scope="col">Date de commande</th>
+                <th scope="col">Contenu</th>
+                <th scope="col">Prix total</th>
+                <th scope="col">Date de retrait</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($orders as $order) : ?>
                 <tr>
-                    <th>Date de commande</th>
-                    <th>Contenu</th>
-                    <th>Prix total</th>
+                    <td><?php echo $order['orderDate']; ?></td>
+                    <td><?php echo $order['productName']; ?></td>
+                    <td><?php echo $order['productUnitPrice'] * $order['productQuantity'].'&euro'; ?></td>
+                    <td><?php echo $order['deliveryDate']; ?></td>
+                    <td><?php echo $order['statement']; ?></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($orders as $order) : ?>
-                    <tr>
-                        <td><?php echo $order['orderDate']; ?></td>
-                        <td><?php echo $order['statement']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
 
-        <h3>Commandes livrées</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date de retrait</th>
-                    <th>Contenu</th>
-                    <th>Prix total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($orders as $order) : ?>
-                    <tr>
-                        <td><?php echo $order['deliveryDate']; ?></td>
-                        <td><?php echo $order['statement']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    
 
 </section>
 

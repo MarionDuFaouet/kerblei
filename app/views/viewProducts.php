@@ -4,7 +4,12 @@
 $description = "Découvrez notre gamme de bières artisanales.";
 $title = "Kerblei - Nos produits";
 
-require_once RACINE . "/views/header.php";
+require_once RACINE . '/views/head.start.php';
+?>
+<script src="./statics/js/backoffice.js" defer></script>
+<?php
+require_once RACINE . '/views/head.stop.php';
+require_once RACINE . '/views/menu.php';
 ?>
 <!-- -------------------------------------------------------------------------- -->
 

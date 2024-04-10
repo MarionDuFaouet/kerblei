@@ -4,11 +4,11 @@ include_once RACINE . "/model/connec.inc.php";
 
 
 /**
- * Récupère les informations du panier par identifiant de compte
+ * Retrieves cart information by account ID
  *
- * @param int $accountId L'identifiant du compte pour lequel récupérer le panier
- * @return array Les informations du panier sous forme d'un tableau associatif
- * @throws Exception Si une erreur PDO survient lors de l'exécution de la requête SQL
+ * @param int $accountId The account ID for which to retrieve the cart
+ * @return array The cart information as an associative array
+ * @throws Exception If a PDO error occurs during the execution of the SQL query
  */
 function getOrdersByAccountId($accountId) {
     $result = array();
@@ -38,53 +38,49 @@ function getOrdersByAccountId($accountId) {
     return $result;
 }
 
-
-// SELECT orderDate, deliveryDate, statement FROM `Cart` WHERE accountId=:accountId
-// SELECT 
-//     c.orderDate,
-//     c.deliveryDate,
-//     c.statement,
-//     p.name AS productName,
-//     op.quantity AS productQuantity,
-//     p.unitPrice AS productUnitPrice
-// FROM 
-//     Cart AS c
-// JOIN 
-//     orderProduct AS op ON c.cartId = op.cartId
-// JOIN 
-//     product AS p ON op.productId = p.productId
-// WHERE 
-//     c.accountId = :accountId;
-
-
-// TOUT CE QUI CONCERNE LA PAGE PANIER ET NON PRODUCTS
-
-// retrieve an cart
-// retourne dans un tableau le détail de la commande d'un client
-// va me permettre de récupérer une commande depuis adminCart
-// function getCartDetails() {
-//     $result = array();
-//     try {
-//         $cnx = connexionPDO();
-//         $query = $cnx->prepare("SELECT K.name K.firstname AS userName, P.name AS productName, 
-//         P.designation AS designation, C.statement AS statement, C.orderDate AS orderDate, C.deliveryDate AS deliveryDate
-//             FROM Cart C
-//             JOIN KerbleiUser K ON C.userId = K.userId
-//             JOIN OrderProduct OP ON C.cartId = OP.cartId
-//             JOIN Product P ON OP.productId = P.productId
-//             ORDER BY C.orderDate DESC");
-//         $query->execute();
-//         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-//             $result[] = $row;
-//         }
-
-//         // !!! message d'erreur plus sécure? à faire valider !!!
-//     } catch (PDOException $e) {
-//         error_log("Erreur PDO : " . $e->getMessage());
-//         die("Une erreur s'est produite lors du traitement de votre requête.");
-//     }
-//     return $result;
-// }
+/**
+ * Retrieves orders information including order details, customer information, 
+ * and product information.
+ *
+ * @return array An array containing orders information.
+ * Each element of the array represents an order and is an associative array 
+ * with keys such as 'cartId', 'orderDate', 'deliveryDate', 'statement', 
+ * 'KerbleiUser' (customer name), 'phone', 'productId', 'productName', 
+ * 'quantity', and 'unitPrice'.
+ * @throws Exception If a PDO error occurs during the execution of the SQL query
+ */
+// va me permettre de récupérer les commandes depuis adminCart
+function getOrders() {
+    $result = array();
+    try {
+        $cnx = connexionPDO();
+        $query = $cnx->prepare("SELECT 
+        c.cartId,
+        c.orderDate,
+        c.deliveryDate,
+        c.statement,
+        k.name AS KerbleiUserName,
+        k.firstname AS KerbleiUserFirstname,
+        k.phone,
+        p.productId,
+        p.name AS productName,
+        op.quantity AS productQuantity,
+        p.unitPrice AS productUnitPrice
+    FROM 
+        Cart c
+    JOIN 
+        KerbleiUser k ON c.accountId = k.accountId
+    JOIN 
+        orderProduct op ON c.cartId = op.cartId
+    JOIN 
+        Product p ON op.productId = p.productId");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+throw new Exception("Erreur !: " . $e->getMessage());    
+}
+return $result;
+}
 
 
  
@@ -108,21 +104,22 @@ function getCartByStatement($statement){
 }
 
 
-// change cart status
-// met à jour le statut d'une commande identifiée
-// utilisé dans adminCart et cart
-// ???mon statement est de type ENUM, est-ce que je le gère bien???
-function updateCartStatement($cartId, $newStatus){
+/**
+ * Update the statement of a cart in the database to 'completed'.
+ *
+ * @param int $cartId The ID of the cart to update.
+ * @return bool True if the statement is successfully updated, false otherwise.
+ * @throws Exception If an error occurs while executing the SQL query.
+ */
+function updateCartStatement($cartId) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("UPDATE `Cart` SET `statement` = :newStatus WHERE cartId = :cartId");
-        $query->bindValue(':newStatus', $newStatus, PDO::PARAM_STR);
+        $query = $cnx->prepare("UPDATE `Cart` SET `statement` = 'terminée' WHERE cartId = :cartId");
         $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
         $query->execute();
         return true;
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
-        return false;
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
 }
 

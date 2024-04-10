@@ -3,14 +3,27 @@
 $registeredProduct = false;
 $msg = null;
 
-// !!! Mieux nommer mes variables === moins de commentaires !!!
-//commentaires sur fonctionnalités, facilitent la lecture
 // -----------------------------------ADMIN ORDER-----------------------------------------
 
+require_once RACINE . "/model/db.cart.php";
+$orders = getOrders();
 
-
-
-
+// if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateOrder"])) {
+//     $cartId= $order['cartId'];
+//     updateCartStatement($cartId);
+// }
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateOrder"])) {
+    // Vérifiez si l'identifiant du panier est présent dans la requête POST
+    if(isset($_POST["cartId"])) {
+        // Récupérez l'identifiant du panier à partir de la requête POST
+        $cartId = $_POST["cartId"];
+        // Appelez la fonction pour mettre à jour le statut de la commande
+        updateCartStatement($cartId);
+    } else {
+        // Gérez le cas où l'identifiant du panier n'est pas présent dans la requête POST
+        echo "L'identifiant du panier n'a pas été fourni dans la requête POST.";
+    }
+}
 
 // -----------------------------------ADMIN PRODUCT---------------------------------------
 require RACINE . "/model/db.product.php";

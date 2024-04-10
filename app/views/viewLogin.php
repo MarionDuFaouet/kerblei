@@ -4,7 +4,9 @@
 $title = "Connexion Kerblei";
 $description = "Mon compte Kerblei";
 
-require_once RACINE . '/views/header.php';
+require_once RACINE . '/views/head.start.php';
+require_once RACINE . '/views/head.stop.php';
+require_once RACINE . '/views/menu.php';
 
 ?>
 

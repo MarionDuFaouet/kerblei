@@ -84,12 +84,11 @@ hr {
   color: white;
   font-family: "antroposfreefont";
   border-radius: 5px;
-  border: none;
   cursor: pointer;
 }
 .cta-button:hover {
   background: white;
-  border: 1px solid #C40099;
+  border: 1.5px solid #C40099;
   color: #C40099;
 }
 .cta-button:active {
@@ -303,14 +302,6 @@ nav a {
   height: 100%;
 }
 
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 .tabs {
   display: grid;
   background-color: #070707;
@@ -401,6 +392,51 @@ thead th tr {
 
 th:last-child {
   text-align: center;
+}
+
+.adminTable {
+  padding-bottom: 50px;
+}
+.adminTable tbody td {
+  padding: 5px 0px;
+}
+.adminTable tbody td:nth-child(1) {
+  text-align: center;
+  width: 5%;
+}
+.adminTable tbody td:nth-child(2) {
+  text-align: center;
+  width: 13%;
+}
+.adminTable tbody td:nth-child(3) {
+  width: 13%;
+}
+.adminTable tbody td:nth-child(4) {
+  text-align: center;
+  width: 15%;
+}
+.adminTable tbody td:nth-child(5) {
+  width: 15%;
+}
+.adminTable tbody td:nth-child(6) {
+  text-align: right;
+  width: 7%;
+}
+.adminTable tbody td:nth-child(7) {
+  text-align: center;
+  width: 8%;
+}
+.adminTable #pNameCol {
+  text-align: left;
+  width: 30%;
+}
+.adminTable #priceCol {
+  text-align: right;
+  width: 8%;
+}
+
+#adminTable2 {
+  padding-top: 50px;
 }
 
 .forms {

@@ -1,12 +1,13 @@
 <?php
 
 // meta description and title
-$description = "Découvrez notre gamme de bières artisanales.";
-$title = "Kerblei Bienvenue";
+$description = "Kerblei Admin.";
+$title = "Kerblei Admin";
 
-require_once RACINE . '/views/header.php';
+require_once RACINE . '/views/head.start.php';
+require_once RACINE . '/views/head.stop.php';
+require_once RACINE . '/views/menu.php';
 ?>
-
 
 <div id="headerMain" class="container">
     <div>

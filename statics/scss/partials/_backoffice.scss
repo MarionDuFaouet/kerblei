@@ -1,10 +1,10 @@
-*,
-::before,
-::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+// *,
+// ::before,
+// ::after {
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: 0;
+// }
 
 .tabs {
     display: grid;
@@ -81,23 +81,81 @@
     opacity: 1;
 }
 
-table{
+table {
     width: 100%;
 }
+
 thead {
     th {
         text-align: center;
         font-weight: bold;
         padding-bottom: 10px;
         border-bottom: 1px solid #ddd;
-        
+
         tr {
             padding: 10px;
         }
-        
+
     }
 }
+
 // comment centrer ce truc???
 th:last-child {
     text-align: center;
+}
+
+
+.adminTable {
+    padding-bottom: 50px;
+
+    tbody td {
+        padding: 5px 0px;
+
+        &:nth-child(1) {
+            text-align: center;
+            width: 5%;
+        }
+
+        &:nth-child(2) {
+            text-align: center;
+            width: 13%;
+        }
+
+        &:nth-child(3) {
+            width: 13%;
+        }
+
+        &:nth-child(4) {
+            text-align: center;
+            width: 15%;
+        }
+
+        &:nth-child(5) {
+            width: 15%;
+        }
+
+        &:nth-child(6) {
+            text-align: right;
+            width: 7%;
+        }
+
+        &:nth-child(7) {
+            text-align: center;
+            width: 8%;
+        }
+
+    }
+
+    #pNameCol {
+        text-align: left;
+        width: 30%;
+    }
+
+    #priceCol {
+        text-align: right;
+        width: 8%;
+    }
+}
+#adminTable2{
+    padding-top: 50px;
 }

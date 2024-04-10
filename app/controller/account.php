@@ -4,23 +4,28 @@ require_once RACINE . "/model/db.user.php";
 $msg = null;
 
 
-$mail = $_SESSION['mail'];
 ###DEBUG
 // Récupérer les données de l'utilisateur depuis la base de données
 // var_dump($mail);
+
+$mail = $_SESSION['mail'];
 $user = getUserByMail($mail);
-
-
-
-// Obtenir la liste des commandes
-require_once RACINE . "/model/db.cart.php";
 $accountId= $user['accountId'];
-###DEBUG
-// var_dump($accountId);
-$orders = getCartByAccountId($accountId);
 
 
-// Préremplir le formulaire si les champs sont vides et si l'utilisateur existe dans la base de données
+
+// liste des commandes
+require_once RACINE . "/model/db.cart.php";
+
+$orders = getOrdersByAccountId($accountId);
+
+
+
+
+
+
+
+// formulaire modif données perso
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($_POST["name"]) && empty($_POST["firstname"]) && empty($_POST["phone"]) && empty($_POST["password"])) {
         if ($user) {

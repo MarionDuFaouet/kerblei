@@ -4,7 +4,9 @@
 $description = "Découvrez notre gamme de bières artisanales.";
 $title = "Micro-Brasserie Kerblei Accueil";
 
-require_once RACINE . '/views/header.php'
+require_once RACINE . '/views/head.start.php';
+require_once RACINE . '/views/head.stop.php';
+require_once RACINE . '/views/menu.php';
 ?>
 
 
@@ -46,4 +48,6 @@ Toute personne procédant à une commande s'engage donc à avoir la capacité ju
     <h3> 6 - Droit applicable et attribution de juridiction.</h3><br>
     <p>Tout litige en relation avec l’utilisation du site https://microbrasseriekerblei/ est soumis au droit français. En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents de Vannes.</p>
 </section>
+
+
 <?php include RACINE . "/views/footer.php"; ?>
