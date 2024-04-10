@@ -6,3 +6,34 @@
         margin: 10px;
     }
 }
+
+.accountTable {
+    margin-bottom: 30px;
+
+    thead {
+        th {
+            font-family: $title;
+
+            &:nth-child(1) {
+                width: 13%;
+            }
+
+            &:nth-child(2) {
+                width: 50%;
+            }
+
+            &:nth-child(3) {
+                width: 9%;
+            }
+
+            &:nth-child(3) {
+                width: 13%;
+
+            }
+
+            &:nth-child(3) {
+                width: 15%;
+            }
+        }
+    }
+}

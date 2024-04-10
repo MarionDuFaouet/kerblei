@@ -14,12 +14,6 @@ function hideCart(event) {
 }
 
 
-
-
-
-
-
-
 // Ce code JavaScript est une fonction nommée addProductInCart qui est utilisée 
 // pour ajouter un produit au panier dans une application web. Voici une explication ligne par ligne :
 // La fonction addProductInCart prend en paramètre l'ID du produit à ajouter au panier.
@@ -40,6 +34,7 @@ function hideCart(event) {
 // l'interface utilisateur en fonction de la réponse serveur et gère les erreurs qui pourraient 
 // survenir lors du processus.
 
+
 /**
  * Ajoute un produit au panier.
  * @param {string} productId - L'identifiant du produit à ajouter au panier.
@@ -59,11 +54,16 @@ function addProductInCart(productId) {
             }
             return Promise.reject(new Error('status != 200'));    // reject if response not ok (ie. status != 200)
         })
-        .then(jsonObject => {   // jsonObject contains the JavaScript literal object that contains the updated cart
-            // update the (front-end) cart by DOM manipulation
+        .then(jsonObject => {
 
             //###DEBUG
             console.log(jsonObject);
+            // CONSTRUCTION DE MON PANIER
+            let cart1 = document.querySelector("#cart1ProductName");
+            let cart2 = document.querySelector("#cart2UnitPrice");
+
+            cart1.innerHTML = jsonObj.cart.name;
+            cart2.innerHTML = jsonObj.cart.unitPrice;
 
 
             // update the badge value
@@ -73,15 +73,8 @@ function addProductInCart(productId) {
             badge.innerHTML = Object.keys(jsonObject).length;
         })
 
-        // faire valider mon catch par Thierry
         .catch(error => {
             console.log(error.message);
-            window.alert("Une erreur s'est produite lors de l'ajout du produit au panier. Veuillez réessayer plus tard.")
-            logErrorOnServer(error);
-            if (error instanceof NetworkError) {
-                // Désactiver des fonctionnalités spécifiques qui nécessitent une connexion réseau
-                disableNetworkDependentFeatures();
-            }
         })
 }
 
@@ -89,8 +82,10 @@ function addProductInCart(productId) {
 
 
 
+
+
 function updateProductInCart(productId) {
-    const quantity = document.querySelector("#item"+productId).value;
+    const quantity = document.querySelector("#item" + productId).value;
     fetch('?action=cartUpdate&productId=' + productId + '&quantity=' + quantity,    // URL
         {
             method: 'GET', // GET, POST, PUT, DELETE, etc.
@@ -110,18 +105,9 @@ function updateProductInCart(productId) {
 
             //###DEBUG
             console.log(jsonObject);
-
         })
-
-        // faire valider mon catch par Thierry
         .catch(error => {
-            // console.log(error.message);
-            window.alert("Une erreur s'est produite lors de l'ajout du produit au panier. Veuillez réessayer plus tard.")
-            // logErrorOnServer(error);
-            // if (error instanceof NetworkError) {
-            //     // Désactiver des fonctionnalités spécifiques qui nécessitent une connexion réseau
-            //     disableNetworkDependentFeatures();
-            // }
+            console.log(error.message);
         })
 }
 

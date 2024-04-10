@@ -574,4 +574,26 @@ th:last-child {
 }
 .accountAction input {
   margin: 10px;
+}
+
+.accountTable {
+  margin-bottom: 30px;
+}
+.accountTable thead th {
+  font-family: "antroposfreefont";
+}
+.accountTable thead th:nth-child(1) {
+  width: 13%;
+}
+.accountTable thead th:nth-child(2) {
+  width: 50%;
+}
+.accountTable thead th:nth-child(3) {
+  width: 9%;
+}
+.accountTable thead th:nth-child(3) {
+  width: 13%;
+}
+.accountTable thead th:nth-child(3) {
+  width: 15%;
 }/*# sourceMappingURL=style.css.map */
