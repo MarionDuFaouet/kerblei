@@ -13,7 +13,7 @@ require_once RACINE . '/views/menu.php';
 
 ?>
 <!-- ---------------------------------------------------------------------- -->
-<div class="container">
+<div id="backOfficeAdmin">
     <!-- to logout -->
     <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
 
@@ -21,9 +21,9 @@ require_once RACINE . '/views/menu.php';
         <!-- TAB -->
         <div class="tabsBtnContainer" role="tabList" aria-label="tab component">
             <!-- accessibility -->
-            <button class="tab activeTab" role="tab" aria-controls="panel-1" id="tab-1" type="button" aria-selected="true" tabindex="0">Gestion des commandes🛒</button>
+            <button class="tab activeTab" role="tab" aria-controls="panel-1" id="tab-1" type="button" aria-selected="true" tabindex="0">Gestion des commandes</button>
             <!-- accessibility -->
-            <button class="tab" role="tab" aria-controls="panel-2" id="tab-2" type="button" aria-selected="false" tabindex="-1">Gestion des produits🧴</button>
+            <button class="tab" role="tab" aria-controls="panel-2" id="tab-2" type="button" aria-selected="false" tabindex="-1">Gestion des produits</button>
         </div>
 
         <!--------------------------- backOffice Order beginning ------------------------------->
@@ -36,10 +36,9 @@ require_once RACINE . '/views/menu.php';
             <table class="adminTable">
                 <thead>
                     <tr>
-                        <th>Ref</th>
-                        <th>Date de commande</th>
+                        <th>Date commande</th>
+                        <th>Date retrait</th>
                         <th>Client</th>
-                        <th>Contact</th>
                         <th>Contenu</th>
                         <th>Total</th>
                         <th></th>
@@ -47,14 +46,13 @@ require_once RACINE . '/views/menu.php';
                 </thead>
                 <tbody>
                     <?php foreach ($orders as $order) : ?>
-                        <?php if ($order['statement'] == 'en préparation') : ?>
+                        <?php if ($order['statement'] == 'validée') : ?>
                             <tr>
-                                <td><?php echo $order['cartId']; ?></td>
                                 <td><?php echo $order['orderDate']; ?></td>
-                                <td><?php echo $order['KerbleiUserName'] . ' ' . $order['KerbleiUserFirstname']; ?></td>
-                                <td><?php echo $order['phone']; ?></td>
+                                <td><?php echo $order['deliveryDate']; ?></td>
+                                <td><?php echo $order['KerbleiUserName'] . ' ' . $order['KerbleiUserFirstname'] . '<br> ' . $order['phone']; ?></td>
                                 <td><?php echo $order['productName']; ?></td>
-                                <td><?php echo $order['productUnitPrice'] * $order['productQuantity'] . '&euro;'; ?></td>
+                                <td><?php echo $order['productUnitPrice'] * $order['productQuantity'] . '&#8364;'; ?></td>
                                 <td>
                                     <form action="./?action=admin" method="POST">
                                         <input type="hidden" name="cartId" value="<?php echo $order['cartId']; ?>">
@@ -73,7 +71,6 @@ require_once RACINE . '/views/menu.php';
             <table class="adminTable">
                 <thead>
                     <tr>
-                        <th>Ref</th>
                         <th>Date de retrait</th>
                         <th>Client</th>
                         <th>Contenu</th>
@@ -84,11 +81,10 @@ require_once RACINE . '/views/menu.php';
                     <?php foreach ($orders as $order) : ?>
                         <?php if ($order['statement'] == 'terminée') : ?>
                             <tr>
-                                <td><?php echo $order['cartId']; ?></td>
                                 <td><?php echo $order['deliveryDate']; ?></td>
                                 <td><?php echo $order['KerbleiUserName'] . ' ' . $order['KerbleiUserFirstname']; ?></td>
-                                <td id="pNameCol"><?php echo $order['productName']; ?></td>
-                                <td id="priceCol"><?php echo $order['productUnitPrice'] * $order['productQuantity'] . '&euro;'; ?></td>
+                                <td><?php echo $order['productName']; ?></td>
+                                <td><?php echo $order['productUnitPrice'] * $order['productQuantity'] . '&euro;'; ?></td>
                             </tr>
                         <?php endif; ?>
                     <?php endforeach; ?>
@@ -122,8 +118,11 @@ require_once RACINE . '/views/menu.php';
                 <input type="text" name="designation" placeholder="texte max 50 car." /><br />
                 <label for="unitPrice">Prix unitaire</label>
                 <input type="text" name="unitPrice" placeholder="00.00" /><br />
+
                 <label for="pictureRef">Image</label>
-                <input type="text" name="pictureRef" placeholder="monimage.jpg" /><br />
+                <!-- <input type="text" name="pictureRef" placeholder="monimage.jpg" /><br /> -->
+                <input type="file" id="pictureRef" class="image-upload" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg" /><br />
+                
                 <input class="cta-button" type="submit" name="addProduct" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
             </form>
             <!-- -------------------------------------------------------------------------- -->
@@ -177,12 +176,17 @@ require_once RACINE . '/views/menu.php';
                 <input type="text" id="productDescription" name="productDescription"><br>
                 <label for="productPrice">Prix unitaire</label>
                 <input type="text" id="productPrice" name="productPrice"><br>
+                <!-- Existing image -->
                 <label for="productPictureRef">Image</label>
-                <input type="text" id="productPictureRef" name="productPictureRef"><br>
+                <input type="text" id="productPictureRef" name="productPictureRef" readonly><br>
+                <!-- New image -->
+                <!-- <label for="newProductPictureRef">Nouvelle image</label> -->
+                <!-- <input type="file" id="newProductPictureRef" class="image-upload" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg" /><br />                 -->
                 <!-- to submit modifications and delete the product -->
-                <input class="cta-button" type="submit" name="updateProduct" title="Modification de produit" value="Modifier" />
+                <div class="accountAction">
+                <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier" />
                 <input class="cta-button" type="submit" name="deleteProduct" title="Suppression de produit" value="Supprimer" />
-
+                </div>
             </form>
 
         </div>
