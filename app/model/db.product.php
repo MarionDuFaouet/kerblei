@@ -2,6 +2,13 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
+/**
+ * Retrieve product information by its ID.
+ *
+ * @param int $productId The ID of the product.
+ * @return array|null An array containing product information if found, null otherwise.
+ * @throws Exception If an error occurs during the database operation.
+ */
 function getProductById($productId) {
     try {
         $cnx = connexionPDO();
