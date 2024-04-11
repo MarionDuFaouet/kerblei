@@ -2,9 +2,6 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
-###DEBUG
-// var_dump('coucou');
-
 function getProductById($productId) {
     try {
         $cnx = connexionPDO();
@@ -25,7 +22,6 @@ function getProductById($productId) {
  *
  * @return array An array containing all products fetched from the database.
  */
-// to show all products in admin list and shop
 function getProducts() {
     $products = array();
     try {
@@ -51,7 +47,6 @@ function getProducts() {
  * @param string $pictureRef Reference of the product image.
  * @return bool Returns true if the product was successfully created, otherwise returns false.
  */
-// to add product in admin
 function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
 {
     try {
@@ -107,9 +102,7 @@ function deleteProduct($productId) {
         $query = $cnx->prepare("DELETE FROM Product WHERE productId=:productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $result = $query->execute();
-        // Return true if the deletion was successful
         return $result;
     } catch (PDOException $e) {
-        // Handle any errors that occur during deletion
         throw new Exception("Erreur PDO : " . $e->getMessage());    }
 }
