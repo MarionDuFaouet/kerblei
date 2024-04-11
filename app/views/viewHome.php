@@ -1,6 +1,5 @@
 <?php
 
-// meta description and title
 $description = "Kerblei Admin.";
 $title = "Kerblei Admin";
 
@@ -8,14 +7,13 @@ require_once RACINE . '/views/head.start.php';
 require_once RACINE . '/views/head.stop.php';
 require_once RACINE . '/views/menu.php';
 ?>
+<!-- --------------------------------------------------------------------- -->
 
 <div id="headerMain" class="container">
     <div>
         <p id="subTitle">"MICRO-BRASSERIE"</p>
         <p id="firstTitle">KERBLEI</h1>
-
         <p id="headerMainText">Une dégustation? <br> Venez visiter la brasserie !</p>
-
         <a href="./?action=map" title="Cliquez ici pour nous trouver" class="cta-button">Nous rencontrer</a>
     </div>
     <img src="./statics/images/tonneau.jpg" alt="Tonneaux de bières Brasserie Kerblei">
@@ -36,8 +34,12 @@ require_once RACINE . '/views/menu.php';
         </p>
     </div>
     <div id="about2">
-    <iframe src="https://www.youtube.com/embed/bWI72ymoiEw" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-
+        <video controls="controls">
+            <source src="./statics/video/houblon.mp4" type="video/mp4" />
+            <source src="./statics/video/houblon.webm" type="video/webm" />
+            <source src="./statics/video/houblon.ogg" type="video/ogg" />
+            Culture du houblon
+        </video>
         <p>E gwelloc’h amañ distagañ metrad war start e genou, waz roched
             kreñv livañ speredekañ dad kenetre ar drezo, niz daouzek a bodet
             e bag vandenn. An c’haol linenn pepr penn lammat tresañ beajiñ
@@ -50,11 +52,5 @@ require_once RACINE . '/views/menu.php';
     </div>
     <a href="./?action=products" title="Cliquez ici pour découvrir notre gamme de bières" class="cta-button button">Découvrez la gamme</a>
 </section>
-
-
-
-<!-- 
-Notes
-HT access -->
 
 <?php require_once RACINE . '/views/footer.php' ?>
