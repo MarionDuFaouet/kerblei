@@ -3,11 +3,11 @@
 include_once RACINE . "/model/connec.inc.php";
 
 /**
- * Retrieves cart information by account ID
+ * Retrieves cart information by account ID.
  *
- * @param int
- * @return array
- * @throws Exception 
+ * @param int $accountId The ID of the account.
+ * @return array An array containing cart information.
+ * @throws Exception If an error occurs during the database operation.
  */
 function getOrdersByAccountId($accountId) {
     $result = array();
@@ -32,7 +32,7 @@ function getOrdersByAccountId($accountId) {
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
     return $result;
 }
@@ -41,8 +41,8 @@ function getOrdersByAccountId($accountId) {
  * Retrieves orders information including order details, customer information, 
  * and product information.
  *
- * @return array 
- * @throws Exception
+ * @return array An array containing orders information.
+ * @throws Exception If an error occurs during the database operation.
  */
 function getOrders() {
     $result = array();
@@ -70,18 +70,18 @@ function getOrders() {
         Product p ON op.productId = p.productId");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-throw new Exception("Erreur !: " . $e->getMessage());    
-}
-return $result;
+    } catch (PDOException $e) {
+        throw new Exception("Erreur !: " . $e->getMessage());
+    }
+    return $result;
 }
 
 /**
  * Update the statement of a cart in the database to 'terminée'.
  *
- * @param int
- * @return bool
- * @throws Exception
+ * @param int $cartId The ID of the cart to update.
+ * @return bool True on success, false on failure.
+ * @throws Exception If an error occurs during the database operation.
  */
 function updateCartStatement($cartId) {
     try {
@@ -105,7 +105,7 @@ function updateCartStatement($cartId) {
 //         $queryCheck->bindValue(':cartId', $cartId, PDO::PARAM_INT);
 //         $queryCheck->bindValue(':productId', $productId, PDO::PARAM_INT);
 //         $queryCheck->execute();
-        
+
 //         if ($queryCheck->rowCount() > 0) {
 //             // Le produit est déjà dans le panier, met à jour la quantité
 //             $queryUpdate = $cnx->prepare("UPDATE orderProduct SET quantity = :quantity WHERE cartId = :cartId AND productId = :productId");
@@ -143,5 +143,3 @@ function updateCartStatement($cartId) {
 //         return false;
 //     }
 // }
-
-?>
