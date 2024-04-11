@@ -1,4 +1,3 @@
-
 <body>
     <nav class="navbar">
         <a href="./?action=default" class="logo"><img src="./statics/images/zlogo1.png" alt="logo Brasserie Kerblei"></a>
@@ -10,9 +9,9 @@
             <li><a href="./?action=map">Contact</a></li>
             <!-- UN DE MES DEUX LIENS CART NE FONCTIONNE PAS?????-->
 
-            <!-- <li><a class="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
+            <li><a id="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
                 <span class='badge' id='cartBadge'>0</span>Panier</a>
-            </li> -->
+            </li>
 
             <?php if (isset($_SESSION['mail']) && ($_SESSION['admin'] == 1)) : ?>
                 <li><a href="./?action=admin"><i class="fa-solid fa-xl fa-user icon"></i></a></li>
@@ -22,15 +21,17 @@
                 <li><a href="./?action=login"><i class="fa-solid fa-xl fa-user icon"></i></a></li>
             <?php endif; ?>
         </ul>
-
         <!-- nav -->
         <ul>
             <li class="hideOnMobile"><a href="./?action=default">Accueil</a></li>
             <li class="hideOnMobile"><a href="./?action=products">Nos bières</a></li>
             <li class="hideOnMobile"><a href="./?action=map">Contact</a></li>
+            <!-- UN DE MES DEUX LIENS CART NE FONCTIONNE PAS?????-->
+
             <li class="hideOnMobile"><a id="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
-                <span class='badge' id='cartBadge'>0</span>Panier</a>
+                    <span class='badge' id='cartBadge'>0</span>Panier</a>
             </li>
+
             <?php if (isset($_SESSION['mail']) && ($_SESSION['admin'] == 1)) : ?>
                 <li><a href="./?action=admin"><i class="fa-solid fa-xl fa-user icon"></i></a></li>
             <?php elseif (isset($_SESSION['mail']) && ($_SESSION['admin'] == 0)) : ?>
