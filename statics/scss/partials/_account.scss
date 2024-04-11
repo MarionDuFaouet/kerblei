@@ -8,36 +8,47 @@
 }
 
 .accountTable {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 
     thead {
         th {
             font-family: $title;
 
             &:nth-child(1) {
-                width: 15%;
+                width: 50%;
             }
 
             &:nth-child(2) {
-                width: 45%;
+                width: 15%;
             }
 
             &:nth-child(3) {
-                width: 9%;
+                width: 15%;
             }
 
             &:nth-child(4) {
-                width: 15%;
+                width: 20%;
 
             }
-
-            &:nth-child(5) {
-                width: 16%;
-            }
+        }
+    }
+    @media(max-width: 500px){
+        tbody td{
+            font-size: 0.8em;
         }
     }
 
     tbody td {
         padding: 5px 10px;
+
+        &:nth-child(2) {
+            text-align: right;
+
+        }
+
+        &:nth-child(3) {
+            text-align: center;
+
+        }
     }
 }

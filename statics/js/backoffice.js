@@ -58,8 +58,6 @@ function arrowNavigation(e){
     }
 }
 
-
-
 // PRODUCT SELECTION---------------------------------------------------------------------------------
 // to fill the form with selected product's data
 function fillForm(product) {

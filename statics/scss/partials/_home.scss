@@ -43,6 +43,19 @@
 
 #about {
     padding-bottom: 30px;
+    #about2{
+        text-align: center;
+    }
+
+    #about2 video{
+        height: 200px;
+        margin: 20px auto;
+    }
+    p{
+        min-height: 150px;
+        margin-bottom: 20px;
+        text-align: left;
+    }
 }
 
 @media screen and (min-width: 900px) {
@@ -69,8 +82,9 @@
         flex-direction: row-reverse;
 
         p {
-            margin-right: 30px
+            margin-right: 30px;
         }
+
     }
 
     #about1 p {
@@ -79,7 +93,7 @@
 }
 
 #about {
-    img, iframe {
+    img {
         display: block;
         margin: 40px auto;
     }

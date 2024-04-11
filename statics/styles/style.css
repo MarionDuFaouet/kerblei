@@ -84,17 +84,13 @@ hr {
   color: white;
   font-family: "antroposfreefont";
   border-radius: 5px;
+  box-sizing: border-box;
   cursor: pointer;
 }
 .cta-button:hover {
   background: white;
   border: 1.5px solid #C40099;
   color: #C40099;
-}
-.cta-button:active {
-  background: white;
-  border: 1px solid #1E1E1E;
-  color: #1E1E1E;
 }
 
 footer {
@@ -248,6 +244,18 @@ nav a {
 #about {
   padding-bottom: 30px;
 }
+#about #about2 {
+  text-align: center;
+}
+#about #about2 video {
+  height: 200px;
+  margin: 20px auto;
+}
+#about p {
+  min-height: 150px;
+  margin-bottom: 20px;
+  text-align: left;
+}
 
 @media screen and (min-width: 900px) {
   #headerMain {
@@ -276,7 +284,7 @@ nav a {
     margin-left: 30px;
   }
 }
-#about img, #about iframe {
+#about img {
   display: block;
   margin: 40px auto;
 }
@@ -302,11 +310,19 @@ nav a {
   height: 100%;
 }
 
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .tabs {
   display: grid;
   background-color: #070707;
   max-width: 1200px;
-  margin: 100px auto 0;
+  margin: 40px auto 0;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -333,11 +349,9 @@ nav a {
   padding: 30px 0;
   cursor: pointer;
 }
-
 .tab:nth-child(1) {
   border-top-left-radius: 9px;
 }
-
 .tab:nth-child(2) {
   border-top-right-radius: 9px;
 }
@@ -353,7 +367,6 @@ nav a {
   -moz-transition: opacity 0.4s ease-out;
   -ms-transition: opacity 0.4s ease-out;
   -o-transition: opacity 0.4s ease-out;
-  /* position: absolute; */
 }
 
 .tabContent p {
@@ -390,49 +403,54 @@ thead th tr {
   padding: 10px;
 }
 
-th:last-child {
+#backOfficeAdmin {
   text-align: center;
 }
 
 .adminTable {
   padding-bottom: 50px;
 }
+.adminTable thead tr {
+  text-align: center;
+}
+.adminTable thead tr:nth-child(1) {
+  width: 15%;
+}
+.adminTable thead tr:nth-child(2) {
+  width: 15%;
+}
+.adminTable thead tr:nth-child(3) {
+  width: 25%;
+}
+.adminTable thead tr:nth-child(4) {
+  width: 20%;
+}
+.adminTable thead tr:nth-child(5) {
+  width: 20%;
+}
+.adminTable thead tr:nth-child(6) {
+  width: 5%;
+}
 .adminTable tbody td {
   padding: 5px 0px;
 }
 .adminTable tbody td:nth-child(1) {
   text-align: center;
-  width: 5%;
 }
 .adminTable tbody td:nth-child(2) {
   text-align: center;
-  width: 13%;
 }
 .adminTable tbody td:nth-child(3) {
-  width: 13%;
+  text-align: left;
 }
 .adminTable tbody td:nth-child(4) {
   text-align: center;
-  width: 15%;
 }
 .adminTable tbody td:nth-child(5) {
-  width: 15%;
+  text-align: right;
 }
 .adminTable tbody td:nth-child(6) {
-  text-align: right;
-  width: 7%;
-}
-.adminTable tbody td:nth-child(7) {
   text-align: center;
-  width: 8%;
-}
-.adminTable #pNameCol {
-  text-align: left;
-  width: 30%;
-}
-.adminTable #priceCol {
-  text-align: right;
-  width: 8%;
 }
 
 #adminTable2 {
@@ -452,6 +470,8 @@ th:last-child {
 }
 .forms input {
   border: none;
+  border: 1.5px solid black;
+  box-sizing: border-box;
   padding: 10px;
   width: 350px;
   margin: auto;
@@ -460,6 +480,10 @@ th:last-child {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+#loginButton {
+  margin: 25px auto;
 }
 
 .mapContent {
@@ -497,27 +521,30 @@ th:last-child {
 #cart {
   table-layout: fixed;
   border-collapse: collapse;
+  width: 80%;
 }
-#cart td {
-  padding: 20px;
+@media screen and (min-width: 900px) {
+  #cart th {
+    font-family: "antroposfreefont";
+  }
+  #cart thead:nth-child(1) {
+    width: 50%;
+  }
+  #cart thead:nth-child(2) {
+    width: 15%;
+  }
+  #cart thead:nth-child(3) {
+    width: 15%;
+  }
+  #cart thead:nth-child(4) {
+    width: 10%;
+  }
+  #cart thead:nth-child(5) {
+    width: 10%;
+  }
 }
-#cart thead th {
-  font-family: "antroposfreefont";
-}
-#cart thead th:nth-child(1) {
-  width: 40%;
-}
-#cart thead th:nth-child(2) {
-  width: 15%;
-}
-#cart thead th:nth-child(3) {
-  width: 15%;
-}
-#cart thead th:nth-child(4) {
-  width: 10%;
-}
-#cart thead th:nth-child(5) {
-  width: 10%;
+#cart tbody td {
+  padding: 10px;
 }
 #cart tbody td:nth-child(2), #cart tbody td:nth-child(4) {
   text-align: right;
@@ -558,7 +585,7 @@ th:last-child {
   display: none;
   position: fixed;
   z-index: 2;
-  padding-top: 100px;
+  padding-top: 50px;
   left: 0;
   top: 0;
   width: 100%;
@@ -594,15 +621,19 @@ th:last-child {
 .modal .modal-content #modalFooter {
   display: flex;
   flex-direction: column;
-  width: 25%;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .modal .modal-content #modalFooter label {
   padding-bottom: 10px;
 }
 .modal .modal-content #modalFooter input {
   padding: 4px 0;
+}
+@media (min-width: 600px) {
+  .modal .modal-content #modalFooter {
+    width: 25%;
+  }
 }
 
 .accountAction {
@@ -613,26 +644,34 @@ th:last-child {
 }
 
 .accountTable {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 .accountTable thead th {
   font-family: "antroposfreefont";
 }
 .accountTable thead th:nth-child(1) {
-  width: 15%;
+  width: 50%;
 }
 .accountTable thead th:nth-child(2) {
-  width: 45%;
-}
-.accountTable thead th:nth-child(3) {
-  width: 9%;
-}
-.accountTable thead th:nth-child(4) {
   width: 15%;
 }
-.accountTable thead th:nth-child(5) {
-  width: 16%;
+.accountTable thead th:nth-child(3) {
+  width: 15%;
+}
+.accountTable thead th:nth-child(4) {
+  width: 20%;
+}
+@media (max-width: 500px) {
+  .accountTable tbody td {
+    font-size: 0.8em;
+  }
 }
 .accountTable tbody td {
   padding: 5px 10px;
+}
+.accountTable tbody td:nth-child(2) {
+  text-align: right;
+}
+.accountTable tbody td:nth-child(3) {
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,170 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+//TAB
+.tabs {
+    display: grid;
+    background-color: #070707;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: 1px solid #FFFFFF3e;
+    color: #b4b2b2;
+    grid-template-rows: min-content 1fr;
+}
+
+.tabsBtnContainer {
+    display: flex;
+    border-bottom: 1px solid #ffffff3e;
+}
+
+.tab {
+    border: none;
+    background: transparent;
+    color: #b4b2b2;
+    flex-basis: 100%;
+    align-items: center;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 700;
+    padding: 30px 0;
+    cursor: pointer;
+
+    &:nth-child(1) {
+        border-top-left-radius: 9px;
+    }
+
+    &:nth-child(2) {
+        border-top-right-radius: 9px;
+    }
+}
+
+.tabContent {
+    grid-area: 2 / 1 / 3 / 2;
+    // pas mal pour éviter les média queries!
+    padding: clamp(30px, 3vw, 40px);
+    min-height: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-out;
+    -webkit-transition: opacity 0.4s ease-out;
+    -moz-transition: opacity 0.4s ease-out;
+    -ms-transition: opacity 0.4s ease-out;
+    -o-transition: opacity 0.4s ease-out;
+}
+
+.tabContent p {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.tabContent h3 {
+    font-size: clamp(20px, 2vw, 25px);
+}
+
+.activeTab {
+    background-color: $secondary-color;
+    font-weight: bolder;
+    color: $font-color;
+}
+
+.activeTabContent {
+    visibility: visible;
+    opacity: 1;
+}
+
+table {
+    width: 100%;
+}
+
+thead {
+    th {
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+
+        tr {
+            padding: 10px;
+        }
+    }
+}
+
+#backOfficeAdmin {
+    text-align: center;
+}
+
+.adminTable {
+    padding-bottom: 50px;
+
+    thead {
+        tr {
+            text-align: center;
+
+            &:nth-child(1) {
+                width: 15%;
+            }
+
+            &:nth-child(2) {
+                width: 15%;
+            }
+
+            &:nth-child(3) {
+                width: 25%;
+            }
+
+            &:nth-child(4) {
+                width: 20%;
+            }
+
+            &:nth-child(5) {
+                width: 20%;
+            }
+
+            &:nth-child(6) {
+                width: 5%;
+            }
+        }
+    }
+
+    tbody td {
+        padding: 5px 0px;
+
+        &:nth-child(1) {
+            text-align: center;
+        }
+
+        &:nth-child(2) {
+            text-align: center;
+        }
+
+        &:nth-child(3) {
+            text-align: left;
+        }
+
+        &:nth-child(4) {
+            text-align: center;
+        }
+
+        &:nth-child(5) {
+            text-align: right;
+        }
+
+        &:nth-child(6) {
+            text-align: center;
+        }
+
+    }
+}
+
+#adminTable2 {
+    padding-top: 50px;
+}

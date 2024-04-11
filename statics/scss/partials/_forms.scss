@@ -12,6 +12,8 @@
 
     input {
         border: none;
+        border:1.5px solid black;
+        box-sizing: border-box;
         padding: 10px;
         width: 350px;
         margin: auto;
@@ -21,4 +23,8 @@
         -ms-border-radius: 5px;
         -o-border-radius: 5px;
     }
+}
+
+#loginButton{
+    margin: 25px auto;
 }
