@@ -1,6 +1,5 @@
 <?php
 
-// meta description and title
 $title = "Connexion Kerblei";
 $description = "Mon compte Kerblei";
 
@@ -9,11 +8,10 @@ require_once RACINE . '/views/head.stop.php';
 require_once RACINE . '/views/menu.php';
 
 ?>
-
 <!-- ------------------------------------------------------------------------ -->
 
-
 <h2>Je Possède un compte</h2>
+
 <form class="forms" action="./?action=login " method="POST">
 
     <label for="mail">J'entre mon identifiant (mail) *</label>
@@ -22,7 +20,9 @@ require_once RACINE . '/views/menu.php';
     <label for="password">J'entre mon mot de passe *</label>
     <input type="password" name="password" placeholder="Mon mot de passe" /><br />
 
-    <input class="cta-button" type="submit" title="Connexion à votre compte" value="Je me connecte" />
+    <input id="loginButton" 
+           class="cta-button" type="submit" 
+           title="Connexion à votre compte" value="Je me connecte" />
     
     <!-- message -->
     <p><?php echo $msg; ?></p>
@@ -31,11 +31,5 @@ require_once RACINE . '/views/menu.php';
     <a href="./?action=register" class="cta-button" title="Cliquez ici pour créer un compte">Pas encore de compte ?</a>
 
 </form>
-
-<?php $message; ?>
-
-
-<br />
-
 
 <?php require_once RACINE . '/views/footer.php' ?>
