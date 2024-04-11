@@ -8,7 +8,6 @@ function redirectTo($action="default") {
     $actions["admin"] = "admin.php";
     $actions["login"] = "login.php";
     $actions["logout"] = "logout.php";
-    // $actions["cart"] = "cart.php";
     $actions["cartAdd"] = "cartAdd.php";
     $actions["cartUpdate"] = "cartUpdate.php";
     $actions["cartDelete"] = "cartDelete.php";
@@ -17,17 +16,14 @@ function redirectTo($action="default") {
     $actions["legalNotices"] = "legalNotices.php";
     $actions["map"] = "map.php";
 
-
-
-    //### DEBUG 4,5 de test d'existence du fichier de controleur
-    // Si le fichier n'existe pas :
+    
     $controller_id = $actions[$action];
     if (!file_exists(__DIR__ . '/' . $controller_id)) {
-        // http_response_code(404);
+        http_response_code(404);
         echo "Le fichier : {$controller_id} n'existe pas !";
+        
     }
 
-    // if "action" exist in ["actions"]
     if (array_key_exists($action, $actions)) {
         return $actions[$action];
     } else {
