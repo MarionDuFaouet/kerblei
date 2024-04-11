@@ -2,13 +2,12 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
-
 /**
  * Retrieves cart information by account ID
  *
- * @param int $accountId The account ID for which to retrieve the cart
- * @return array The cart information as an associative array
- * @throws Exception If a PDO error occurs during the execution of the SQL query
+ * @param int
+ * @return array
+ * @throws Exception 
  */
 function getOrdersByAccountId($accountId) {
     $result = array();
@@ -42,14 +41,9 @@ function getOrdersByAccountId($accountId) {
  * Retrieves orders information including order details, customer information, 
  * and product information.
  *
- * @return array An array containing orders information.
- * Each element of the array represents an order and is an associative array 
- * with keys such as 'cartId', 'orderDate', 'deliveryDate', 'statement', 
- * 'KerbleiUser' (customer name), 'phone', 'productId', 'productName', 
- * 'quantity', and 'unitPrice'.
- * @throws Exception If a PDO error occurs during the execution of the SQL query
+ * @return array 
+ * @throws Exception
  */
-// va me permettre de récupérer les commandes depuis adminCart
 function getOrders() {
     $result = array();
     try {
@@ -82,34 +76,12 @@ throw new Exception("Erreur !: " . $e->getMessage());
 return $result;
 }
 
-
- 
-
-
-// retrieve an cart by status
-// affiche les dates de commande et date de livraison choisie par le client
-// des commandes par leur statut
-// va me permettre d'afficher mes commandes selon leur statut dans deux sections différentes de adminCart et account
-function getCartByStatement($statement){
-    try {
-        $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT orderDate, deliveryDate FROM Cart WHERE statement=:statement");
-        $query->bindValue(':statement', $statement, PDO::PARAM_INT);
-        $query->execute();
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
-    }
-    return $result;
-}
-
-
 /**
- * Update the statement of a cart in the database to 'completed'.
+ * Update the statement of a cart in the database to 'terminée'.
  *
- * @param int $cartId The ID of the cart to update.
- * @return bool True if the statement is successfully updated, false otherwise.
- * @throws Exception If an error occurs while executing the SQL query.
+ * @param int
+ * @return bool
+ * @throws Exception
  */
 function updateCartStatement($cartId) {
     try {
@@ -122,19 +94,6 @@ function updateCartStatement($cartId) {
         throw new Exception("Erreur !: " . $e->getMessage());
     }
 }
-
-
-// Exemple d'utilisation
-// $cart = [
-//     ['name' => 'Product 1', 'unitPrice' => 5],
-//     ['name' => 'Product 2', 'unitPrice' => 5],
-//     ['name' => 'Product 3', 'unitPrice' => 5]
-// ];
-
-// $total = calculateCartTotal($cart);
-// echo "Prix total de votre commande: $total";
-
-
 
 // récupère le contenu du panier et met à jour la quantité des produits qu'il contient
 // lié au curseur numérique de mon panier
