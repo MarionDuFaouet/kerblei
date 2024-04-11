@@ -2,21 +2,6 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
-
-// function getUser() {
-//     $user = array();
-//     try {
-//         $cnx = connexionPDO();
-//         $query = $cnx->prepare("SELECT accountId, name, firstname, mail, password, phone FROM KerbleiUser");
-//         $query->execute();
-//         $user = $query->fetchAll(PDO::FETCH_ASSOC);
-        
-//     } catch (PDOException $e) {
-//         die("Erreur !: " . $e->getMessage());
-//     }
-//     return $user;
-// }
-
 /*
  * Retrieves user data from the database based on email.
  *
@@ -26,20 +11,28 @@ include_once RACINE . "/model/connec.inc.php";
 function getUserByMail($mail) {
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM KerbleiUser WHERE mail = :mail");        
+        $req = $cnx->prepare("SELECT * FROM KerbleiUser WHERE mail = :mail");
         $req->bindValue(':mail', $mail, PDO::PARAM_STR);
         $req->execute();
-        
+
         $result = $req->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
     return $result;
 }
 
 
-// add User
-// création de compte pour register
+/**
+ * Add a new user to the KerbleiUser table.
+ *
+ * @param string $mail The email address of the user.
+ * @param string $password The password of the user.
+ * @param string $name The last name of the user.
+ * @param string $firstname The first name of the user.
+ * @return bool True if the user was successfully added, false otherwise.
+ * @throws Exception If an error occurs during the database operation.
+ */
 function addUser($mail, $password, $name, $firstname) {
     try {
         $cnx = connexionPDO();
@@ -51,13 +44,18 @@ function addUser($mail, $password, $name, $firstname) {
         $query->bindValue(':firstname', htmlspecialchars($firstname), PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
     return $result;
 }
 
-// delete User
-// suppression de compte depuis account
+/**
+ * Delete a user from the KerbleiUser table.
+ *
+ * @param string $mail The email address of the user.
+ * @return bool True if the user was successfully deleted, false otherwise.
+ * @throws Exception If an error occurs during the database operation.
+ */
 function deleteUser($mail) {
     try {
         $cnx = connexionPDO();
@@ -68,9 +66,8 @@ function deleteUser($mail) {
         session_destroy();
         // detruit les variables de la session
         session_unset();
-        
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
     return $result;
 }
@@ -86,8 +83,8 @@ function deleteUser($mail) {
  * @param string $passwordHash The hashed password of the user.
  * @return bool True if the update was successful, false otherwise.
  */
-function updateUser($mail, $name, $firstname, $phone, $password){
-    try{
+function updateUser($mail, $name, $firstname, $phone, $password) {
+    try {
         $cnx = connexionPDO();
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $query = $cnx->prepare("UPDATE KerbleiUser SET name = :name, firstname = :firstname, phone = :phone, password = :password WHERE mail = :mail");
@@ -98,10 +95,7 @@ function updateUser($mail, $name, $firstname, $phone, $password){
         $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
     return $result;
 }
-
-?>
-
