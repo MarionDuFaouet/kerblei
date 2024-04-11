@@ -1,4 +1,3 @@
-<!-- The Cart Mdal -->
 <div id="cartModal" class="modal">
 
     <!-- Modal content -->
@@ -10,7 +9,7 @@
         <table>
             <thead>
                 <tr>
-                    <th scope="col">Produit</th>
+                    <th scope="col">Produits</th>
                     <th scope="col">Prix unitaire</th>
                     <th scope="col">Quantité</th>
                     <th scope="col">Sous-total</th>
