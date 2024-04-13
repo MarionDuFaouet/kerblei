@@ -2,9 +2,9 @@
 
 Bienvenue dans le dépôt de l'application Kerblei.
 
-N'oubliez pas d'installer les dépendances en exécutant la commande Composer : composer install  \
-Créez un fichier `.env` à la racine du projet en vous basant sur le modèle `.env.example` et configurez les variables d'environnement nécessaires.  \
+N'oubliez pas d'installer les dépendances en exécutant la commande Composer : composer install  
+Créez un fichier `.env` à la racine du projet en vous basant sur le modèle `.env.example` et configurez les variables d'environnement nécessaires.  
 
-Si vous souhaitez le faire tourner directement :  \
+Si vous souhaitez le faire tourner directement :  
 
 http://greta-bretagne-sud.fr/stagiaires-kercode/marion-lozach/kerblei/?action=default
