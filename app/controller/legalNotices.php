@@ -1,2 +1,2 @@
 <?php
-require_once RACINE . '/views/viewlegalNotices.php';
+require_once RACINE . '/views/viewLegalNotices.php';
