@@ -1,20 +1,23 @@
 // NAVBAR
 .logo img {
-      width: 100%;
-    }
+  width: 100%;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  font-size: calc(0.5rem + 1vw);
+  font-size: calc(0.5rem + 0.8vw);
 }
+
 nav ul {
   display: flex;
   justify-content: space-between;
   width: 60%;
   font-family: $title;
 }
+
 #icons {
   cursor: pointer;
   display: none;
@@ -48,13 +51,14 @@ nav ul {
     -moz-transition: 0.50s;
     -ms-transition: 0.50s;
     -o-transition: 0.50s;
-}
+  }
+
   nav li {
     padding: 5px 0;
     font-family: $text;
-    
+
   }
-  
+
   nav.active ul {
     right: 0;
     margin-bottom: 5px;

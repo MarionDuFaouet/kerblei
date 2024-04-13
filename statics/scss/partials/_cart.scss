@@ -58,7 +58,6 @@
 .icon {
   margin-right: 7px;
   font-size: 1.5em;
-  // vertical-align: center;
 }
 
 #badge {
@@ -69,10 +68,10 @@
   color: #fff;
   background: #C40099;
   padding: 1px 6px;
-  // text-align: center;
   opacity: 1.0;
   margin-left: -17px;
   margin-right: 10px;
+  margin-bottom: 10px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -87,13 +86,9 @@
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 
   /* Modal Content */
   .modal-content {

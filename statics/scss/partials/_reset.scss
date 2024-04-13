@@ -8,7 +8,6 @@
 html,
 body {
     overflow-x: hidden;
-    /* Pour éviter scroll horizontal */
     font-family: $text;
     color: $font-color;
     background-color: $main-color;
@@ -21,7 +20,6 @@ body {
     margin: 0 auto;
 }
 
-/* $msg */
 .msg {
     color: orange;
     text-align: center;
