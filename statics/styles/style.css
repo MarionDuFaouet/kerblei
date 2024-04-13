@@ -126,82 +126,63 @@ footer #careful {
   color: rgb(226, 193, 45);
 }
 
-/* nouvelle navbar */
+.logo img {
+  width: 100%;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 10px;
+  font-size: calc(0.5rem + 1vw);
 }
-nav .logo img {
-  width: 100%;
-}
-nav #navCross, nav #navBurger {
-  font-size: 1.5em;
-}
-nav #navBurger {
-  margin-right: 50px;
-}
+
 nav ul {
-  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-nav ul li {
-  height: 50px;
-}
-nav ul li:first-child {
-  margin-right: auto;
-}
-nav a {
-  height: 100%;
-  padding: 0 30px;
-  display: flex;
-  align-items: center;
+  justify-content: space-between;
+  width: 60%;
   font-family: "antroposfreefont";
 }
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 0; /* Initialement masqué */
-  z-index: 999;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  overflow-x: hidden;
-  transition: width 0.3s ease; /* Ajouter une transition pour la largeur */
-}
-.sidebar li {
-  width: 100%;
-}
-.sidebar li a {
-  width: 100%;
-  font-family: "Roboto";
-}
-
-.menuButton {
+#icons {
+  cursor: pointer;
   display: none;
+  margin-right: 40px;
+  font-size: 1.8em;
 }
 
-@media (max-width: 900px) {
-  .hideOnMobile {
-    display: none;
-  }
-  .menuButton {
+@media (max-width: 650px) {
+  #icons {
     display: block;
   }
-}
-@media (max-width: 400px) {
-  .sidebar {
+  #icons:before {
+    content: "☰";
+  }
+  .active #icons:before {
+    content: "✕";
+  }
+  nav ul {
+    position: fixed;
+    right: -100%;
+    top: 5%;
+    flex-direction: column;
     width: 100%;
+    text-align: left;
+    padding-left: 300px;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+  }
+  nav li {
+    padding: 5px 0;
+    font-family: "Roboto";
+  }
+  nav.active ul {
+    right: 0;
+    margin-bottom: 5px;
   }
 }
 #headerMain {
@@ -560,21 +541,20 @@ thead th tr {
 
 .icon {
   margin-right: 7px;
-  vertical-align: bottom;
+  font-size: 1.5em;
 }
 
-.badge {
+#badge {
   font-size: 13px;
   line-height: 20px;
   width: 20px;
   height: 20px;
   color: #fff;
   background: #C40099;
-  /* padding: 1px 6px; */
-  text-align: center;
+  padding: 1px 6px;
   opacity: 1;
-  margin-left: -14px;
-  margin-right: 7px;
+  margin-left: -17px;
+  margin-right: 10px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;

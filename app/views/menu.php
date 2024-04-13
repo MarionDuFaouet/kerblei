@@ -1,16 +1,13 @@
 <body>
-    <nav class="navbar">
+
+    <nav id="nav">
         <a href="./?action=default" class="logo"><img src="./statics/images/zlogo1.png" alt="logo Brasserie Kerblei"></a>
-        <!-- burgerNav -->
-        <ul class="sidebar">
-            <li onclick="hideSidebar()"><i id="navCross" class="fa-solid fa-xmark"></i></li>
+        <ul>
             <li><a href="./?action=default">Accueil</a></li>
             <li><a href="./?action=products">Nos bières</a></li>
             <li><a href="./?action=map">Contact</a></li>
-            <!-- UN DE MES DEUX LIENS CART NE FONCTIONNE PAS?????-->
-
-            <li><a id="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
-                <span class='badge' id='cartBadge'>0</span>Panier</a>
+            <li><a id="cartButton" id="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
+                    <span id='badge' id='cartBadge'>0</span>Panier</a>
             </li>
 
             <?php if (isset($_SESSION['mail']) && ($_SESSION['admin'] == 1)) : ?>
@@ -21,29 +18,8 @@
                 <li><a href="./?action=login"><i class="fa-solid fa-xl fa-user icon"></i></a></li>
             <?php endif; ?>
         </ul>
-        <!-- nav -->
-        <ul>
-            <li class="hideOnMobile"><a href="./?action=default">Accueil</a></li>
-            <li class="hideOnMobile"><a href="./?action=products">Nos bières</a></li>
-            <li class="hideOnMobile"><a href="./?action=map">Contact</a></li>
-            <!-- UN DE MES DEUX LIENS CART NE FONCTIONNE PAS?????-->
-
-            <li class="hideOnMobile"><a id="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
-                    <span class='badge' id='cartBadge'>0</span>Panier</a>
-            </li>
-
-            <?php if (isset($_SESSION['mail']) && ($_SESSION['admin'] == 1)) : ?>
-                <li><a href="./?action=admin"><i class="fa-solid fa-xl fa-user icon"></i></a></li>
-            <?php elseif (isset($_SESSION['mail']) && ($_SESSION['admin'] == 0)) : ?>
-                <li><a href="./?action=account"><i class="fa-solid fa-xl fa-user icon"></i></a></li>
-            <?php else : ?>
-                <li><a href="./?action=login"><i class="fa-solid fa-xl fa-user icon"></i></a></li>
-            <?php endif; ?>
-
-            <li onclick=showSidebar()><i id="navBurger" class="menuButton fa-solid fa-bars"></i></li>
-        </ul>
+        <div id="icons"></div>
     </nav>
-
     <?php require RACINE . '/views/viewCartModal.php' ?>
 
     <hr>

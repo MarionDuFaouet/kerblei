@@ -1,104 +1,62 @@
-/* nouvelle navbar */
+// NAVBAR
+.logo img {
+      width: 100%;
+    }
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
-
-  .logo img {
-    width: 100%;
-  }
-  #navCross, #navBurger{
-    font-size: 1.5em;
-  }
-  
-  #navBurger{
-    margin-right: 50px;
-  }
-
-  ul {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    li {
-      height: 50px;
-
-      &:first-child {
-        margin-right: auto;
-      }
-    }
-  }
-
-  a {
-    height: 100%;
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-    font-family: $title;
-  }
+  padding: 10px;
+  font-size: calc(0.5rem + 1vw);
 }
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 0; /* Initialement masqué */
-  z-index: 999;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+nav ul {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  overflow-x: hidden;
-  transition: width 0.3s ease; /* Ajouter une transition pour la largeur */
-
-// .sidebar {
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   height: 100vh;
-//   width: 250px;
-//   z-index: 999;
-//   background-color: rgba(255, 255, 255, 0.2);
-//   backdrop-filter: blur(10px);
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   justify-content: flex-start;
-
-  li {
-    width: 100%;
-
-    a {
-      width: 100%;
-      font-family: $text;
-    }
-  }
-
+  justify-content: space-between;
+  width: 60%;
+  font-family: $title;
 }
-
-.menuButton {
+#icons {
+  cursor: pointer;
   display: none;
+  margin-right: 40px;
+  font-size: 1.8em;
 }
 
-@media(max-width: 900px) {
-  .hideOnMobile {
-    display: none;
-  }
-
-  .menuButton {
+@media (max-width: 650px) {
+  #icons {
     display: block;
   }
-}
 
-@media(max-width: 400px) {
-  .sidebar {
+  #icons:before {
+    content: "\2630";
+  }
+
+  .active #icons:before {
+    content: "\2715";
+  }
+
+  nav ul {
+    position: fixed;
+    right: -100%;
+    top: 5%;
+    flex-direction: column;
     width: 100%;
+    text-align: left;
+    padding-left: 300px;
+    transition: 0.50s;
+    -webkit-transition: 0.50s;
+    -moz-transition: 0.50s;
+    -ms-transition: 0.50s;
+    -o-transition: 0.50s;
+}
+  nav li {
+    padding: 5px 0;
+    font-family: $text;
+    
+  }
+  
+  nav.active ul {
+    right: 0;
+    margin-bottom: 5px;
   }
 }
-
-// font-size: calc(0.5rem + 1.5vw);
