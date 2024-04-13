@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 01 avr. 2024 à 14:54
+-- Généré le : ven. 12 avr. 2024 à 12:48
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `kerblei`
+-- Base de données : `gretaxao_lozachma`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE `cart` (
   `cartId` int(11) NOT NULL,
   `orderDate` date DEFAULT NULL,
   `deliveryDate` date DEFAULT NULL,
-  `statement` enum('pending','completed','cancelled') DEFAULT NULL,
+  `statement` enum('en gestation','validée','terminée') DEFAULT NULL,
   `accountId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,7 +40,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cartId`, `orderDate`, `deliveryDate`, `statement`, `accountId`) VALUES
-(1, '2024-03-01', '2024-03-02', 'pending', 1);
+(2, '2024-04-08', '2024-04-09', 'terminée', 32),
+(3, '2024-04-10', '2024-04-15', 'terminée', 32),
+(4, '2024-04-10', '2024-06-10', 'validée', 32);
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,7 @@ CREATE TABLE `category` (
 CREATE TABLE `kerbleiuser` (
   `accountId` int(11) NOT NULL,
   `mail` varchar(50) NOT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `isAdmin` tinyint(1) DEFAULT 0,
   `name` varchar(20) DEFAULT NULL,
   `firstname` varchar(20) DEFAULT NULL,
@@ -73,13 +75,10 @@ CREATE TABLE `kerbleiuser` (
 --
 
 INSERT INTO `kerbleiuser` (`accountId`, `mail`, `password`, `isAdmin`, `name`, `firstname`, `phone`) VALUES
-(1, 'mathildamilsom@example.com', 'mdp', 0, 'Milsom', 'Mathilda', '02 02 02 02 02'),
-(2, 'yoannlecerf@example.com', 'mdp', 1, NULL, NULL, NULL),
-(15, 'georges@heaven.bzh', '$2y$10$wDJ02a9SVah1HnjUAJE7/ekVgnkqBKbz.g/hHXsFQsA', 0, 'Brassens', 'Georges', '01 01 01 01 01'),
-(16, 'bob@heaven.bzh', '$2y$10$ND1TwYG6i05M/8XDVSpq5u0ZvKuHJShHz.RK9jsJ6fD', 0, 'Marley', 'Bob', '02 02 02 02 02'),
-(17, 'jl@heaven.bzh', '$2y$10$GA3zUlOPERUyDhtgH.tZOeWUDPuZr2OS5p5jj/9hkTd', 0, 'Murat', 'Jean-Louis', '03 03 03 03 03'),
-(18, 'ct@heaven.com', '$2y$10$EYlxzuOil9JslvdhYtLTb.w0HMk5VALKqSf4rj/.nTe', 0, 'Trénet', 'Charles', '04 04 04 04 04'),
-(19, 'nina@heaven.bzh', '$2y$10$XzaslvgCzKzJaLGcJRYNF.ulBDNtJeLOx5687YIMhXm', 0, 'Simone', 'Nina', '05 05 05 05 05');
+(30, 'charles@heaven.bzh', '$2y$10$nWLIjsbLV/zEkUMr7qydYehRn9uRk4PMYhkHZVBJ9/zNqNN6.2Yt.', 0, 'Trénet', 'Charles', '06 06 06 06 06'),
+(31, 'yohann@free.bzh', '$2y$10$97ycUKu9C.jbGEIY7dAWleejlG7yfxltS4O0Fp0k9Dj93sbLsExXC', 1, 'Lecerf', 'Yohann', NULL),
+(32, 'mathilda@free.bzh', '$2y$10$GokuR5fgmJPcHdplWcU1FOTTk4UMSflHLqldm22kfEaDeV7JLI1G2', 0, 'Milsom', 'Mathilda', '08 08 08 08 08'),
+(33, 'jj@heaven.bzh', '$2y$10$2cW/q7EB/QESV4kt5dpniOTd9O4lu/RjwY3LJkkhBkEJmX8HUAjtW', 0, 'Murat', 'Jean-Louis', '03 03 03 03 03');
 
 -- --------------------------------------------------------
 
@@ -98,7 +97,11 @@ CREATE TABLE `orderproduct` (
 --
 
 INSERT INTO `orderproduct` (`productId`, `cartId`, `quantity`) VALUES
-(1, 1, 3);
+(1, 2, 3),
+(2, 2, 2),
+(4, 3, 1),
+(4, 4, 1),
+(11, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -126,9 +129,9 @@ INSERT INTO `product` (`productId`, `name`, `designation`, `unitPrice`, `picture
 (4, 'Blonde d \'été', 'Corps léger, notes d\'agrumes, rafraichissante', 5.00, 'blondeEte.jpg', '5,5'),
 (8, 'Blonde des sept Iles', 'Lager, à base de 3 céréales (blé, orge et seigle),', 5.00, 'blonde7iles.jpg', '5'),
 (11, 'Brune', 'Houblon floral, notes de café et chocolat', 5.00, 'brune.jpg', '6,3'),
-(13, 'Rigadelle', 'Ambrée au miel de Baden', 5.00, 'bRigadElle.jpg', '7'),
-(14, 'Rousse', 'Caractère fleuri,robe rougeoyante,houblon plus aromatique', 5.00, 'bRousse.jpg', '5,4'),
-(15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 5.00, 'bTriple.jpg', '7,5');
+(13, 'Rigad\'elle', 'Ambrée au miel de Baden', 5.00, 'bRigadElle.jpg', '7'),
+(14, 'Rousse', 'Caractère fleuri, robe rougeoyante, houblon plus aromatique', 5.00, 'bRousse.jpg', '5,4'),
+(15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 6.00, 'bTriple.jpg', '7,5');
 
 --
 -- Index pour les tables déchargées
@@ -175,19 +178,19 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `kerbleiuser`
 --
 ALTER TABLE `kerbleiuser`
-  MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Contraintes pour les tables déchargées
