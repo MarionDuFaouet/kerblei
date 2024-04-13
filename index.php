@@ -2,10 +2,10 @@
 
 // Session beginning
 session_start();
-// if (!isset($_SESSION['cart'])) $_SESSION['cart'] = array();
 
-//###DEBUG
-// var_dump($_SESSION);
+// TEST o2switch
+// ini_set('display_error',1);
+// ini_set('error_reporting',E_ALL);
 
 // Loading environment variables
 use Dotenv\Dotenv;
