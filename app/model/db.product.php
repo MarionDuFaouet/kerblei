@@ -2,24 +2,18 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
-/**
- * Retrieve product information by its ID.
- *
- * @param int $productId The ID of the product.
- * @return array|null An array containing product information if found, null otherwise.
- * @throws Exception If an error occurs during the database operation.
- */
-function getProductById($productId) {
+function getProductById($productId)
+{
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("SELECT productId, name, unitPrice FROM Product WHERE productId = :productId");
         $query->bindParam(':productId', $productId);
         $query->execute();
         $product = $query->fetch(PDO::FETCH_ASSOC);
-        
+
         return $product;
     } catch (PDOException $e) {
-        throw new Exception("Erreur lors de la récupération du produit: " . $e->getMessage());    
+        throw new Exception("Erreur lors de la récupération du produit: " . $e->getMessage());
     }
 }
 
@@ -29,16 +23,16 @@ function getProductById($productId) {
  *
  * @return array An array containing all products fetched from the database.
  */
-function getProducts() {
+function getProducts()
+{
     $products = array();
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("SELECT productId, name, degree, designation, unitPrice, pictureRef FROM Product");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
-        
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
     return $products;
 }
@@ -66,7 +60,7 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
         $query->bindValue(':pictureRef', $pictureRef, PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());    
+        throw new Exception("Erreur !: " . $e->getMessage());
     }
     return $result;
 }
@@ -82,7 +76,8 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
  * @param string $productPrice The updated unit price of the product.
  * @param string $productPictureRef The updated picture reference of the product.
  */
-function updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef) {
+function updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef)
+{
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("UPDATE Product SET name = :name, degree = :degree, designation = :designation, unitPrice = :unitPrice, pictureRef = :pictureRef WHERE productId = :productId");
@@ -94,7 +89,8 @@ function updateProduct($productId, $productName, $productDegree, $productDescrip
         $query->bindValue(':pictureRef', $productPictureRef, PDO::PARAM_STR);
         $query->execute();
     } catch (PDOException $e) {
-        throw new Exception("Erreur PDO : " . $e->getMessage());    }
+        throw new Exception("Erreur PDO : " . $e->getMessage());
+    }
 }
 
 /**
@@ -103,7 +99,8 @@ function updateProduct($productId, $productName, $productDegree, $productDescrip
  * @param int $productId The ID of the product to delete.
  * @return bool True if the deletion was successful, false otherwise.
  */
-function deleteProduct($productId) {
+function deleteProduct($productId)
+{
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("DELETE FROM Product WHERE productId=:productId");
@@ -111,5 +108,6 @@ function deleteProduct($productId) {
         $result = $query->execute();
         return $result;
     } catch (PDOException $e) {
-        throw new Exception("Erreur PDO : " . $e->getMessage());    }
+        throw new Exception("Erreur PDO : " . $e->getMessage());
+    }
 }
