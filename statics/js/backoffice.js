@@ -1,13 +1,10 @@
 // ADMIN TAB-------------------------------------------------------------------------------------
-// commentaire global, ou variables plus parlantes
 
 // Get all tab elements and convert the NodeList to an array
 const tabs = [...document.querySelectorAll('.tab')];
 
-// Add click event listeners to each tab, triggering the tabsAnimation function
 tabs.forEach(tab => tab.addEventListener("click", tabsAnimation));
 
-// Get all tab content elements
 const tabContents = [...document.querySelectorAll(".tabContent")];
 
 // Function to handle tab animation and content display
