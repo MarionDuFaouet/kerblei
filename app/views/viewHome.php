@@ -1,5 +1,6 @@
 <?php
 
+// meta description and title
 $description = "Kerblei Admin.";
 $title = "Kerblei Admin";
 
@@ -12,7 +13,7 @@ require_once RACINE . '/views/menu.php';
 <div id="headerMain" class="container">
     <div>
         <p id="subTitle">"MICRO-BRASSERIE"</p>
-        <p id="firstTitle">KERBLEI</h1>
+        <p id="firstTitle">KERBLEI</p>
         <p id="headerMainText">Une dégustation? <br> Venez visiter la brasserie !</p>
         <a href="./?action=map" title="Cliquez ici pour nous trouver" class="cta-button">Nous rencontrer</a>
     </div>
@@ -35,9 +36,9 @@ require_once RACINE . '/views/menu.php';
     </div>
     <div id="about2">
         <video controls="controls">
-            <source src="./statics/video/houblon.mp4" type="video/mp4" />
-            <source src="./statics/video/houblon.webm" type="video/webm" />
-            <source src="./statics/video/houblon.ogg" type="video/ogg" />
+            <source src="./statics/video/houblon.mp4" type="video/mp4">
+            <source src="./statics/video/houblon.webm" type="video/webm">
+            <source src="./statics/video/houblon.ogg" type="video/ogg">
             Culture du houblon
         </video>
         <p>E gwelloc’h amañ distagañ metrad war start e genou, waz roched
