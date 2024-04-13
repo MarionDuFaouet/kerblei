@@ -1,6 +1,6 @@
 // NAVBAR
 .logo img {
-  width: 100%;
+  width: 80%;
 }
 
 nav {
@@ -8,12 +8,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  font-size: calc(0.5rem + 0.8vw);
+  font-size: calc(0.5rem + 1vw);
 }
 
 nav ul {
   display: flex;
   justify-content: space-between;
+  margin-right: 20px;
   width: 60%;
   font-family: $title;
 }
@@ -41,11 +42,11 @@ nav ul {
   nav ul {
     position: fixed;
     right: -100%;
-    top: 5%;
+    top: 1%;
     flex-direction: column;
     width: 100%;
     text-align: left;
-    padding-left: 300px;
+    padding-left: 260px;
     transition: 0.50s;
     -webkit-transition: 0.50s;
     -moz-transition: 0.50s;
@@ -56,7 +57,7 @@ nav ul {
   nav li {
     padding: 5px 0;
     font-family: $text;
-
+    font-size: 1.2em;
   }
 
   nav.active ul {
