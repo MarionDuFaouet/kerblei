@@ -11,7 +11,7 @@ function createOrderForUser($userId) {
         $query = $cnx->prepare("INSERT INTO `Cart` (`accountId`, `statement`) VALUES (:userId, :statement)");
         $result = $query->execute([
             ':userId' => $userId,
-            ':statement' => "pending",
+            ':statement' => "déposée",
         ]);
     } catch (PDOException $e) {
         throw new Exception("Erreur !: " . $e->getMessage());
@@ -86,7 +86,7 @@ function getPendingOrdersByAccountId($accountId) {
     JOIN 
         product AS p ON op.productId = p.productId
     WHERE 
-        c.accountId = :accountId AND c.statement = 'pending';");
+        c.accountId = :accountId AND c.statement = 'déposée';");
         $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -136,7 +136,7 @@ function getOrders() {
 }
 
 /**
- * Update the statement of a cart in the database to 'terminée'.
+ * Update the statement of a cart in the database to 'livrée'.
  *
  * @param int $cartId The ID of the cart to update.
  * @return bool True on success, false on failure.
@@ -145,7 +145,7 @@ function getOrders() {
 function updateCartStatement($cartId) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("UPDATE `Cart` SET `statement` = 'terminée' WHERE cartId = :cartId");
+        $query = $cnx->prepare("UPDATE `Cart` SET `statement` = 'livrée' WHERE cartId = :cartId");
         $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
         $query->execute();
         return true;

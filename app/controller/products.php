@@ -36,7 +36,7 @@ $products = getProducts();
 //     }
 
 //     ###DEBUG
-//     var_dump($_SESSION["cart"],'youhou');
+    var_dump($_SESSION["cart"]);
 //     // à chaque fois que je refresh, ça me rajoute un produit dans mon panier???
 // }
 

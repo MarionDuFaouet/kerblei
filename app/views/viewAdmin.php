@@ -46,7 +46,7 @@ require_once RACINE . '/views/menu.php';
                 </thead>
                 <tbody>
                     <?php foreach ($orders as $order) : ?>
-                        <?php if ($order['statement'] == 'validée') : ?>
+                        <?php if ($order['statement'] == 'déposée') : ?>
                             <tr>
                                 <td><?php echo $order['orderDate']; ?></td>
                                 <td><?php echo $order['deliveryDate']; ?></td>
@@ -56,7 +56,7 @@ require_once RACINE . '/views/menu.php';
                                 <td>
                                     <form action="./?action=admin" method="POST">
                                         <input type="hidden" name="cartId" value="<?php echo $order['cartId']; ?>">
-                                        <input type="submit" name="updateOrder" value="terminée">
+                                        <input type="submit" name="updateOrder" value="livrée">
                                     </form>
                                 </td>
 
@@ -79,7 +79,7 @@ require_once RACINE . '/views/menu.php';
                 </thead>
                 <tbody>
                     <?php foreach ($orders as $order) : ?>
-                        <?php if ($order['statement'] == 'terminée') : ?>
+                        <?php if ($order['statement'] == 'livrée') : ?>
                             <tr>
                                 <td><?php echo $order['deliveryDate']; ?></td>
                                 <td><?php echo $order['KerbleiUserName'] . ' ' . $order['KerbleiUserFirstname']; ?></td>

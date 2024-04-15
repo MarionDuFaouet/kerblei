@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 12 avr. 2024 à 12:48
+-- Généré le : lun. 15 avr. 2024 à 21:19
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `gretaxao_lozachma`
+-- Base de données : `kerblei`
 --
 
 -- --------------------------------------------------------
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `cartId` int(11) NOT NULL,
-  `orderDate` date DEFAULT NULL,
+  `orderDate` date DEFAULT current_timestamp(),
   `deliveryDate` date DEFAULT NULL,
-  `statement` enum('en gestation','validée','terminée') DEFAULT NULL,
+  `statement` enum('déposée','validée','livrée','suspendue') DEFAULT NULL,
   `accountId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,9 +40,20 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cartId`, `orderDate`, `deliveryDate`, `statement`, `accountId`) VALUES
-(2, '2024-04-08', '2024-04-09', 'terminée', 32),
-(3, '2024-04-10', '2024-04-15', 'terminée', 32),
-(4, '2024-04-10', '2024-06-10', 'validée', 32);
+(2, '2024-04-08', '2024-04-09', '', 32),
+(3, '2024-04-10', '2024-04-15', '', 32),
+(4, '2024-04-10', '2024-06-10', 'validée', 32),
+(5, NULL, NULL, '', 31),
+(6, NULL, NULL, '', 43),
+(7, NULL, NULL, '', 43),
+(8, NULL, NULL, '', 43),
+(9, '2024-04-15', NULL, '', 43),
+(10, '2024-04-15', NULL, '', 43),
+(11, '2024-04-15', NULL, '', 43),
+(12, '2024-04-15', NULL, '', 32),
+(13, '2024-04-15', NULL, '', 32),
+(14, '2024-04-15', NULL, '', 32),
+(15, '2024-04-15', NULL, '', 32);
 
 -- --------------------------------------------------------
 
@@ -78,7 +89,8 @@ INSERT INTO `kerbleiuser` (`accountId`, `mail`, `password`, `isAdmin`, `name`, `
 (30, 'charles@heaven.bzh', '$2y$10$nWLIjsbLV/zEkUMr7qydYehRn9uRk4PMYhkHZVBJ9/zNqNN6.2Yt.', 0, 'Trénet', 'Charles', '06 06 06 06 06'),
 (31, 'yohann@free.bzh', '$2y$10$97ycUKu9C.jbGEIY7dAWleejlG7yfxltS4O0Fp0k9Dj93sbLsExXC', 1, 'Lecerf', 'Yohann', NULL),
 (32, 'mathilda@free.bzh', '$2y$10$GokuR5fgmJPcHdplWcU1FOTTk4UMSflHLqldm22kfEaDeV7JLI1G2', 0, 'Milsom', 'Mathilda', '08 08 08 08 08'),
-(33, 'jj@heaven.bzh', '$2y$10$2cW/q7EB/QESV4kt5dpniOTd9O4lu/RjwY3LJkkhBkEJmX8HUAjtW', 0, 'Murat', 'Jean-Louis', '03 03 03 03 03');
+(43, 'tito@free.bzh', '$2y$10$egY6oc.cFY/gL8unbzT9WeVodUrgS3oEPvr/NkulIqcRtXbiu62Ve', 0, 'titi', 'toto', NULL),
+(44, 'titititi@free.bzh', '$2y$10$41CNnqiEC70IFGc3z1DzCO44gnBA7cATlUD8XGUvDamjp2Lgc1UEu', 0, 'titi', 'titi', '01 02 03 04 05');
 
 -- --------------------------------------------------------
 
@@ -131,7 +143,9 @@ INSERT INTO `product` (`productId`, `name`, `designation`, `unitPrice`, `picture
 (11, 'Brune', 'Houblon floral, notes de café et chocolat', 5.00, 'brune.jpg', '6,3'),
 (13, 'Rigad\'elle', 'Ambrée au miel de Baden', 5.00, 'bRigadElle.jpg', '7'),
 (14, 'Rousse', 'Caractère fleuri, robe rougeoyante, houblon plus aromatique', 5.00, 'bRousse.jpg', '5,4'),
-(15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 6.00, 'bTriple.jpg', '7,5');
+(15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 6.00, 'bTriple.jpg', '7,5'),
+(46, 'Test', 'ceic est un test', 5.00, 'bAmbree.jpg', '2'),
+(47, 'Test', 'gregregregre', 5.00, 'Array', '2');
 
 --
 -- Index pour les tables déchargées
@@ -178,19 +192,19 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `kerbleiuser`
 --
 ALTER TABLE `kerbleiuser`
-  MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Contraintes pour les tables déchargées
