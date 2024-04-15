@@ -6,8 +6,10 @@
             <li><a href="./?action=default">Accueil</a></li>
             <li><a href="./?action=products">Nos bières</a></li>
             <li><a href="./?action=map">Contact</a></li>
-            <li><a id="cartButton" id="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
-                    <span id='badge' id='cartBadge'>0</span>Panier</a>
+            <li><a id="cartButton"><i class="fa-solid fa-xl fa-bag-shopping icon"></i>
+                    <span id="badge">
+                    <?php echo (isset($_SESSION['cart'])? count($_SESSION['cart']) : 0) ?>
+                    </span>Panier</a>
             </li>
 
             <?php if (isset($_SESSION['mail']) && ($_SESSION['admin'] == 1)) : ?>

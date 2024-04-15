@@ -109,19 +109,19 @@ require_once RACINE . '/views/menu.php';
             <!-- ADD PRODUCTS -->
             <p class="msg"><?php echo $msg; ?></p>
 
-            <form action="./?action=admin" class="forms" method="POST">
+            <form action="./?action=admin" class="forms" method="POST" enctype="multipart/form-data">
                 <label for="name">Nom</label>
-                <input type="text" name="name" placeholder="ex : Ambrée" /><br />
+                <input type="text" name="name" placeholder="ex : Ambrée">
                 <label for="degree">Degrés</label>
-                <input type="text" name="degree" placeholder="ex : 6,1" /><br />
+                <input type="text" name="degree" placeholder="ex : 6,1">
                 <label for="designation">Désignation</label>
-                <input type="text" name="designation" placeholder="texte max 50 car." /><br />
+                <input type="text" name="designation" placeholder="texte max 50 car.">
                 <label for="unitPrice">Prix unitaire</label>
-                <input type="text" name="unitPrice" placeholder="00.00" /><br />
+                <input type="text" name="unitPrice" placeholder="00.00">
 
                 <label for="pictureRef">Image</label>
-                <!-- <input type="text" name="pictureRef" placeholder="monimage.jpg" /><br /> -->
-                <input type="file" id="pictureRef" class="image-upload" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg" /><br />
+                <!-- <input type="text" name="pictureRef" placeholder="monimage.jpg"> -->
+                <input type="file" id="pictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg" /><br />
                 
                 <input class="cta-button" type="submit" name="addProduct" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
             </form>
@@ -164,28 +164,28 @@ require_once RACINE . '/views/menu.php';
 
 
             <!-- MODIFY / DELETE PRODUCT -->
-            <form action="./?action=admin" class="forms" method="POST">
+            <form action="./?action=admin" class="forms" method="POST" enctype="multipart/form-data">
                 <!-- selected product ID hidden field -->
                 <input type="hidden" name="selectedProductId" id="selectedProductId">
                 <!-- Pre-filled modification fields -->
                 <label for="productName">Nom</label>
-                <input type="text" id="productName" name="productName"><br>
+                <input type="text" id="productName" name="productName">
                 <label for="productDegre">Degrés</label>
-                <input type="text" id="productDegre" name="productDegre"><br>
+                <input type="text" id="productDegre" name="productDegre">
                 <label for="productDescription">Designation</label>
-                <input type="text" id="productDescription" name="productDescription"><br>
+                <input type="text" id="productDescription" name="productDescription">
                 <label for="productPrice">Prix unitaire</label>
-                <input type="text" id="productPrice" name="productPrice"><br>
+                <input type="text" id="productPrice" name="productPrice">
                 <!-- Existing image -->
                 <label for="productPictureRef">Image</label>
-                <input type="text" id="productPictureRef" name="productPictureRef" readonly><br>
+                <input type="text" id="productPictureRef" name="productPictureRef" readonly>
                 <!-- New image -->
-                <!-- <label for="newProductPictureRef">Nouvelle image</label> -->
-                <!-- <input type="file" id="newProductPictureRef" class="image-upload" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg" /><br />                 -->
+                <label for="newProductPictureRef">Nouvelle image</label>
+                <input type="file" id="newProductPictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg">
                 <!-- to submit modifications and delete the product -->
                 <div class="accountAction">
-                <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier" />
-                <input class="cta-button" type="submit" name="deleteProduct" title="Suppression de produit" value="Supprimer" />
+                <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier">
+                <input class="cta-button" type="submit" name="deleteProduct" title="Suppression de produit" value="Supprimer">
                 </div>
             </form>
 
@@ -195,8 +195,6 @@ require_once RACINE . '/views/menu.php';
     </div>
 
 </div>
-
-<!-- src : youtube/Ecole du web/ coder des onglets en javasccript -->
 
 <!-- view calling -->
 <?php require_once RACINE . '/views/footer.php' ?>

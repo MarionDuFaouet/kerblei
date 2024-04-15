@@ -37,9 +37,10 @@ require_once RACINE . '/views/menu.php';
                 </div>
                 <footer>
                     <!-- bouton panier -->
-                    <a onclick = "addProductInCart (<?php echo $product['productId']; ?>)"
-                    class="cta-button" 
-                    title="Cliquez ici pour ajouter au panier">Ajouter au panier</a>
+                    <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+                    <a onclick="addProductInCart(this, <?php echo $product['productId']; ?>);" 
+                    class="cta-button" title="Cliquez ici pour ajouter au panier">Ajouter au panier</a>
+                    <!-- ----------------------------------- -->
                 </footer>
             </article>
         <?php endforeach; ?>

@@ -1,14 +1,9 @@
 <?php
-
-
-
-// MAIS A QUOI SERT CETTE PAGE MAINTENANT???
-
-
 require_once RACINE . "/model/db.product.php";
 
 // affichage des produits
 $products = getProducts();
+
 
 ###DEBUG
 // var_dump($products);
@@ -63,7 +58,4 @@ $products = getProducts();
 //     }
 // }
 
-// Inclure la vue des produits
 require_once RACINE . "/views/viewProducts.php";
-
-exit;

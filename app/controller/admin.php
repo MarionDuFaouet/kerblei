@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
     }
 }
 
-///MAIS WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY?????????????????? pourquoi j'arrive pas à vérifier l'image?????
+///MAIS WHYYYYYYYYYYYYY?????? pourquoi j'arrive pas à vérifier l'image?????
 // if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
 //     if (
 //         !empty($_POST["name"]) && !empty($_POST["degree"]) && !empty($_POST["designation"])
@@ -107,8 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
 //     $msg = "Veuillez remplir tous les champs.";
 // }
 
-###DEBUG
-// var_dump($name, $degree, $designation, $unitPrice, $pictureRef );
 
 // -------------------------------------------------------------------------------------------
 
@@ -122,7 +120,6 @@ $products = getProducts();
 // var_dump($products);
 // Convertir les données des produits en JSON
 // $productsJSON = json_encode($products);
-###DEBUG
 // var_dump($productsJSON);
 
 // Form processing for product modification or deletion
@@ -138,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
 
     // Call the model function to update the product
     updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef);
-    var_dump(getProducts());
+    // var_dump(getProducts());
 } elseif (isset($_POST["deleteProduct"])) {
     // Retrieve the ID of the product to delete
     $productIdToDelete = $_POST["selectedProductId"];
@@ -149,5 +146,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
 
 $products = getProducts();
 
-// Include the view of the form to add products
 require_once RACINE . "/views/viewAdmin.php";

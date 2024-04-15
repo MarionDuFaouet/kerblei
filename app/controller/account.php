@@ -10,7 +10,7 @@ $accountId= $user['accountId'];
 
 // get Orders
 require_once RACINE . "/model/db.cart.php";
-$orders = getOrdersByAccountId($accountId);
+$orders = getOrdersByAccountId($accountId, '*');
 
 // fill form with account datas
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

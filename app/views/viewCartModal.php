@@ -9,50 +9,56 @@
         <table>
             <thead>
                 <tr>
-                    <th scope="col">Produits</th>
-                    <th scope="col">Prix unitaire</th>
-                    <th scope="col">Quantité</th>
-                    <th scope="col">Sous-total</th>
-                    <th scope="col"></th>
+                    <th class="cartProductName" scope="col">Produits</th>
+                    <th class="cartProductUP" scope="col">Prix unitaire</th>
+                    <th class="cartProductQuantity" scope="col">Quantité</th>
+                    <th class="cartProductSubTotal" scope="col">Sous-total</th>
+                    <th class="cartProductTrash" scope="col">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- ici je dois construire mon panier en récupérant du json -->
-                <!-- <tr>
-                    <td id="cart1ProductName"></td>
-                    <td id="cart2UnitPrice"></td>
-                    <td id="cart3Quantity"></td>
-                    <td id="cart4 SubTotal"></td>
-                    <td><i onclick="deleteProductInCart (<?php echo $product['productId']; ?>)" class="fa-solid fa-trash"></i></td>
-                </tr> -->
-                <!-- ici je dois construire mon panier en récupérant du json -->
-
+                <!-- hidden fake item row that can be duplicated as a template -->
+                <tr id="product-0" data-id=0 style="display: none;">
+                    <td>Product name</td>
+                    <td><span id="cartUnitPrice-0">Unit price</span>&euro;</td>
+                    <td >
+                        <i onclick="decrProductInCart(this)" class="fa-solid fa-square-minus"></i>
+                        <input type="text" id="cartQuantity-0" size=3 maxlength=3 value="0" />
+                        <i onclick="incrProductInCart(this)" class="fa-solid fa-square-plus"></i>
+                    </td>
+                    <td><span id="cartSubTotal-0">0</span>&euro;</td>
+                    <td>
+                        <i onclick="deleteProductInCart(this)" class="fa-solid fa-trash"></i>
+                    </td>
+                </tr>
 
                 <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                     foreach ($_SESSION['cart'] as $productId => $product) { ?>
-                        <tr>
+                        <tr id="<?= 'product-'.$productId; ?>" data-id=<?= $productId; ?> >
                             <td><?= $product['name']; ?></td>
-                            <td><?= $product['unitPrice']; ?>&euro;</td>
+                            <td><span id="<?= 'cartUnitPrice-'.$productId; ?>"><?= $product['unitPrice']; ?></span>&euro;</td>
                             <!-- boutons cartModify -->
                             <td>
-                                <input id="<?php echo ('item'.$productId); ?>"
-                                    onchange="updateProductInCart (<?php echo $productId; ?>)" 
-                                    type="number" size="3"
-                                    value="<?= $product['quantity']; ?>" />
+                                <!-- i onclick="updateProductInCart(<?= $product['productId']; ?>)" class="fa-solid fa-square-minus"></i -->
+                                <i onclick="decrProductInCart(this)" class="fa-solid fa-square-minus"></i>
+                                <input type="text" id="<?= 'cartQuantity-'.$productId; ?>" size=3 maxlength=3 value="<?= $product['quantity']; ?>" />
+                                <i onclick="incrProductInCart(this)" class="fa-solid fa-square-plus"></i>
                             </td>
-                            <td><?= $product['quantity'] * $product['unitPrice']; ?>&euro;</td>
+                            <td>
+                                <span id="<?= 'cartSubTotal-'.$productId; ?>"><?= $product['quantity'] * $product['unitPrice']; ?></span>&euro;
+                            </td>
                             <!-- boutons cartDelete -->
                             <td>
-                                <i onclick="deleteProductInCart (<?php echo $product['productId']; ?>)" class="fa-solid fa-trash"></i>
+                                <i onclick="deleteProductInCart(this)" class="fa-solid fa-trash"></i>
                             </td>
                         </tr>
                     <?php
                     }
                 } else {
                     ?>
-                    <tr>
+                    <!-- tr>
                         <td colspan="1">Votre panier est vide.</td>
-                    </tr>
+                    </tr -->
                 <?php
                 }
                 ?>
@@ -63,8 +69,7 @@
             <tfoot>
                 <tr>
                     <th scope="row" colspan="3">Total</th>
-                    <td colspan="1">
-                        <?php
+                    <?php
                         // Calculer le total du panier
                         $total = 0;
                         if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
@@ -72,9 +77,8 @@
                                 $total += $product['quantity'] * $product['unitPrice'];
                             }
                         }
-                        echo $total . '&euro;';
-                        ?>
-                    </td>
+                    ?>
+                    <td colspan="1"><span id="cartTotal"><?= $total ?></span> &euro;</td>
                 </tr>
             </tfoot>
 
