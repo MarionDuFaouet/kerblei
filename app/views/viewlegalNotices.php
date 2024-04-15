@@ -15,7 +15,7 @@ require_once RACINE . '/views/menu.php';
     <h2>Mentions légales</h2>
     <p>Conformément à l'article L.3342-1 du Code de la santé publique et à la loi n°2009-879 du 21 juillet 2009, la vente d'alcool à des mineurs est interdite.
 
-Toute personne procédant à une commande s'engage donc à avoir la capacité juridique et l'âge légal requis (18 ans révolus) à la date de la commande.</p><br>
+        Toute personne procédant à une commande s'engage donc à avoir la capacité juridique et l'âge légal requis (18 ans révolus) à la date de la commande.</p><br>
     <h3> 1 - Édition du site</h3><br>
     <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet https://microbrasseriekerblei/ l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi:
         Propriétaire du site : Yoann Le Cerf - Contact : yoannlecerf@mail.fr 06XXXXXXXX - Adresse : 5 rue de XXX XXX 56000 BADEN.

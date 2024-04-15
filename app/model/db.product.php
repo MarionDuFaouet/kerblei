@@ -64,6 +64,36 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
     }
     return $result;
 }
+// TRAITEMENT IMG à RETRAVAILLER
+// function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
+// {
+//     try {
+//         // Vérifier si le fichier a été téléchargé sans erreur
+//         if ($pictureRef['error'] === UPLOAD_ERR_OK) {
+//             // Déplacer le fichier téléchargé vers un répertoire sur le serveur
+//             $uploadDir = 'uploads/'; // Répertoire où vous souhaitez enregistrer les images
+//             $uploadFile = $uploadDir . basename($pictureRef['name']);
+//             if (move_uploaded_file($pictureRef['tmp_name'], $uploadFile)) {
+//                 // Insérer les données dans la base de données
+//                 $cnx = connexionPDO();
+//                 $query = $cnx->prepare("INSERT INTO Product (name, degree, designation, unitPrice, pictureRef) VALUES (:name, :degree, :designation, :unitPrice, :pictureRef)");
+//                 $query->bindValue(':name', $name, PDO::PARAM_STR);
+//                 $query->bindValue(':degree', $degree, PDO::PARAM_STR);
+//                 $query->bindValue(':designation', $designation, PDO::PARAM_STR);
+//                 $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR);
+//                 $query->bindValue(':pictureRef', $uploadFile, PDO::PARAM_STR); // Utilisez le chemin d'accès du fichier enregistré
+//                 $result = $query->execute();
+//                 return $result;
+//             } else {
+//                 throw new Exception("Erreur lors de l'enregistrement de l'image.");
+//             }
+//         } else {
+//             throw new Exception("Erreur lors du téléchargement de l'image.");
+//         }
+//     } catch (PDOException $e) {
+//         throw new Exception("Erreur !: " . $e->getMessage());
+//     }
+// }
 
 
 /**
