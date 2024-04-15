@@ -6,7 +6,7 @@ Installation :
 
 Cloner le répertoire à l'aide de la commande : git clone lienDuRepository    
 Renommez et configurez le fichier .env.example en .env  
-Créez une nouvelle base de données en important fichier kerblei.sql  
+Créez une nouvelle base de données en important le fichier kerblei.sql  
 N'oubliez pas d'installer les dépendances en exécutant la commande Composer : composer install    
 
 Pour tester le site, deux comptes :  
