@@ -322,7 +322,7 @@ function updateCartMessage (jsonObj) {
  *  
  *-----------------------------------------------*/
 
-// ouverture et fermeture du panier depuis le menu
+// opening and closing cart from menu
 function addAllListeners(event) {
     const cartButton = document.querySelector("#cartButton");
     if (cartButton) cartButton.addEventListener("click", showCart);

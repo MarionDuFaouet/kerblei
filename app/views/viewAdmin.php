@@ -164,7 +164,7 @@ require_once RACINE . '/views/menu.php';
 
 
             <!-- MODIFY / DELETE PRODUCT -->
-            <form action="./?action=admin" class="forms" method="POST" enctype="multipart/form-data">
+            <form action="./?action=admin" class="forms" method="POST">
                 <!-- selected product ID hidden field -->
                 <input type="hidden" name="selectedProductId" id="selectedProductId">
                 <!-- Pre-filled modification fields -->
@@ -177,11 +177,11 @@ require_once RACINE . '/views/menu.php';
                 <label for="productPrice">Prix unitaire</label>
                 <input type="text" id="productPrice" name="productPrice">
                 <!-- Existing image -->
-                <label for="productPictureRef">Image</label>
-                <input type="text" id="productPictureRef" name="productPictureRef" readonly>
+                <!-- <label for="productPictureRef">Image</label>
+                <input type="text" id="productPictureRef" name="productPictureRef" readonly> -->
                 <!-- New image -->
-                <!-- <label for="newProductPictureRef">Nouvelle image</label> -->
-                <!-- <input type="file" id="newProductPictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg"> -->
+                <!-- <label for="newProductPictureRef">Nouvelle image</label>
+                <input type="file" id="newProductPictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg"> -->
                 <!-- to submit modifications and delete the product -->
                 <div class="accountAction">
                 <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier">

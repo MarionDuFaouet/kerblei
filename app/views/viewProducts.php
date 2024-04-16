@@ -6,7 +6,7 @@ $title = "Kerblei - Nos produits";
 
 require_once RACINE . '/views/head.start.php';
 ?>
-<script src="./statics/js/backoffice.js" defer></script>
+<!-- <script src="./statics/js/backoffice.js" defer></script> -->
 <?php
 require_once RACINE . '/views/head.stop.php';
 require_once RACINE . '/views/menu.php';
@@ -26,7 +26,9 @@ require_once RACINE . '/views/menu.php';
 <section class="container">
     <div class="cards">
 
-        <?php foreach ($products as $product) : ?>
+        <?php
+        
+        foreach ($products as $product) : ?>
             <article class="card">
                 <img src="./statics/images/<?php echo $product['pictureRef']; ?>" alt="<?php echo $product['name'] ?>">
                 <div class="content">
@@ -36,11 +38,9 @@ require_once RACINE . '/views/menu.php';
                     <p><?php echo $product['unitPrice']; ?> </p>
                 </div>
                 <footer>
-                    <!-- bouton panier -->
-                    <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+                    <!-- cart button -->
                     <a onclick="addProductInCart(this, <?php echo $product['productId']; ?>);" 
                     class="cta-button" title="Cliquez ici pour ajouter au panier">Ajouter au panier</a>
-                    <!-- ----------------------------------- -->
                 </footer>
             </article>
         <?php endforeach; ?>

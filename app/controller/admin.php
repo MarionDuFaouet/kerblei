@@ -93,17 +93,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
     $productDegree = $_POST["productDegre"];
     $productDescription = $_POST["productDescription"];
     $productPrice = $_POST["productPrice"];
-    $productPictureRef = $_POST["productPictureRef"];
+    // $productPictureRef = $_POST["productPictureRef"];
 
     // Call the model function to update the product
-    updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef);
-    // var_dump(getProducts());
+    updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice);
+    $msg = "Produit modifié avec succès.";
+
 } elseif (isset($_POST["deleteProduct"])) {
     // Retrieve the ID of the product to delete
     $productIdToDelete = $_POST["selectedProductId"];
 
     // Call the model function to delete the product
     deleteProduct($productIdToDelete);
+    $msg = "Produit supprimé avec succès.";
 }
 
 $products = getProducts();

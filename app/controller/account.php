@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateUser"])) {
 } elseif ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["deleteUser"])) {
     deleteUser($accountId);
     $msg = 'Compte supprimé';
+    
 }
 
 

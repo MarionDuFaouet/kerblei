@@ -6,7 +6,7 @@ function getProductById($productId)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT productId, name, unitPrice FROM Product WHERE productId = :productId");
+        $query = $cnx->prepare("SELECT productId, name, unitPrice FROM product WHERE productId = :productId");
         $query->bindParam(':productId', $productId);
         $query->execute();
         $product = $query->fetch(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ function getProducts()
     $products = array();
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT productId, name, degree, designation, unitPrice, pictureRef FROM Product");
+        $query = $cnx->prepare("SELECT productId, name, degree, designation, unitPrice, pictureRef FROM product");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -52,7 +52,7 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO Product (name, degree, designation, unitPrice, pictureRef) VALUES (:name, :degree, :designation, :unitPrice, :pictureRef)");
+        $query = $cnx->prepare("INSERT INTO product (name, degree, designation, unitPrice, pictureRef) VALUES (:name, :degree, :designation, :unitPrice, :pictureRef)");
         $query->bindValue(':name', $name, PDO::PARAM_STR);
         $query->bindValue(':degree', $degree, PDO::PARAM_STR);
         $query->bindValue(':designation', $designation, PDO::PARAM_STR);
@@ -106,17 +106,17 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
  * @param string $productPrice The updated unit price of the product.
  * @param string $productPictureRef The updated picture reference of the product.
  */
-function updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice, $productPictureRef)
+function updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("UPDATE Product SET name = :name, degree = :degree, designation = :designation, unitPrice = :unitPrice, pictureRef = :pictureRef WHERE productId = :productId");
+        $query = $cnx->prepare("UPDATE product SET `name` = :name, `degree` = :degree, `designation` = :designation, `unitPrice` = :unitPrice WHERE productId = :productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->bindValue(':name', $productName, PDO::PARAM_STR);
         $query->bindValue(':degree', $productDegree, PDO::PARAM_STR);
         $query->bindValue(':designation', $productDescription, PDO::PARAM_STR);
         $query->bindValue(':unitPrice', $productPrice, PDO::PARAM_STR);
-        $query->bindValue(':pictureRef', $productPictureRef, PDO::PARAM_STR);
+        
         $query->execute();
     } catch (PDOException $e) {
         throw new Exception("Erreur PDO : " . $e->getMessage());
@@ -133,7 +133,7 @@ function deleteProduct($productId)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("DELETE FROM Product WHERE productId=:productId");
+        $query = $cnx->prepare("DELETE FROM product WHERE productId=:productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $result = $query->execute();
         return $result;
