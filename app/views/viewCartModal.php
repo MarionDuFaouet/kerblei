@@ -32,8 +32,8 @@
                     </td>
                 </tr>
 
-                <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-                    foreach ($_SESSION['cart'] as $productId => $product) { ?>
+                <?php if (isset($_SESSION['cart']['products']) && !empty($_SESSION['cart']['products'])) {
+                    foreach ($_SESSION['cart']['products'] as $productId => $product) { ?>
                         <tr id="<?= 'product-'.$productId; ?>" data-id=<?= $productId; ?> >
                             <td><?= $product['name']; ?></td>
                             <td><span id="<?= 'cartUnitPrice-'.$productId; ?>"><?= $product['unitPrice']; ?></span>&euro;</td>
@@ -56,9 +56,6 @@
                     }
                 } else {
                     ?>
-                    <!-- tr>
-                        <td colspan="1">Votre panier est vide.</td>
-                    </tr -->
                 <?php
                 }
                 ?>
@@ -70,7 +67,7 @@
                 <tr>
                     <th scope="row" colspan="3">Total</th>
                     <?php
-                        // Calculer le total du panier
+                        // Calculate total
                         $total = 0;
                         if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                             foreach ($_SESSION['cart'] as $product) {
@@ -85,10 +82,9 @@
         </table>
 
         <div id="modalFooter">
+        <p id="cartMessage" class="msg"><?php if (isset($_SESSION['cart']['message'])) echo $_SESSION['cart']['message']; ?></p>
             <label for="date">Date de retrait souhaitée :</label>
             <input type="date" id="date">
-            <!-- ajouter action valider le panier-->
-            <!-- validation de panier possible si utilisateur connecté -->
             <a class="cta-button" title="Cliquez ici pour valider votre commande">Je réserve</a>
         </div>
     </div>
