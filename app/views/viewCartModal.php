@@ -21,7 +21,7 @@
                 <tr id="product-0" data-id=0 style="display: none;">
                     <td>Product name</td>
                     <td><span id="cartUnitPrice-0">Unit price</span>&euro;</td>
-                    <td >
+                    <td>
                         <i onclick="decrProductInCart(this)" class="fa-solid fa-square-minus"></i>
                         <input type="text" id="cartQuantity-0" size=3 maxlength=3 value="0" />
                         <i onclick="incrProductInCart(this)" class="fa-solid fa-square-plus"></i>
@@ -34,18 +34,18 @@
 
                 <?php if (isset($_SESSION['cart']['products']) && !empty($_SESSION['cart']['products'])) {
                     foreach ($_SESSION['cart']['products'] as $productId => $product) { ?>
-                        <tr id="<?= 'product-'.$productId; ?>" data-id=<?= $productId; ?> >
+                        <tr id="<?= 'product-' . $productId; ?>" data-id=<?= $productId; ?>>
                             <td><?= $product['name']; ?></td>
-                            <td><span id="<?= 'cartUnitPrice-'.$productId; ?>"><?= $product['unitPrice']; ?></span>&euro;</td>
+                            <td><span id="<?= 'cartUnitPrice-' . $productId; ?>"><?= $product['unitPrice']; ?></span>&euro;</td>
                             <!-- boutons cartModify -->
                             <td>
                                 <!-- i onclick="updateProductInCart(<?= $product['productId']; ?>)" class="fa-solid fa-square-minus"></i -->
                                 <i onclick="decrProductInCart(this)" class="fa-solid fa-square-minus"></i>
-                                <input type="text" id="<?= 'cartQuantity-'.$productId; ?>" size=3 maxlength=3 value="<?= $product['quantity']; ?>" />
+                                <input type="text" id="<?= 'cartQuantity-' . $productId; ?>" size=3 maxlength=3 value="<?= $product['quantity']; ?>" />
                                 <i onclick="incrProductInCart(this)" class="fa-solid fa-square-plus"></i>
                             </td>
                             <td>
-                                <span id="<?= 'cartSubTotal-'.$productId; ?>"><?= $product['quantity'] * $product['unitPrice']; ?></span>&euro;
+                                <span id="<?= 'cartSubTotal-' . $productId; ?>"><?= $product['quantity'] * $product['unitPrice']; ?></span>&euro;
                             </td>
                             <!-- boutons cartDelete -->
                             <td>
@@ -67,13 +67,13 @@
                 <tr>
                     <th scope="row" colspan="3">Total</th>
                     <?php
-                        // Calculate total
-                        $total = 0;
-                        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-                            foreach ($_SESSION['cart'] as $product) {
-                                $total += $product['quantity'] * $product['unitPrice'];
-                            }
+                    // Calculate total
+                    $total = 0;
+                    if (isset($_SESSION['cart']) && !empty($_SESSION['cart']['products'])) {
+                        foreach ($_SESSION['cart']['products'] as $product) {
+                            $total += $product['quantity'] * $product['unitPrice'];
                         }
+                    }
                     ?>
                     <td colspan="1"><span id="cartTotal"><?= $total ?></span> &euro;</td>
                 </tr>
@@ -82,10 +82,10 @@
         </table>
 
         <div id="modalFooter">
-        <p id="cartMessage" class="msg"><?php if (isset($_SESSION['cart']['message'])) echo $_SESSION['cart']['message']; ?></p>
+            <p id="cartMessage" class="msg"><?php if (isset($_SESSION['cart']['message'])) echo $_SESSION['cart']['message']; ?></p>
             <label for="date">Date de retrait souhaitée :</label>
-            <input type="date" id="date">
-            <a class="cta-button" title="Cliquez ici pour valider votre commande">Je réserve</a>
+            <input id="cartDate" type="date" name="cartDate" required />
+            <a class="cta-button" onclick="validateCart()" title="Cliquez ici pour valider votre commande">Je réserve</a>
         </div>
     </div>
 
