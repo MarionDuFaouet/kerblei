@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 15 avr. 2024 à 21:19
+-- Généré le : mar. 16 avr. 2024 à 15:45
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -40,20 +40,11 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cartId`, `orderDate`, `deliveryDate`, `statement`, `accountId`) VALUES
-(2, '2024-04-08', '2024-04-09', '', 32),
-(3, '2024-04-10', '2024-04-15', '', 32),
-(4, '2024-04-10', '2024-06-10', 'validée', 32),
-(5, NULL, NULL, '', 31),
-(6, NULL, NULL, '', 43),
-(7, NULL, NULL, '', 43),
-(8, NULL, NULL, '', 43),
-(9, '2024-04-15', NULL, '', 43),
-(10, '2024-04-15', NULL, '', 43),
-(11, '2024-04-15', NULL, '', 43),
-(12, '2024-04-15', NULL, '', 32),
-(13, '2024-04-15', NULL, '', 32),
-(14, '2024-04-15', NULL, '', 32),
-(15, '2024-04-15', NULL, '', 32);
+(2, '2024-04-08', '2024-04-09', 'livrée', 32),
+(3, '2024-04-10', '2024-04-15', 'validée', 32),
+(4, '2024-04-10', '2024-06-10', 'livrée', 32),
+(16, '2024-04-16', NULL, 'déposée', 31),
+(17, '2024-04-16', NULL, 'déposée', 31);
 
 -- --------------------------------------------------------
 
@@ -88,7 +79,7 @@ CREATE TABLE `kerbleiuser` (
 INSERT INTO `kerbleiuser` (`accountId`, `mail`, `password`, `isAdmin`, `name`, `firstname`, `phone`) VALUES
 (30, 'charles@heaven.bzh', '$2y$10$nWLIjsbLV/zEkUMr7qydYehRn9uRk4PMYhkHZVBJ9/zNqNN6.2Yt.', 0, 'Trénet', 'Charles', '06 06 06 06 06'),
 (31, 'yohann@free.bzh', '$2y$10$97ycUKu9C.jbGEIY7dAWleejlG7yfxltS4O0Fp0k9Dj93sbLsExXC', 1, 'Lecerf', 'Yohann', NULL),
-(32, 'mathilda@free.bzh', '$2y$10$GokuR5fgmJPcHdplWcU1FOTTk4UMSflHLqldm22kfEaDeV7JLI1G2', 0, 'Milsom', 'Mathilda', '08 08 08 08 08'),
+(32, 'mathilda@free.bzh', '$2y$10$5Sgl0Id8kfK.psodipd3BOCGTIP/M6sthNORZK275dCMsM6ABZlJO', 0, 'Milsom', 'Mathilda', '02 02 02 02 02'),
 (43, 'tito@free.bzh', '$2y$10$egY6oc.cFY/gL8unbzT9WeVodUrgS3oEPvr/NkulIqcRtXbiu62Ve', 0, 'titi', 'toto', NULL),
 (44, 'titititi@free.bzh', '$2y$10$41CNnqiEC70IFGc3z1DzCO44gnBA7cATlUD8XGUvDamjp2Lgc1UEu', 0, 'titi', 'titi', '01 02 03 04 05');
 
@@ -143,9 +134,7 @@ INSERT INTO `product` (`productId`, `name`, `designation`, `unitPrice`, `picture
 (11, 'Brune', 'Houblon floral, notes de café et chocolat', 5.00, 'brune.jpg', '6,3'),
 (13, 'Rigad\'elle', 'Ambrée au miel de Baden', 5.00, 'bRigadElle.jpg', '7'),
 (14, 'Rousse', 'Caractère fleuri, robe rougeoyante, houblon plus aromatique', 5.00, 'bRousse.jpg', '5,4'),
-(15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 6.00, 'bTriple.jpg', '7,5'),
-(46, 'Test', 'ceic est un test', 5.00, 'bAmbree.jpg', '2'),
-(47, 'Test', 'gregregregre', 5.00, 'Array', '2');
+(15, 'Triple', 'Blonde de triple fermentation, aromatisée à la fleur de sureau', 6.00, 'bTriple.jpg', '7,5');
 
 --
 -- Index pour les tables déchargées
@@ -156,7 +145,7 @@ INSERT INTO `product` (`productId`, `name`, `designation`, `unitPrice`, `picture
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cartId`),
-  ADD KEY `accountId` (`accountId`);
+  ADD KEY `fk_cart_accountId` (`accountId`);
 
 --
 -- Index pour la table `category`
@@ -192,19 +181,19 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `kerbleiuser`
 --
 ALTER TABLE `kerbleiuser`
-  MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `accountId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Contraintes pour les tables déchargées
@@ -214,7 +203,8 @@ ALTER TABLE `product`
 -- Contraintes pour la table `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`accountId`) REFERENCES `kerbleiuser` (`accountId`);
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`accountId`) REFERENCES `kerbleiuser` (`accountId`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_cart_accountId` FOREIGN KEY (`accountId`) REFERENCES `kerbleiuser` (`accountId`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `orderproduct`

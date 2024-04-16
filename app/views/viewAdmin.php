@@ -46,7 +46,7 @@ require_once RACINE . '/views/menu.php';
                 </thead>
                 <tbody>
                     <?php foreach ($orders as $order) : ?>
-                        <?php if ($order['statement'] == 'déposée') : ?>
+                        <?php if ($order['statement'] == 'validée') : ?>
                             <tr>
                                 <td><?php echo $order['orderDate']; ?></td>
                                 <td><?php echo $order['deliveryDate']; ?></td>
@@ -180,8 +180,8 @@ require_once RACINE . '/views/menu.php';
                 <label for="productPictureRef">Image</label>
                 <input type="text" id="productPictureRef" name="productPictureRef" readonly>
                 <!-- New image -->
-                <label for="newProductPictureRef">Nouvelle image</label>
-                <input type="file" id="newProductPictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg">
+                <!-- <label for="newProductPictureRef">Nouvelle image</label> -->
+                <!-- <input type="file" id="newProductPictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg"> -->
                 <!-- to submit modifications and delete the product -->
                 <div class="accountAction">
                 <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier">
