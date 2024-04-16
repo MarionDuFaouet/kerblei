@@ -2,7 +2,6 @@
 
 // Session beginning
 session_start();
-
 // TEST o2switch
 // ini_set('display_error',1);
 // ini_set('error_reporting',E_ALL);
