@@ -39,18 +39,29 @@ function addProductInCart(element, productId) {
         .then(jsonObject => {   
             // jsonObject contains the JavaScript literal object that contains the updated cart
             const total = synchronizeCart(jsonObject);
-
             // update total amount of the cart
             updateTotal(total);
-
             // update the badge value
-            updateCartBadge(Object.keys(jsonObject).length);
+            updateCartBadge(Object.keys(jsonObject.products).length);
+            // refresh message
+            updateCartMessage(jsonObject);
         })
         .catch(error => {
             console.log(error.message);
         })
 }
 
+/**
+ * Remove a product (all the items) from the cart (when click on trash)
+ * @param {Object} element - .
+ */
+
+function deleteProductInCart(element) {
+
+    productId = element.parentElement.parentElement.dataset.id;
+    removeCartRow(productId);
+    updateCart(productId, 0);
+}
 
 
 /**
@@ -66,6 +77,17 @@ function incrProductInCart(element) {
     updateProductInCart(element, 1);
 }
 
+function updateProductInCart(element, delta) {
+    productId = element.parentElement.parentElement.dataset.id;     // get productId near <tr>
+    const quantityElement = document.querySelector("#cartQuantity-" + productId);
+    let updatedQuantityValue = parseInt(quantityElement.value) + delta;
+    if (updatedQuantityValue <= 0) {
+        removeCartRow(productId);        // see Note(1) 
+        updatedQuantityValue = "0";
+    }
+    updateCart(productId, updatedQuantityValue);
+}
+
 /**
  * Modify the quantity of an item in the cart, 
  * remove the product line if the quantity reaches 0 and send the cart to the backend
@@ -74,16 +96,7 @@ function incrProductInCart(element) {
  * @param {int} quantity - variation de quantité.
  */
 
-function updateProductInCart(element, delta) {
-    productId = element.parentElement.parentElement.dataset.id;     // get productId near <tr>
-    const quantityElement = document.querySelector("#cartQuantity-" + productId);
-    //console.log(quantityElement);
-    let updatedQuantityValue = parseInt(quantityElement.value) + delta;
-    if (updatedQuantityValue <= 0) {
-        removeCartRow(productId);        // see Note(1) 
-        updatedQuantityValue = "0";
-    }
-
+function updateCart(productId, newQuantityValue) {
     // console.log ("updateProductInCart " + productId + " quantity: " + updatedQuantityValue);
 
     fetch('?action=cartUpdate',    // URL
@@ -94,7 +107,7 @@ function updateProductInCart(element, delta) {
             },
             body: JSON.stringify({
                 "productId": productId,
-                "productQuantity": updatedQuantityValue
+                "productQuantity": newQuantityValue
             })
         }
     )
@@ -106,17 +119,64 @@ function updateProductInCart(element, delta) {
         })
         .then(jsonObject => {
             total = synchronizeCart(jsonObject);
-
             // update total amount of the cart
             updateTotal(total);
-
             // update the badge value
-            updateCartBadge(Object.keys(jsonObject).length);
+            updateCartBadge(Object.keys(jsonObject.products).length);
+            // refresh message
+            updateCartMessage(jsonObject);
         })
         .catch(error => {
             console.log(error.message);
         })
 }
+
+
+/**
+ * Add a product item to cart from the page that presents all the products.
+ */
+
+function validateCart() {
+
+    // search if the type product is already in the cart
+    const deliveryDate = document.querySelector("#cartDate").value;
+    if (deliveryDate === "") {return;}          // it should not happen
+    
+    // updated the backend for "addProduct" front action
+    fetch('?action=cartValidate',    // URL
+        {
+            method: 'POST', // GET, POST, PUT, DELETE, etc.
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "deliveryDate": deliveryDate
+            })
+        }
+    )
+        .then(response => {
+            if (response.ok) {
+                return (response.json());       // return the Promise that contains the jsonObject of the response
+            }
+            return Promise.reject(new Error('status != 200'));    // reject if response not ok (ie. status != 200)
+        })
+        .then(jsonObject => {   
+            // jsonObject contains the JavaScript literal object that contains the updated cart
+            
+            // if action is requested
+            if ((typeof (jsonObject.action) == 'string') && jsonObject.action === 'DROP') {
+                removeAllCartRow();
+                updateTotal(0);
+                updateCartBadge(0);
+            }
+            // refresh message if this is one
+            updateCartMessage(jsonObject);
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+}
+
 
 /*-----------------------------------------------
  *  Table & Row management for the cart
@@ -145,7 +205,7 @@ function addCartRow(productId) {
 //clone.children[2].children[1].value = "1";
     const input = clone.querySelector("#cartQuantity-0");
     input.value = "1";
-    console.log("Value of row added: " + input.value);
+//  console.log("Value of row added: " + input.value);
     input.id = "cartQuantity-" + productId;
     
     // product sub total
@@ -154,7 +214,7 @@ function addCartRow(productId) {
     span.textContent = "0";
     span.id = "cartSubTotal-" + productId;
 
-    console.log(clone.children);
+    console.log("Clone children: " + clone.children);
     tbody.appendChild(clone);
 }
 
@@ -163,11 +223,19 @@ function addCartRow(productId) {
 */
 
 function removeCartRow(productId) {
-    console.log("Removed row: " + productId);
+//    console.log("Removed row: " + productId);
     const tr = document.querySelector("#product-" + productId);
     tr.remove();
 }
 
+function removeAllCartRow() {
+    const trs = document.querySelectorAll('[id^="product-"]');
+    trs.forEach(tr => {
+        console.log(tr);
+        productId = tr.dataset.id;
+        if (productId != 0) removeCartRow(productId);
+    });
+}
 
 /* ---------------------------------------------------------------
     Synchronize cart with returned JSON data from the backend
@@ -176,7 +244,7 @@ function removeCartRow(productId) {
 
 function synchronizeCart(jsonCart) {
     
-    // console.log(jsonCart);
+    //console.log(jsonCart.message);
     
     const tbody = document.querySelector("#cart tbody");
  
@@ -184,8 +252,10 @@ function synchronizeCart(jsonCart) {
     let subTotal;
 
     // for each elements of the JSON cart, update the coresponding row of the cart table
-    for (const id in jsonCart) {
-        let product = jsonCart[id];
+    const products = jsonCart.products;
+
+    for (const id in products) {
+        let product = products[id];
         //console.log(`${id}: ${product}`);
         const tr = tbody.querySelector("#product-" + id);
         //sync. product name
@@ -226,7 +296,7 @@ function updateCartBadge(count) {
 
 
 /*-----------------------------------------------
- *  Cart display management (modal)
+ *  Cart display management (modal) and message area
  *-----------------------------------------------*/
 
 /*------ Cart display -------*/
@@ -239,6 +309,18 @@ function hideCart(event) {
     cartModal.style.display = "none";
 }
 
+function updateCartMessage (jsonObj) {
+    let message;
+    if (typeof(jsonObj.message) != 'undefined') message = jsonObj.message;
+    else message = "";
+    
+    document.querySelector("#cartMessage").textContent = message;
+}
+
+
+/*-----------------------------------------------
+ *  
+ *-----------------------------------------------*/
 
 // ouverture et fermeture du panier depuis le menu
 function addAllListeners(event) {
