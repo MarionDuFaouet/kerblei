@@ -11,6 +11,7 @@ function redirectTo($action="default") {
     $actions["cartAdd"] = "cartAdd.php";
     $actions["cartUpdate"] = "cartUpdate.php";
     $actions["cartDelete"] = "cartDelete.php";
+    $actions["cartValidate"] = "cartValidate.php";
     $actions["products"] = "products.php";
     $actions["register"] = "register.php";
     $actions["legalNotices"] = "legalNotices.php";
