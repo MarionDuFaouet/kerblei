@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Update datas
+// Update user datas
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateUser"])) {
     if (isset($_POST["name"]) || isset($_POST["firstname"]) || isset($_POST["phone"]) || isset($_POST["password"])) {
         $name = $_POST["name"];
@@ -33,14 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateUser"])) {
         $passwordHash = $_POST["password"];
 
         updateUser($mail, $name, $firstname, $phone, $passwordHash);
-        var_dump(updateUser($mail, $name, $firstname, $phone, $passwordHash));
     }
-    // delete datas
+    // delete user data
 } elseif ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["deleteUser"])) {
-    deleteUser($mail);
+    deleteUser($accountId);
     $msg = 'Compte supprimé';
-    exit;
 }
+
 
 // ---------------------------------------------------------------------------------
 require_once RACINE . "/views/viewAccount.php";
