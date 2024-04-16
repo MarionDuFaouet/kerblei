@@ -11,7 +11,7 @@ include_once RACINE . "/model/connec.inc.php";
 function getUserByMail($mail) {
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM KerbleiUser WHERE mail = :mail");
+        $req = $cnx->prepare("SELECT * FROM kerbleiuser WHERE mail = :mail");
         $req->bindValue(':mail', $mail, PDO::PARAM_STR);
         $req->execute();
 
@@ -37,7 +37,7 @@ function addUser($mail, $password, $name, $firstname) {
     try {
         $cnx = connexionPDO();
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $query = $cnx->prepare("INSERT INTO KerbleiUser (mail, password, name, firstname) VALUES (:mail, :password, :name, :firstname)");
+        $query = $cnx->prepare("INSERT INTO kerbleiuser (mail, password, name, firstname) VALUES (:mail, :password, :name, :firstname)");
         $query->bindValue(':mail', htmlspecialchars($mail), PDO::PARAM_STR);
         $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
         $query->bindValue(':name', htmlspecialchars($name), PDO::PARAM_STR);
@@ -56,11 +56,11 @@ function addUser($mail, $password, $name, $firstname) {
  * @return bool True if the user was successfully deleted, false otherwise.
  * @throws Exception If an error occurs during the database operation.
  */
-function deleteUser($mail) {
+function deleteUser($accountId) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("DELETE FROM KerbleiUser WHERE mail = :mail AND isAdmin = 0");
-        $query->bindValue(':mail', $mail, PDO::PARAM_INT);
+        $query = $cnx->prepare("DELETE FROM kerbleiuser WHERE `accountId` = :accountId AND `isAdmin` = 0");
+        $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
         $result = $query->execute();
         // détruit les données associées à la session courante
         session_destroy();
@@ -87,7 +87,7 @@ function updateUser($mail, $name, $firstname, $phone, $password) {
     try {
         $cnx = connexionPDO();
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $query = $cnx->prepare("UPDATE KerbleiUser SET name = :name, firstname = :firstname, phone = :phone, password = :password WHERE mail = :mail");
+        $query = $cnx->prepare("UPDATE kerbleiuser SET `name` = :name, `firstname` = :firstname, `phone` = :phone, `password` = :password WHERE mail = :mail");
         $query->bindValue(':mail', htmlspecialchars($mail), PDO::PARAM_STR);
         $query->bindValue(':name', htmlspecialchars($name), PDO::PARAM_STR);
         $query->bindValue(':firstname', htmlspecialchars($firstname), PDO::PARAM_STR);
