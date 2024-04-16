@@ -11,7 +11,7 @@ N'oubliez pas d'installer les dépendances en exécutant la commande Composer : 
 
 Pour tester le site, deux comptes :  
 Administrateur : yoann@free.bzh      azertyA!  
-Client : mathilda@free.bzh     azertyA!  
+Client : titi@free.bzh     azertyA!  
   
 Si vous souhaitez le faire tourner directement :  
 
