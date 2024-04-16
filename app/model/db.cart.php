@@ -2,17 +2,27 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
+/**
+ * Create an new order for a identified user (empty order).
+ *
+ * @param Int $userId The ID of the account.
+ * @param String $deliveryDate The expected delivery date.
+ * @return Int The last id inserted into the table, 0 if error.
+ * @throws Exception If an error occurs during the database operation.
+ */
 
-
-function createOrderForUser($userId) {
-    $result = FALSE;
+function createOrderForUser($userId, $deliveryDate) {
+    $result = 0;
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO `Cart` (`accountId`, `statement`) VALUES (:userId, :statement)");
-        $result = $query->execute([
-            ':userId' => $userId,
-            ':statement' => "déposée",
+        $query = $cnx->prepare("
+            INSERT INTO `Cart` (`deliveryDate`, `statement`, `accountId`) 
+            VALUES (:deliveryDate, 'déposée', :userId)");
+        $query->execute([
+            ':deliveryDate' => $deliveryDate,
+            ':userId' => $userId
         ]);
+        $result = $cnx->lastInsertId();
     } catch (PDOException $e) {
         throw new Exception("Erreur !: " . $e->getMessage());
     }
@@ -49,7 +59,7 @@ function getOrdersByAccountId($accountId, $status) {
     WHERE 
         c.accountId = :accountId";
         if ($status != '*') $sql .= ' AND c.statement = :statement';
-var_dump($sql);
+//var_dump($sql);
         $query = $cnx->prepare($sql);
         $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
         if ($status != '*') $query->bindValue(':statement', $status, PDO::PARAM_STR);
@@ -155,32 +165,29 @@ function updateCartStatement($cartId) {
 }
 
 
-
-
-// // ORDERID
-// /**
-//  * Adds a product to a specific order in the database.
-//  *
-//  * @param int $orderId The ID of the order to add the product to.
-//  * @param int $productId The ID of the product to add.
-//  * @param int $quantity The quantity of the product to add.
-//  * @return bool True on success, false on failure.
-//  * @throws Exception If an error occurs during the database operation.
-//  */
-// function addProductToOrder($orderId, $productId, $quantity) {
-//     try {
-//         $cnx = connexionPDO();
-//         $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) VALUES (:cartId, :productId, :quantity)");
-//         $query->bindValue(':cartId', $orderId, PDO::PARAM_INT);
-//         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
-//         $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
-//         $query->execute();
-//         return $query->rowCount() > 0;
-//     } catch (PDOException $e) {
-//         throw new Exception("Erreur !: " . $e->getMessage());
-//         return false;
-//     }
-// }
+/**
+ * Adds a product to a specific order in the database.
+ *
+ * @param int $orderId The ID of the order to add the product to.
+ * @param int $productId The ID of the product to add.
+ * @param int $quantity The quantity of the product to add.
+ * @return bool True on success, false on failure.
+ * @throws Exception If an error occurs during the database operation.
+ */
+function addProductToOrder($orderId, $productId, $quantity) {
+    try {
+        $cnx = connexionPDO();
+        $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) VALUES (:cartId, :productId, :quantity)");
+        $query->bindValue(':cartId', $orderId, PDO::PARAM_INT);
+        $query->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
+        return $query->execute();
+        //return $query->rowCount() > 0;
+    } catch (PDOException $e) {
+        throw new Exception("Erreur !: " . $e->getMessage());
+        return false;
+    }
+}
 
 // /**
 //  * Removes a product from a specific order in the database.
