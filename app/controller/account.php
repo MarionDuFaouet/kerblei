@@ -1,12 +1,11 @@
 <?php
 
 require_once RACINE . "/model/db.user.php";
-$msg = null;
+$msg = "";
 
 $mail = $_SESSION['mail'];
 $user = getUserByMail($mail);
-$accountId= $user['accountId'];
-// -----------------------------------------------------------------------------
+$accountId = $user['accountId'];
 
 // get Orders
 require_once RACINE . "/model/db.cart.php";
@@ -14,32 +13,39 @@ $orders = getOrdersByAccountId($accountId, '*');
 
 // fill form with account datas
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (empty($_POST["name"]) && empty($_POST["firstname"]) && empty($_POST["phone"]) && empty($_POST["password"])) {
-        if ($user) {
-            $_POST["name"] = $user['name'] ?? '';
-            $_POST["firstname"] = $user['firstname'] ?? '';
-            $_POST["phone"] = $user['phone'] ?? '';
-            $_POST["password"] = $user['password'] ?? '';
-        }
-    }
+    $_POST["name"] = !isset($_POST["name"]) ? $user['name'] : $_POST["name"];
+    $_POST["firstname"] = !isset($_POST["firstname"]) ? $user['firstname'] : $_POST["firstname"];
+    $_POST["phone"] = !isset($_POST["phone"]) ? $user['phone'] : $_POST["phone"];
 }
-
-// Update user datas
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateUser"])) {
-    if (isset($_POST["name"]) || isset($_POST["firstname"]) || isset($_POST["phone"]) || isset($_POST["password"])) {
-        $name = $_POST["name"];
-        $firstname = $_POST["firstname"];
-        $phone = $_POST["phone"];
-        $passwordHash = $_POST["password"];
-
-        updateUser($mail, $name, $firstname, $phone, $passwordHash);
+if (isset($_GET['update'])) {
+    // Update user data
+    if (empty($_POST["name"]) || empty($_POST["firstname"])) {
+        $msg = "Veuillez remplir tous les champs";
+        goto output;
     }
+    $name = $_POST["name"];
+    $firstname = $_POST["firstname"];
+    $phone = !empty($_POST["phone"]) ? $_POST["phone"] : NULL;
+    $password = !empty($_POST["password"]) ? password_hash($_POST["password"], PASSWORD_DEFAULT) : NULL;
+
+    updateUser($accountId, $name, $firstname, $phone, $password);
+
     // delete user data
-} elseif ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["deleteUser"])) {
+} elseif (isset($_GET['delete'])) {
+    $orders = getOrdersByAccountId($accountId, "*");
+    foreach ($orders as $key => $value) {
+        updateCartStatement($value['cartId'], "orpheline");
+    }
+
     deleteUser($accountId);
-    $msg = 'Compte supprimé';
-    
+    $msg = 'Compte supprimé'; // N/A
+    session_destroy();
+    header("Location: ./?action=default");
+    exit();
+} else {
 }
+
+output:
 
 
 // ---------------------------------------------------------------------------------

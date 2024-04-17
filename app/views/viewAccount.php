@@ -44,12 +44,9 @@ require_once RACINE . '/views/menu.php';
 <!-- Users datas -->
 <h2>Modifier mes données personnelles</h2>
 
-
 <p class="msg"><?php echo $msg; ?></p>
 
-
-<form class="forms" action="./?action=account" method="POST">
-
+<form class="forms" action="./?action=account&update" method="POST">
 
     <label for="name">Modifier mon nom</label>
     <input type="text" id="name" name="name" placeholder="mon nom" value="<?php echo isset($_POST['name']) ? ($_POST['name']) : ($user['name'] ?? ''); ?>" maxlength="20">
@@ -58,17 +55,22 @@ require_once RACINE . '/views/menu.php';
     <label for="phone">Modifier mon téléphone</label>
     <input type="tel" id="phone" name="phone" placeholder="01 01 01 01 01" value="<?php echo isset($_POST['phone']) ? ($_POST['phone']) : ($user['phone'] ?? ''); ?>" pattern="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}">
     <label for="password">Modifier mon mot de passe</label>
-    <input type="password" id="password" name="password" placeholder="Mot de passe" minlength="8" pattern="(?=.*[!@#$%^&*()\-_=+{};:,<.>])\S+">
-    <!-- to modify or delete account -->
+    <input type="password" id="password" name="password" placeholder="Mon mot de passe"  minlength="8" pattern="(?=.*[!@#$%^&*()\-_=+{};:,<.>])\S+">
+    <!-- to modify account -->
     <div class="accountAction">
         <input class="cta-button" name="updateUser" type="submit" title="Modification de vos données" value="Je valide ces modifications">
-        <input class="cta-button" name="deleteUser" type="submit" title="Suppression du compte" value="Je supprime mon compte">
     </div>
-    <!-- to logout -->
-    <a href="./?action=logout" class="cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
 
 </form>
 
+<!-- to suppress account -->
+<div class="center">
+    <a href="./?action=account&delete"class="center cta-button" title="Suppression du compte">Je supprime mon compte</a>
+</div>
 
+<!-- to logout -->
+<div class="top center">
+    <a href="./?action=logout" class="center cta-button" title="Cliquez ici pour vous déconnecter">Se déconnecter</a>
+</div>
 
 <?php include RACINE . "/views/footer.php"; ?>

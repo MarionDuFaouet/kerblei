@@ -11,7 +11,7 @@ include_once RACINE . "/model/connec.inc.php";
 function getUserByMail($mail) {
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("SELECT * FROM kerbleiuser WHERE mail = :mail");
+        $req = $cnx->prepare("SELECT * FROM kerbleiuser WHERE `mail` = :mail");
         $req->bindValue(':mail', $mail, PDO::PARAM_STR);
         $req->execute();
 
@@ -21,7 +21,6 @@ function getUserByMail($mail) {
     }
     return $result;
 }
-
 
 /**
  * Add a new user to the KerbleiUser table.
@@ -36,10 +35,10 @@ function getUserByMail($mail) {
 function addUser($mail, $password, $name, $firstname) {
     try {
         $cnx = connexionPDO();
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $query = $cnx->prepare("INSERT INTO kerbleiuser (mail, password, name, firstname) VALUES (:mail, :password, :name, :firstname)");
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $query = $cnx->prepare("INSERT INTO kerbleiuser (`mail`, `password`, `name`, `firstname`) VALUES (:mail, :password, :name, :firstname)");
         $query->bindValue(':mail', htmlspecialchars($mail), PDO::PARAM_STR);
-        $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+        $query->bindValue(':password', $password, PDO::PARAM_STR);
         $query->bindValue(':name', htmlspecialchars($name), PDO::PARAM_STR);
         $query->bindValue(':firstname', htmlspecialchars($firstname), PDO::PARAM_STR);
         $result = $query->execute();
@@ -76,23 +75,31 @@ function deleteUser($accountId) {
 /**
  * Update user information in the database.
  *
- * @param string $mail The email address of the user.
+ * @param number $id The identifier of the user.
  * @param string $name The new name of the user.
  * @param string $firstname The new firstname of the user.
  * @param string $phone The new phone number of the user.
  * @param string $passwordHash The hashed password of the user.
  * @return bool True if the update was successful, false otherwise.
  */
-function updateUser($mail, $name, $firstname, $phone, $password) {
+function updateUser($id, $name, $firstname, $phone, $passwordHash) {
     try {
         $cnx = connexionPDO();
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $query = $cnx->prepare("UPDATE kerbleiuser SET `name` = :name, `firstname` = :firstname, `phone` = :phone, `password` = :password WHERE mail = :mail");
-        $query->bindValue(':mail', htmlspecialchars($mail), PDO::PARAM_STR);
+        // $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
+        $ifPassword = ($passwordHash != NULL)?"`, password` = :password,":"";
+        $sql="UPDATE kerbleiuser SET 
+            `name` = :name, 
+            `firstname` = :firstname, 
+            `phone` = :phone"
+            . $ifPassword
+            ." WHERE `accountId` = :id";
+
+        $query = $cnx->prepare($sql);
         $query->bindValue(':name', htmlspecialchars($name), PDO::PARAM_STR);
         $query->bindValue(':firstname', htmlspecialchars($firstname), PDO::PARAM_STR);
         $query->bindValue(':phone', $phone, PDO::PARAM_STR);
-        $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+        if ($passwordHash != NULL) $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
         $result = $query->execute();
     } catch (PDOException $e) {
         throw new Exception("Erreur !: " . $e->getMessage());

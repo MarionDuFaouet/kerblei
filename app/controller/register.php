@@ -2,7 +2,6 @@
 
 require RACINE . "/model/db.user.php";
 
-$registered = false;
 $msg = null;
 $erreurs = [];
 
@@ -12,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $mail = $_POST["mail"];
         $password = $_POST["password"];
-        $name = htmlspecialchars($_POST["name"]);
-        $firstname = htmlspecialchars($_POST["firstname"]);
+        $name = $_POST["name"];
+        $firstname = $_POST["firstname"];
 
         if (empty($mail) || empty($password) || empty($name) || empty($firstname)) {
             $erreurs[] = "Veuillez remplir tous les champs.";
@@ -34,8 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (empty($erreurs)) {
             $ret = addUser($mail, $password, $name, $firstname);
             if ($ret) {
-                $registered = true;
-
                 $msg = "Inscription réussie.";
             } else {
                 $msg = "L'utilisateur n'a pas pu être enregistré.";
@@ -43,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             // Displaying errors if any
             foreach ($erreurs as $erreur) {
-                $msg .= "<p>$erreur</p>";
+                $msg .= "<br>".$erreur;
             }
         }
     } else {

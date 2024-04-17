@@ -44,6 +44,7 @@ function getOrdersByAccountId($accountId, $status) {
         $cnx = connexionPDO();
         $sql=
         "SELECT 
+        c.cartId,
         c.orderDate,
         c.deliveryDate,
         c.statement,
@@ -51,7 +52,7 @@ function getOrdersByAccountId($accountId, $status) {
         op.quantity AS productQuantity,
         p.unitPrice AS productUnitPrice
     FROM 
-        Cart AS c
+        cart AS c
     JOIN 
         orderproduct AS op ON c.cartId = op.cartId
     JOIN 
@@ -59,7 +60,6 @@ function getOrdersByAccountId($accountId, $status) {
     WHERE 
         c.accountId = :accountId";
         if ($status != '*') $sql .= ' AND c.statement = :statement';
-//var_dump($sql);
         $query = $cnx->prepare($sql);
         $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
         if ($status != '*') $query->bindValue(':statement', $status, PDO::PARAM_STR);
@@ -71,40 +71,6 @@ function getOrdersByAccountId($accountId, $status) {
     return $result;
 }
 
-/**
- * Retrieves cart information by account ID.
- *
- * @param int $accountId The ID of the account.
- * @return array An array containing cart information.
- * @throws Exception If an error occurs during the database operation.
- */
-function getPendingOrdersByAccountId($accountId) {
-    $result = array();
-    try {
-        $cnx = connexionPDO();
-        $query = $cnx->prepare("SELECT 
-        c.orderDate,
-        c.deliveryDate,
-        c.statement,
-        p.name AS productName,
-        op.quantity AS productQuantity,
-        p.unitPrice AS productUnitPrice
-    FROM 
-        Cart AS c
-    JOIN 
-        orderproduct AS op ON c.cartId = op.cartId
-    JOIN 
-        product AS p ON op.productId = p.productId
-    WHERE 
-        c.accountId = :accountId AND c.statement = 'déposée';");
-        $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
-        $query->execute();
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());
-    }
-    return $result;
-}
 
 /**
  * Retrieves orders information including order details, customer information, 
@@ -130,13 +96,13 @@ function getOrders() {
         op.quantity AS productQuantity,
         p.unitPrice AS productUnitPrice
     FROM 
-        Cart c
+        cart c
     JOIN 
-        KerbleiUser k ON c.accountId = k.accountId
+        kerbleiUser k ON c.accountId = k.accountId
     JOIN 
         orderProduct op ON c.cartId = op.cartId
     JOIN 
-        Product p ON op.productId = p.productId");
+        product p ON op.productId = p.productId");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -146,17 +112,19 @@ function getOrders() {
 }
 
 /**
- * Update the statement of a cart in the database to 'livrée'.
+ * Update the statement of a cart in the database
  *
  * @param int $cartId The ID of the cart to update.
+ * @param string $statement of the cart.
  * @return bool True on success, false on failure.
  * @throws Exception If an error occurs during the database operation.
  */
-function updateCartStatement($cartId) {
+function updateCartStatement($cartId, $status) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("UPDATE `Cart` SET `statement` = 'livrée' WHERE cartId = :cartId");
+        $query = $cnx->prepare("UPDATE `cart` SET `statement` = :statement WHERE cartId = :cartId");
         $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
+        $query->bindValue(':statement', $status, PDO::PARAM_STR);
         $query->execute();
         return true;
     } catch (PDOException $e) {
@@ -189,32 +157,8 @@ function addProductToOrder($orderId, $productId, $quantity) {
     }
 }
 
-// /**
-//  * Removes a product from a specific order in the database.
-//  *
-//  * @param int $orderId The ID of the order to remove the product from.
-//  * @param int $productId The ID of the product to remove.
-//  * @return bool True on success, false on failure.
-//  * @throws Exception If an error occurs during the database operation.
-//  */
-// function removeProductFromOrder($orderId, $productId) {
-//     try {
-//         $cnx = connexionPDO();
-//         $query = $cnx->prepare("DELETE FROM orderProduct WHERE orderId = :orderId AND productId = :productId");
-//         $query->bindValue(':orderId', $orderId, PDO::PARAM_INT);
-//         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
-//         $query->execute();
-//         return $query->rowCount() > 0;
-//     } catch (PDOException $e) {
-//         throw new Exception("Erreur !: " . $e->getMessage());
-//         return false;
-//     }
-// }
-
-
-
 // -------------------------------------------------------
-// CARTID
+// CART
 /**
  * Adds a product to a specific order in the database.
  *

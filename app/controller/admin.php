@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateOrder"])) {
         // Retrieve cartID from POST request
         $cartId = $_POST["cartId"];
         // Call the function to update the order status
-        updateCartStatement($cartId);
+        updateCartStatement($cartId, 'livrée');
     } else {
         //if cartID is not present in the POST request
         echo "L'identifiant du panier n'a pas été fourni dans la requête POST.";
@@ -93,7 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
     $productDegree = $_POST["productDegre"];
     $productDescription = $_POST["productDescription"];
     $productPrice = $_POST["productPrice"];
-    // $productPictureRef = $_POST["productPictureRef"];
 
     // Call the model function to update the product
     updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice);
