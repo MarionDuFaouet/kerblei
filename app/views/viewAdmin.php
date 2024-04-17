@@ -21,9 +21,13 @@ require_once RACINE . '/views/menu.php';
         <!-- TAB -->
         <div class="tabsBtnContainer" role="tabList" aria-label="tab component">
             <!-- accessibility -->
-            <button class="tab activeTab" role="tab" aria-controls="panel-1" id="tab-1" type="button" aria-selected="true" tabindex="0">Gestion des commandes</button>
+            <button class="tab activeTab" role="tab" aria-controls="panel-1" id="tab-1" 
+                    type="button" aria-selected="true" tabindex="0">Gestion des commandes
+            </button>
             <!-- accessibility -->
-            <button class="tab" role="tab" aria-controls="panel-2" id="tab-2" type="button" aria-selected="false" tabindex="-1">Gestion des produits</button>
+            <button class="tab" role="tab" aria-controls="panel-2" id="tab-2" type="button" 
+                    aria-selected="false" tabindex="-1">Gestion des produits
+            </button>
         </div>
 
         <!--------------------------- backOffice Order beginning ------------------------------->
@@ -95,9 +99,6 @@ require_once RACINE . '/views/menu.php';
 
         <!---------------------------- backOffice Order end ------------------------------>
 
-
-
-
         <!----------------------------- backOffice Products beginning -------------------------->
 
         <!-- TAB CONTENT -->
@@ -120,10 +121,9 @@ require_once RACINE . '/views/menu.php';
                 <input type="text" name="unitPrice" placeholder="00.00">
 
                 <label for="pictureRef">Image</label>
-                <!-- <input type="text" name="pictureRef" placeholder="monimage.jpg"> -->
-                <input type="file" id="pictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg" /><br />
+                <input type="file" id="pictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg"><br>
 
-                <input class="cta-button" type="submit" name="addProduct" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
+                <input class="cta-button" type="submit" name="addProduct" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit">
             </form>
             <!-- -------------------------------------------------------------------------- -->
 
@@ -155,7 +155,9 @@ require_once RACINE . '/views/menu.php';
                             <td><?php echo $product['pictureRef']; ?></td>
                             <td>
                                 <!-- product selection button -->
-                                <input type="radio" name="selectedProduct" value="<?php echo $product['productId']; ?>" onclick="fillForm(<?php echo htmlspecialchars(json_encode($product)); ?>)">
+                                <input type="radio" name="selectedProduct" 
+                                    value="<?php echo $product['productId']; ?>" 
+                                    onclick="fillForm(<?php echo htmlspecialchars(json_encode($product)); ?>)">
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -164,9 +166,9 @@ require_once RACINE . '/views/menu.php';
 
 
             <!-- MODIFY / DELETE PRODUCT -->
-            
+
             <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
-            <form action="./?action=admin&update" class="forms" method="POST">
+            <form action="./?action=admin&updateProduct" class="forms" method="POST">
             <!-- <form action="./?action=admin" class="forms" method="POST"> -->
                 <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
@@ -190,7 +192,7 @@ require_once RACINE . '/views/menu.php';
             </form>
             <!-- to delete product ??? -->
             <div>
-                <a href="./?action=admin&delete" class="cta-button center" title="Suppression de  produit">Supprimer</a>
+                <a href="./?action=admin&deleteProduct" class="cta-button center" title="Suppression de  produit">Supprimer</a>
             </div>
             <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 

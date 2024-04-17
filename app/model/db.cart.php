@@ -145,7 +145,8 @@ function updateCartStatement($cartId, $status) {
 function addProductToOrder($orderId, $productId, $quantity) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) VALUES (:cartId, :productId, :quantity)");
+        $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) 
+                                VALUES (:cartId, :productId, :quantity)");
         $query->bindValue(':cartId', $orderId, PDO::PARAM_INT);
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
@@ -171,7 +172,8 @@ function addProductToOrder($orderId, $productId, $quantity) {
 function addProductToCart($cartId, $productId, $quantity) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) VALUES (:cartId, :productId, :quantity)");
+        $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) 
+                                VALUES (:cartId, :productId, :quantity)");
         $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
