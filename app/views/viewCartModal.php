@@ -5,7 +5,7 @@
         <span class="close">&times;</span>
         <!-- title -->
         <h2>Mon panier</h2>
-        <!-- show cart, modify and validate -->
+        <!-- vue panier, modif et validation -->
         <table>
             <thead>
                 <tr>

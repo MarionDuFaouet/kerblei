@@ -35,9 +35,9 @@ $_SESSION['accountId'] = $user['accountId'];
 
 // when isAdmin and when not
 if ($_SESSION['admin'] == 0) {
-    header("Location: ./?action=account");
+    header("Location: ?action=account");
 } else {
-    header("Location: ./?action=admin");
+    header("Location: ?action=admin");
 }
 
 exit;

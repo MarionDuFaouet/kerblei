@@ -16,15 +16,18 @@ require_once RACINE . '/views/menu.php';
 <form class="forms" action="./?action=login " method="POST">
 
     <label for="mail">J'entre mon identifiant (mail) *</label>
-    <input type="text" id="mail" name="mail" placeholder="Mon Email" value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail']) : ''; ?>"><br>
+    <input type="text" id="mail" name="mail" placeholder="Mon Email" 
+    value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail']) : ''; ?>" /><br>
     <label for="password">J'entre mon mot de passe *</label>
-    <input type="password" id="password" name="password" placeholder="Mon mot de passe"><br>
+    <input type="password" id="password" name="password" placeholder="Mon mot de passe" /><br>
 
-    <input id="loginButton" class="cta-button" type="submit" title="Connexion à votre compte" value="Je me connecte">
-
+    <input id="loginButton" 
+           class="cta-button" type="submit" 
+           title="Connexion à votre compte" value="Je me connecte" />
+    
     <!-- message -->
     <p><?php echo $msg; ?></p>
-
+    
     <!-- to create account -->
     <a href="./?action=register" class="cta-button" title="Cliquez ici pour créer un compte">Pas encore de compte ?</a>
 

@@ -1,13 +1,14 @@
 <?php
 
-$registeredProduct = false;
-$msg = null;
+$msg = "";  // reset message
+
 // -----------------------------------ADMIN ORDER-----------------------------------------
 
 require_once RACINE . "/model/db.cart.php";
 $orders = getOrders();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateOrder"])) {
+//if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateOrder"])) {
+if (isset($_GET["updateOrder"])) {
     // cartID present in POST request?    
     if (isset($_POST["cartId"])) {
         // Retrieve cartID from POST request

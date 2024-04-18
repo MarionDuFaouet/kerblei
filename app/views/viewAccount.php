@@ -8,18 +8,19 @@ require_once RACINE . '/views/head.start.php';
 require_once RACINE . '/views/head.stop.php';
 require_once RACINE . '/views/menu.php';
 ?>
-<!-- --------------------------------------------------------------------------- -->
 
 <!-- User Orders -->
 <h2>Bienvenue <?php echo ($user['firstname']); ?></h2>
 
 <h2>Mes commandes</h2>
 <section class="container">
+<!-- --------------------------------------------------------------------------- -->
 
     <table class="accountTable">
         <thead>
             <tr>
                 <th scope="col">Contenu</th>
+                <th scope="col">Date de commande</th>
                 <th scope="col">Prix total</th>
                 <th scope="col">Date de retrait</th>
                 <th scope="col">Status</th>
@@ -28,14 +29,23 @@ require_once RACINE . '/views/menu.php';
         <tbody>
             <?php foreach ($orders as $order) : ?>
                 <tr>
-                    <td><?php echo $order['productName']; ?></td>
-                    <td><?php echo $order['productUnitPrice'] * $order['productQuantity'].' &#8364;'; ?></td>
+                    <td><?php 
+                        $total = 0;
+                        foreach($order['content'] as $product) {
+                            $subTotal = $product['productQuantity'] * $product['productUnitPrice'];
+                            $total += $subTotal;
+                            echo $product['productQuantity'] . " x " . $product['productName'] . " : (" . $subTotal . "&euro;), ";
+                        }
+                    ?></td>
+                    <td><?php echo $order['orderDate']; ?></td>
+                    <td><?php echo $total; ?> &euro;</td>
                     <td><?php echo $order['deliveryDate']; ?></td>
                     <td><?php echo $order['statement']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+<!-- --------------------------------------------------------------------------- -->
 
 </section>
 

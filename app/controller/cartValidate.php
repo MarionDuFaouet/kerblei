@@ -11,7 +11,7 @@ if (!isset($_SESSION['mail'])) {
 }
 if (!isset($_SESSION['cart']['products']) || (count($_SESSION['cart']['products'])) == 0) {
     // cart must not be empty -> return cart message
-    $_SESSION['cart']['message'] = "Votre panier est vide";
+    $_SESSION['cart']['message'] = "Votre panier est vide et ne peut être enregistré";
     goto output;
 }
 
@@ -23,7 +23,6 @@ $data = json_decode(stripslashes(file_get_contents("php://input")));
 $deliveryDate = $data->deliveryDate;
 
 $user = getUserByMail($_SESSION['mail']);   // get userId (Note: it should be kept in session)
-
 $cartId = createOrderForUser($user['accountId'], $deliveryDate);
 
 if ($cartId == 0) {

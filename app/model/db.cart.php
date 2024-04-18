@@ -16,7 +16,7 @@ function createOrderForUser($userId, $deliveryDate) {
     try {
         $cnx = connexionPDO();
         $query = $cnx->prepare("
-            INSERT INTO `Cart` (`deliveryDate`, `statement`, `accountId`) 
+            INSERT INTO `cart` (`deliveryDate`, `statement`, `accountId`) 
             VALUES (:deliveryDate, 'déposée', :userId)");
         $query->execute([
             ':deliveryDate' => $deliveryDate,
@@ -71,6 +71,69 @@ function getOrdersByAccountId($accountId, $status) {
     return $result;
 }
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/**
+ * Retrieves cart information by account ID.
+ *
+ * @param int $userId The ID of the user (account owner).
+ * @param string $status status filter, all status if "*".
+ * @return array An array containing order (header) information.
+ * @throws Exception If an error occurs during the database operation.
+ */
+
+function getOrdersByUser($userId, $status) {
+    $result = array();
+    try {
+        $cnx = connexionPDO();
+        $sql="SELECT c.cartId, c.orderDate, c.deliveryDate, c.statement
+            FROM cart AS c
+            WHERE c.accountId = :accountId";
+        if ($status != '*') $sql .= ' AND c.statement = :statement';
+        $query = $cnx->prepare($sql);
+        $query->bindValue(':accountId', $userId, PDO::PARAM_INT);
+        if ($status != '*') $query->bindValue(':statement', $status, PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        throw new Exception("Erreur !: " . $e->getMessage());
+    }
+    return $result;
+}
+
+/**
+ * Retrieves cart information by account ID.
+ *
+ * @param int $cartId The ID of the order.
+ * @return array An array containing (full) product information (name, unit price, quantity, description).
+ * @throws Exception If an error occurs during the database operation.
+ */
+
+ function getOrderFullContent($cartId) {
+    $result = array();
+    try {
+        $cnx = connexionPDO();
+        $sql="SELECT 
+            p.name AS productName, 
+            p.designation AS productDesignation, 
+            p.unitPrice AS productUnitPrice,
+            op.quantity AS productQuantity 
+        FROM 
+            orderproduct AS op
+        JOIN 
+            product AS p ON op.productId = p.productId
+        WHERE 
+            op.cartId = :cartId";
+        
+        $query = $cnx->prepare($sql);
+        $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        throw new Exception("Erreur !: " . $e->getMessage());
+    }
+    return $result;
+}
+// -------------------------------
 
 /**
  * Retrieves orders information including order details, customer information, 
@@ -98,9 +161,9 @@ function getOrders() {
     FROM 
         cart c
     JOIN 
-        kerbleiUser k ON c.accountId = k.accountId
+        kerbleiuser k ON c.accountId = k.accountId
     JOIN 
-        orderProduct op ON c.cartId = op.cartId
+        orderproduct op ON c.cartId = op.cartId
     JOIN 
         product p ON op.productId = p.productId");
         $query->execute();
@@ -145,8 +208,7 @@ function updateCartStatement($cartId, $status) {
 function addProductToOrder($orderId, $productId, $quantity) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) 
-                                VALUES (:cartId, :productId, :quantity)");
+        $query = $cnx->prepare("INSERT INTO orderproduct (cartId, productId, quantity) VALUES (:cartId, :productId, :quantity)");
         $query->bindValue(':cartId', $orderId, PDO::PARAM_INT);
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
@@ -172,8 +234,7 @@ function addProductToOrder($orderId, $productId, $quantity) {
 function addProductToCart($cartId, $productId, $quantity) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO orderProduct (cartId, productId, quantity) 
-                                VALUES (:cartId, :productId, :quantity)");
+        $query = $cnx->prepare("INSERT INTO orderproduct (cartId, productId, quantity) VALUES (:cartId, :productId, :quantity)");
         $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
@@ -196,7 +257,7 @@ function addProductToCart($cartId, $productId, $quantity) {
 function removeProductFromCart($cartId, $productId) {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("DELETE FROM orderProduct WHERE cartId = :cartId AND productId = :productId");
+        $query = $cnx->prepare("DELETE FROM orderproduct WHERE cartId = :cartId AND productId = :productId");
         $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
         $query->execute();
