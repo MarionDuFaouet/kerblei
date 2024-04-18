@@ -2,13 +2,6 @@
 
 include_once RACINE . "/model/connec.inc.php";
 
-/**
- * Retrieve product information by product ID.
- *
- * @param int $productId The ID of the product to retrieve.
- * @return array|null Returns an associative array containing product information if found, or null if not found.
- * @throws Exception Throws an exception if there's an error during product retrieval.
- */
 function getProductById($productId)
 {
     try {
@@ -17,7 +10,6 @@ function getProductById($productId)
         $query->bindParam(':productId', $productId);
         $query->execute();
         $product = $query->fetch(PDO::FETCH_ASSOC);
-
         return $product;
     } catch (PDOException $e) {
         throw new Exception("Erreur lors de la récupération du produit: " . $e->getMessage());
@@ -59,12 +51,13 @@ function addProduct($name, $degree, $designation, $unitPrice, $pictureRef)
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO product (name, degree, designation, unitPrice, pictureRef) VALUES (:name, :degree, :designation, :unitPrice, :pictureRef)");
-        $query->bindValue(':name', $name, PDO::PARAM_STR);
-        $query->bindValue(':degree', $degree, PDO::PARAM_STR);
-        $query->bindValue(':designation', $designation, PDO::PARAM_STR);
-        $query->bindValue(':unitPrice', $unitPrice, PDO::PARAM_STR);
-        $query->bindValue(':pictureRef', $pictureRef, PDO::PARAM_STR);
+        $query = $cnx->prepare("INSERT INTO product (name, degree, designation, unitPrice, pictureRef) 
+            VALUES (:name, :degree, :designation, :unitPrice, :pictureRef)");
+        $query->bindValue(':name', htmlspecialchars($name), PDO::PARAM_STR);
+        $query->bindValue(':degree', htmlspecialchars($degree), PDO::PARAM_STR);
+        $query->bindValue(':designation', htmlspecialchars($designation), PDO::PARAM_STR);
+        $query->bindValue(':unitPrice', htmlspecialchars($unitPrice), PDO::PARAM_STR);
+        $query->bindValue(':pictureRef', htmlspecialchars($pictureRef), PDO::PARAM_STR);
         $result = $query->execute();
     } catch (PDOException $e) {
         throw new Exception("Erreur !: " . $e->getMessage());
@@ -87,14 +80,35 @@ function updateProduct($productId, $productName, $productDegree, $productDescrip
 {
     try {
         $cnx = connexionPDO();
-        $query = $cnx->prepare("UPDATE product SET `name` = :name, `degree` = :degree, `designation` = :designation, `unitPrice` = :unitPrice WHERE productId = :productId");
+        $query = $cnx->prepare("UPDATE product 
+            SET `name` = :name, `degree` = :degree, `designation` = :designation, `unitPrice` = :unitPrice 
+            WHERE productId = :productId");
         $query->bindValue(':productId', $productId, PDO::PARAM_INT);
-        $query->bindValue(':name', $productName, PDO::PARAM_STR);
-        $query->bindValue(':degree', $productDegree, PDO::PARAM_STR);
-        $query->bindValue(':designation', $productDescription, PDO::PARAM_STR);
-        $query->bindValue(':unitPrice', $productPrice, PDO::PARAM_STR);
+        $query->bindValue(':name', htmlspecialchars($productName), PDO::PARAM_STR);
+        $query->bindValue(':degree', htmlspecialchars($productDegree), PDO::PARAM_STR);
+        $query->bindValue(':designation', htmlspecialchars($productDescription), PDO::PARAM_STR);
+        $query->bindValue(':unitPrice', htmlspecialchars($productPrice), PDO::PARAM_STR);
         
         $query->execute();
+    } catch (PDOException $e) {
+        throw new Exception("Erreur PDO : " . $e->getMessage());
+    }
+}
+
+/**
+ * Deletes a product from the database.
+ *
+ * @param int $productId The ID of the product to delete.
+ * @return bool True if the deletion was successful, false otherwise.
+ */
+function deleteProduct($productId)
+{
+    try {
+        $cnx = connexionPDO();
+        $query = $cnx->prepare("DELETE FROM product WHERE productId=:productId");
+        $query->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $result = $query->execute();
+        return $result;
     } catch (PDOException $e) {
         throw new Exception("Erreur PDO : " . $e->getMessage());
     }

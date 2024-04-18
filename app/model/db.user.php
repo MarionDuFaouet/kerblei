@@ -61,9 +61,9 @@ function deleteUser($accountId) {
         $query = $cnx->prepare("DELETE FROM kerbleiuser WHERE `accountId` = :accountId AND `isAdmin` = 0");
         $query->bindValue(':accountId', $accountId, PDO::PARAM_INT);
         $result = $query->execute();
-        // Destroy the data associated with the current session
+        // détruit les données associées à la session courante
         session_destroy();
-        // Destroy the session variables.
+        // detruit les variables de la session
         session_unset();
     } catch (PDOException $e) {
         throw new Exception("Erreur !: " . $e->getMessage());
@@ -85,6 +85,7 @@ function deleteUser($accountId) {
 function updateUser($id, $name, $firstname, $phone, $passwordHash) {
     try {
         $cnx = connexionPDO();
+        // $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
         $ifPassword = ($passwordHash != NULL)?"`, password` = :password,":"";
         $sql="UPDATE kerbleiuser SET 
             `name` = :name, 
@@ -96,7 +97,7 @@ function updateUser($id, $name, $firstname, $phone, $passwordHash) {
         $query = $cnx->prepare($sql);
         $query->bindValue(':name', htmlspecialchars($name), PDO::PARAM_STR);
         $query->bindValue(':firstname', htmlspecialchars($firstname), PDO::PARAM_STR);
-        $query->bindValue(':phone', $phone, PDO::PARAM_STR);
+        $query->bindValue(':phone', htmlspecialchars($phone), PDO::PARAM_STR);
         if ($passwordHash != NULL) $query->bindValue(':password', $passwordHash, PDO::PARAM_STR);
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $result = $query->execute();

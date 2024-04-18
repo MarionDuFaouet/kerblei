@@ -10,7 +10,6 @@ function redirectTo($action="default") {
     $actions["logout"] = "logout.php";
     $actions["cartAdd"] = "cartAdd.php";
     $actions["cartUpdate"] = "cartUpdate.php";
-    $actions["cartDelete"] = "cartDelete.php";
     $actions["cartValidate"] = "cartValidate.php";
     $actions["products"] = "products.php";
     $actions["register"] = "register.php";

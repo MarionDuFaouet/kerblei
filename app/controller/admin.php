@@ -1,13 +1,18 @@
 <?php
 
-$msg = "";  // reset message
+$msg = "";           // reset all the messages
+$orderMsg = ""; 
+$productAddMsg = "";
+$productUpdateMsg = "";
 
 // -----------------------------------ADMIN ORDER-----------------------------------------
 
 require_once RACINE . "/model/db.cart.php";
-$orders = getOrders();
+require RACINE . "/model/db.product.php";
 
-//if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateOrder"])) {
+$orders = getOrders();
+$products = getProducts();
+
 if (isset($_GET["updateOrder"])) {
     // cartID present in POST request?    
     if (isset($_POST["cartId"])) {
@@ -15,29 +20,31 @@ if (isset($_GET["updateOrder"])) {
         $cartId = $_POST["cartId"];
         // Call the function to update the order status
         updateCartStatement($cartId, 'livrée');
+        // update le list of orders
+        $orders = getOrders();
     } else {
         //if cartID is not present in the POST request
-        echo "L'identifiant du panier n'a pas été fourni dans la requête POST.";
+        error_log("L'identifiant du panier n'a pas été fourni dans la requête POST");
     }
 }
 
 // -----------------------------------ADMIN PRODUCT---------------------------------------
-require RACINE . "/model/db.product.php";
 
-// ADD PRODUCTS
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
+// ADD PRODUCT
+elseif (isset($_GET["addProduct"]) || isset($_GET["updateProduct"])) {
+
     if (
         !empty($_POST["name"]) && !empty($_POST["degree"]) && !empty($_POST["designation"])
-        && !empty($_POST["unitPrice"]) && !empty($_FILES["pictureRef"])
-    ) {
+        && !empty($_POST["unitPrice"]) && !empty($_FILES["pictureRef"])) 
+    {
         $name = $_POST["name"];
         $degree = $_POST["degree"];
         $designation = $_POST["designation"];
         $unitPrice = $_POST["unitPrice"];
         $pictureRef = $_FILES["pictureRef"];
 
-        if (strlen($name) > 20) {
-            $msg = "Le nom ne doit pas excéder 20 caractères.";
+        if (strlen($name) > 30) {
+            $msg = "Le nom ne doit pas excéder 30 caractères.";
         } else if (strlen($degree) > 5) {
             $msg = "Le degré ne doit pas excéder 5 caractères.";
         } else if (strlen($designation) > 70) {
@@ -45,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
         } else if (strlen($unitPrice) > 5) {
             $msg = "Le prix doit être de 5 caractères maximum.";
         } else {
-            // img verify
+            // everything is fine
             if ($_FILES["pictureRef"]["error"] == UPLOAD_ERR_OK) {
 
                 $allowedFormats = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -65,41 +72,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
                 }
             }
 
-            // Add Product
-            $result = addProduct($name, $degree, $designation, $unitPrice, $imageName);
-            // ----------------------------------------------
-            if ($result) {
-                $msg = "Produit ajouté avec succès.";
-            } else {
-                $msg = "L'ajout du produit a échoué.";
+            if (isset($_GET["addProduct"])) {
+                // Add product in DB
+                $result = addProduct($name, $degree, $designation, $unitPrice, $imageName);
+                $msg = ($result)? "Produit ajouté avec succès.": "L'ajout du produit a échoué.";
             }
+            else {
+                // Update product in DB
+                $productId = $_POST["selectedProductId"];
+                if (!isset($productId) || empty($productId)) {
+                    error_log("L'identifiant du produit n'a pas été fourni dans la requête POST");
+                    $msg = "Le produit n'a pas pu être mis à jour.";
+                }
+                else {
+                    // the update can be done
+                    $result = updateProduct($productId, $name, $degree, $description, $unitPrice, $imageName);
+                    $msg = ($result)? "Produit modifié avec succès.": "la mise à jour du produit a échoué.";
+                }
+            }
+            // update product list for display
+            $products = getProducts();
         }
     }
-} else {
-    $msg = "Veuillez remplir tous les champs.";
+    else {
+        $msg = "Veuillez remplir tous les champs.";
+    }
+    
+    if (isset($_GET["addProduct"])) $productAddMsg = $msg;
+        else $productUpdateMsg = $msg;
+}
+elseif (!isset($_GET) || empty($_GET)){
+    // this the first access to the page -> nothing else to do
 }
 
-// -------------------------------------------------------------------------------------------
-
-// MODIFICATION / PRODUCTS
-$products = getProducts();
-
-// Form processing for product modification or deletion
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
-
-    // Retrieve form data
-    $productId = $_POST["selectedProductId"];
-    $productName = $_POST["productName"];
-    $productDegree = $_POST["productDegre"];
-    $productDescription = $_POST["productDescription"];
-    $productPrice = $_POST["productPrice"];
-
-    // Call the model function to update the product
-    updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice);
-    $msg = "Produit modifié avec succès.";
-
-} 
-
-$products = getProducts();
+else {
+    // wrong parameter -> nothing to do
+}
 
 require_once RACINE . "/views/viewAdmin.php";

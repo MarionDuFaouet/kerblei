@@ -9,7 +9,6 @@ $accountId = $user['accountId'];
 
 // get Orders
 require_once RACINE . "/model/db.cart.php";
-
 $orders=array();
 $orderHeaders = getOrdersByUser($accountId, '*');   // array of simple orders (just the header: id, order and delivery dates, status)
 
@@ -42,7 +41,7 @@ if (isset($_GET['update'])) {
 
     // delete user data
 } elseif (isset($_GET['delete'])) {
-    $orders = getOrdersByAccountId($accountId, "*");
+    $orders = getOrdersByUser($accountId, "*");
     foreach ($orders as $key => $value) {
         updateCartStatement($value['cartId'], "orpheline");
     }

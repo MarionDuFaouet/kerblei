@@ -31,7 +31,7 @@ require_once RACINE . '/views/menu.php';
         <!-- accessibility -->
         <div class="tabContent activeTabContent" id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
             <h2>Gestion commandes</h2>
-            <p class="msg"><?php echo $msg; ?></p>
+            <p class="msg"><?php echo $orderMsg; ?></p>
             <h2>Nouvelles commandes</h2>
             <table class="adminTable">
                 <thead>
@@ -107,9 +107,9 @@ require_once RACINE . '/views/menu.php';
 
             <h2>Ajouter un produit</h2>
             <!-- ADD PRODUCTS -->
-            <p class="msg"><?php echo $msg; ?></p>
+            <p class="msg"><?php echo $productAddMsg; ?></p>
 
-            <form action="./?action=admin" class="forms" method="POST" enctype="multipart/form-data">
+            <form action="./?action=admin&addProduct" class="forms" method="POST" enctype="multipart/form-data">
                 <label for="name">Nom</label>
                 <input type="text" name="name" placeholder="ex : Ambrée">
                 <label for="degree">Degrés</label>
@@ -120,17 +120,18 @@ require_once RACINE . '/views/menu.php';
                 <input type="text" name="unitPrice" placeholder="00.00">
 
                 <label for="pictureRef">Image</label>
-                <!-- <input type="text" name="pictureRef" placeholder="monimage.jpg"> -->
-                <input type="file" id="pictureRef" name="pictureRef" accept="image/jpeg" placeholder="monimage.jpg" /><br />
+                <input type="file" id="pictureRef" name="pictureRef" 
+                    accept="image/png, image/jpeg" 
+                    placeholder="monimage.jpg" /><br />
 
-                <input class="cta-button" type="submit" name="addProduct" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
+                <input class="cta-button" type="submit" title="Cliquez ici pour ajouter un nouveau produit" value="Ajouter produit" />
             </form>
             <!-- -------------------------------------------------------------------------- -->
 
 
             <h2>Modifier les produits</h2>
-            <!-- SHOW PRODUCTS -->
-            <p class="msg"><?php echo $msg; ?></p>
+            <!-- SHOW ALL PRODUCTS -->
+            <p class="msg"><?php echo $productUpdateMsg; ?></p>
 
             <table>
                 <thead>
@@ -151,11 +152,13 @@ require_once RACINE . '/views/menu.php';
                             <td><?php echo $product['name']; ?></td>
                             <td><?php echo $product['degree']; ?>&#37 vol</td>
                             <td><?php echo $product['designation']; ?></td>
-                            <td><?php echo $product['unitPrice']; ?> €</td>
+                            <td><?php echo $product['unitPrice']; ?> &euro;</td>
                             <td><?php echo $product['pictureRef']; ?></td>
                             <td>
                                 <!-- product selection button -->
-                                <input type="radio" name="selectedProduct" value="<?php echo $product['productId']; ?>" onclick="fillForm(<?php echo htmlspecialchars(json_encode($product)); ?>)">
+                                <input type="radio" name="selectedProduct" 
+                                    value="<?php echo $product['productId']; ?>" 
+                                    onclick="fillForm(<?php echo htmlspecialchars(json_encode($product)); ?>)" />
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -164,29 +167,32 @@ require_once RACINE . '/views/menu.php';
 
 
             <!-- MODIFY PRODUCT -->
-
-            <form action="./?action=admin&update" class="forms" method="POST">
-
+            <form action="./?action=admin&updateProduct" class="forms" method="POST" enctype="multipart/form-data">
+            
                 <!-- selected product ID hidden field -->
                 <input type="hidden" name="selectedProductId" id="selectedProductId">
                 <!-- Pre-filled modification fields -->
                 <label for="productName">Nom</label>
-                <input type="text" id="productName" name="productName">
+                <input type="text" id="productName" name="name">
                 <label for="productDegre">Degrés</label>
-                <input type="text" id="productDegre" name="productDegre">
+                <input type="text" id="productDegre" name="degre">
                 <label for="productDescription">Designation</label>
-                <input type="text" id="productDescription" name="productDescription">
+                <input type="text" id="productDescription" name="description">
                 <label for="productPrice">Prix unitaire</label>
-                <input type="text" id="productPrice" name="productPrice">
+                <input type="text" id="productPrice" name="unitPrice">
+                <label for="productPictureRef">Image</label>
+                <input type="file" id="productPictureRef" name="pictureRef" 
+                    accept="image/png, image/jpeg" placeholder="monimage.jpg" value="" /><br />
+
                 <!-- To modify product -->
                 <div class="accountAction">
-                    <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier">
+                    <input class="cta-button" type="submit" 
+                        accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier">
                 </div>
-
             </form>
 
         </div>
-        <!----------------------------- backOffice Products end ----------------------------->
+        <!-- --------------------------- backOffice Products end --------------------------- -->
 
     </div>
 
