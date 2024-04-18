@@ -7,7 +7,6 @@
  * Add a product item to cart from the page that presents all the products.
  * @param {string} productId - identifier of the product for which an item is being added.
  */
-
 function addProductInCart(element, productId) {
 
     // search if the type product is already in the cart
@@ -21,7 +20,7 @@ function addProductInCart(element, productId) {
     // updated the backend for "addProduct" front action
     fetch('?action=cartAdd',    // URL
         {
-            method: 'POST', // GET, POST, PUT, DELETE, etc.
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
@@ -32,9 +31,9 @@ function addProductInCart(element, productId) {
     )
         .then(response => {
             if (response.ok) {
-                return (response.json());       // return the Promise that contains the jsonObject of the response
+                return (response.json()); 
             }
-            return Promise.reject(new Error('status != 200'));    // reject if response not ok (ie. status != 200)
+            return Promise.reject(new Error('status != 200'));
         })
         .then(jsonObject => {   
             // jsonObject contains the JavaScript literal object that contains the updated cart
@@ -55,7 +54,6 @@ function addProductInCart(element, productId) {
  * Remove a product (all the items) from the cart (when click on trash)
  * @param {Object} element - .
  */
-
 function deleteProductInCart(element) {
 
     productId = element.parentElement.parentElement.dataset.id;
@@ -68,7 +66,6 @@ function deleteProductInCart(element) {
  * Remove/Add one item (of a product) from the cart.
  * @param {HTML Element} element - HTML element that has triggered the handler.
  */
-
 function decrProductInCart(element) {
     updateProductInCart(element, -1);
 }
@@ -82,7 +79,7 @@ function updateProductInCart(element, delta) {
     const quantityElement = document.querySelector("#cartQuantity-" + productId);
     let updatedQuantityValue = parseInt(quantityElement.value) + delta;
     if (updatedQuantityValue <= 0) {
-        removeCartRow(productId);        // see Note(1) 
+        removeCartRow(productId); 
         updatedQuantityValue = "0";
     }
     updateCart(productId, updatedQuantityValue);
@@ -95,13 +92,11 @@ function updateProductInCart(element, delta) {
  * @param {HTML Element} element - L'élément déclencheur.
  * @param {int} quantity - variation de quantité.
  */
-
 function updateCart(productId, newQuantityValue) {
-    // console.log ("updateProductInCart " + productId + " quantity: " + updatedQuantityValue);
 
-    fetch('?action=cartUpdate',    // URL
+    fetch('?action=cartUpdate',
         {
-            method: 'POST', // GET, POST, PUT, DELETE, etc.
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
@@ -113,9 +108,9 @@ function updateCart(productId, newQuantityValue) {
     )
         .then(response => {
             if (response.ok) {
-                return (response.json());       // return the Promise that contains the jsonObject of the response
+                return (response.json());
             }
-            return Promise.reject(new Error('status != 200'));    // reject if response not ok (ie. status != 200)
+            return Promise.reject(new Error('status != 200'));
         })
         .then(jsonObject => {
             total = synchronizeCart(jsonObject);
@@ -135,19 +130,16 @@ function updateCart(productId, newQuantityValue) {
 /**
  * Add a product item to cart from the page that presents all the products.
  */
-
 function validateCart() {
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     const deliveryDate = document.querySelector("#cartDate").value;
     if (deliveryDate === "") {
         document.querySelector("#cartMessage").textContent = "Saisissez une date de retrait";
         return;
     }
-    // -------------------------------
     // updated the backend for "addProduct" front action
-    fetch('?action=cartValidate',    // URL
+    fetch('?action=cartValidate',
         {
-            method: 'POST', // GET, POST, PUT, DELETE, etc.
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
@@ -158,13 +150,12 @@ function validateCart() {
     )
         .then(response => {
             if (response.ok) {
-                return (response.json());       // return the Promise that contains the jsonObject of the response
+                return (response.json());
             }
-            return Promise.reject(new Error('status != 200'));    // reject if response not ok (ie. status != 200)
+            return Promise.reject(new Error('status != 200'));
         })
         .then(jsonObject => {   
             // jsonObject contains the JavaScript literal object that contains the updated cart
-            
             // if action is requested
             if ((typeof (jsonObject.action) == 'string') && jsonObject.action === 'DROP') {
                 removeAllCartRow();
@@ -207,7 +198,6 @@ function addCartRow(productId) {
 //clone.children[2].children[1].value = "1";
     const input = clone.querySelector("#cartQuantity-0");
     input.value = "1";
-//  console.log("Value of row added: " + input.value);
     input.id = "cartQuantity-" + productId;
     
     // product sub total
@@ -223,7 +213,6 @@ function addCartRow(productId) {
 /* ---------------------------------------------------------------
     Remove a row from the cart table
 */
-
 function removeCartRow(productId) {
 //    console.log("Removed row: " + productId);
     const tr = document.querySelector("#product-" + productId);
@@ -243,11 +232,8 @@ function removeAllCartRow() {
     Synchronize cart with returned JSON data from the backend
     Return: total amount
 */
-
 function synchronizeCart(jsonCart) {
-    
-    //console.log(jsonCart.message);
-    
+        
     const tbody = document.querySelector("#cart tbody");
  
     let total = 0;
@@ -258,7 +244,6 @@ function synchronizeCart(jsonCart) {
 
     for (const id in products) {
         let product = products[id];
-        //console.log(`${id}: ${product}`);
         const tr = tbody.querySelector("#product-" + id);
         //sync. product name
         tr.firstElementChild.textContent = product.name;

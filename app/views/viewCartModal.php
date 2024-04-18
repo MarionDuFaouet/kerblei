@@ -5,7 +5,7 @@
         <span class="close">&times;</span>
         <!-- title -->
         <h2>Mon panier</h2>
-        <!-- vue panier, modif et validation -->
+        <!-- show cart, modify and validate -->
         <table>
             <thead>
                 <tr>
@@ -39,7 +39,6 @@
                             <td><span id="<?= 'cartUnitPrice-' . $productId; ?>"><?= $product['unitPrice']; ?></span>&euro;</td>
                             <!-- boutons cartModify -->
                             <td>
-                                <!-- i onclick="updateProductInCart(<?= $product['productId']; ?>)" class="fa-solid fa-square-minus"></i -->
                                 <i onclick="decrProductInCart(this)" class="fa-solid fa-square-minus"></i>
                                 <input type="text" id="<?= 'cartQuantity-' . $productId; ?>" size=3 maxlength=3 value="<?= $product['quantity']; ?>" />
                                 <i onclick="incrProductInCart(this)" class="fa-solid fa-square-plus"></i>

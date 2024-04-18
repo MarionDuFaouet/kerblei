@@ -9,7 +9,7 @@ $accountId = $user['accountId'];
 
 // get Orders
 require_once RACINE . "/model/db.cart.php";
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 $orders=array();
 $orderHeaders = getOrdersByUser($accountId, '*');   // array of simple orders (just the header: id, order and delivery dates, status)
 
@@ -20,7 +20,6 @@ foreach($orderHeaders as $index => $orderHeader) {
     $order['content'] = $orderContent;
     $orders[]=$order;
 }
-//------------------------------------
 
 // fill form with account datas
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

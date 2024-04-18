@@ -71,7 +71,6 @@ function getOrdersByAccountId($accountId, $status) {
     return $result;
 }
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 /**
  * Retrieves cart information by account ID.
  *
@@ -214,54 +213,6 @@ function addProductToOrder($orderId, $productId, $quantity) {
         $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
         return $query->execute();
         //return $query->rowCount() > 0;
-    } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());
-        return false;
-    }
-}
-
-// -------------------------------------------------------
-// CART
-/**
- * Adds a product to a specific order in the database.
- *
- * @param int $cartId The ID of the cart to add the product to.
- * @param int $productId The ID of the product to add.
- * @param int $quantity The quantity of the product to add.
- * @return bool True on success, false on failure.
- * @throws Exception If an error occurs during the database operation.
- */
-function addProductToCart($cartId, $productId, $quantity) {
-    try {
-        $cnx = connexionPDO();
-        $query = $cnx->prepare("INSERT INTO orderproduct (cartId, productId, quantity) VALUES (:cartId, :productId, :quantity)");
-        $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
-        $query->bindValue(':productId', $productId, PDO::PARAM_INT);
-        $query->bindValue(':quantity', $quantity, PDO::PARAM_INT);
-        $query->execute();
-        return $query->rowCount() > 0;
-    } catch (PDOException $e) {
-        throw new Exception("Erreur !: " . $e->getMessage());
-        return false;
-    }
-}
-
-/**
- * Removes a product from a specific cart in the database.
- *
- * @param int $cartId The ID of the order to remove the product from.
- * @param int $productId The ID of the product to remove.
- * @return bool True on success, false on failure.
- * @throws Exception If an error occurs during the database operation.
- */
-function removeProductFromCart($cartId, $productId) {
-    try {
-        $cnx = connexionPDO();
-        $query = $cnx->prepare("DELETE FROM orderproduct WHERE cartId = :cartId AND productId = :productId");
-        $query->bindValue(':cartId', $cartId, PDO::PARAM_INT);
-        $query->bindValue(':productId', $productId, PDO::PARAM_INT);
-        $query->execute();
-        return $query->rowCount() > 0;
     } catch (PDOException $e) {
         throw new Exception("Erreur !: " . $e->getMessage());
         return false;

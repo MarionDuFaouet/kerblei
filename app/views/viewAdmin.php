@@ -163,12 +163,9 @@ require_once RACINE . '/views/menu.php';
             </table>
 
 
-            <!-- MODIFY / DELETE PRODUCT -->
-            
-            <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+            <!-- MODIFY PRODUCT -->
+
             <form action="./?action=admin&update" class="forms" method="POST">
-            <!-- <form action="./?action=admin" class="forms" method="POST"> -->
-                <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
                 <!-- selected product ID hidden field -->
                 <input type="hidden" name="selectedProductId" id="selectedProductId">
@@ -181,26 +178,12 @@ require_once RACINE . '/views/menu.php';
                 <input type="text" id="productDescription" name="productDescription">
                 <label for="productPrice">Prix unitaire</label>
                 <input type="text" id="productPrice" name="productPrice">
-                <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-                <!-- MODIF FORMULAIRE ADMIN PRODUCT??? -->
-            <!-- To modify product -->
-            <div class="accountAction">
-                <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier">
-            </div>
-            </form>
-            <!-- to delete product ??? -->
-            <!-- div>
-                <a href="./?action=admin&delete" class="cta-button center" title="Suppression de  produit">Supprimer</a>
-            </div -->
-            <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-
-                <!-- <div class="accountAction">
+                <!-- To modify product -->
+                <div class="accountAction">
                     <input class="cta-button" type="submit" accept="image/jpeg" name="updateProduct" title="Modification de produit" value="Modifier">
-                    <input class="cta-button" type="submit" name="deleteProduct" title="Suppression de produit" value="Supprimer">
                 </div>
-            </form> -->
 
-            
+            </form>
 
         </div>
         <!----------------------------- backOffice Products end ----------------------------->

@@ -17,9 +17,9 @@ require_once RACINE . '/views/menu.php';
 
     <label for="mail">J'entre mon identifiant (mail) *</label>
     <input type="text" id="mail" name="mail" placeholder="Mon Email" 
-    value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail']) : ''; ?>" /><br>
+    value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail']) : ''; ?>"><br>
     <label for="password">J'entre mon mot de passe *</label>
-    <input type="password" id="password" name="password" placeholder="Mon mot de passe" /><br>
+    <input type="password" id="password" name="password" placeholder="Mon mot de passe"><br>
 
     <input id="loginButton" 
            class="cta-button" type="submit" 

@@ -46,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
             $msg = "Le prix doit être de 5 caractères maximum.";
         } else {
             // img verify
-            // var_dump($_FILES);
             if ($_FILES["pictureRef"]["error"] == UPLOAD_ERR_OK) {
 
                 $allowedFormats = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -82,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["addProduct"])) {
 
 // -------------------------------------------------------------------------------------------
 
-// MODIFICATION / SUPRESSION PRODUCTS
+// MODIFICATION / PRODUCTS
 $products = getProducts();
 
 // Form processing for product modification or deletion
@@ -99,14 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["updateProduct"])) {
     updateProduct($productId, $productName, $productDegree, $productDescription, $productPrice);
     $msg = "Produit modifié avec succès.";
 
-} elseif (isset($_POST["deleteProduct"])) {
-    // Retrieve the ID of the product to delete
-    $productIdToDelete = $_POST["selectedProductId"];
-
-    // Call the model function to delete the product
-    deleteProduct($productIdToDelete);
-    $msg = "Produit supprimé avec succès.";
-}
+} 
 
 $products = getProducts();
 
