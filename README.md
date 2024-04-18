@@ -10,7 +10,7 @@ Créez une nouvelle base de données en important le fichier kerblei.sql
 N'oubliez pas d'installer les dépendances en exécutant la commande Composer : composer install    
 
 Pour tester le site, deux comptes :  
-Administrateur : yoann@free.bzh      azertyA!  
+Administrateur : yohann@free.bzh      azertyA!  
 Client : titi@free.bzh     azertyA!  
   
 Si vous souhaitez le faire tourner directement :  
