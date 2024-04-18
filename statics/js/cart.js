@@ -137,11 +137,13 @@ function updateCart(productId, newQuantityValue) {
  */
 
 function validateCart() {
-
-    // search if the type product is already in the cart
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     const deliveryDate = document.querySelector("#cartDate").value;
-    if (deliveryDate === "") {return;}          // it should not happen
-    
+    if (deliveryDate === "") {
+        document.querySelector("#cartMessage").textContent = "Saisissez une date de retrait";
+        return;
+    }
+    // -------------------------------
     // updated the backend for "addProduct" front action
     fetch('?action=cartValidate',    // URL
         {
