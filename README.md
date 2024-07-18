@@ -15,5 +15,5 @@ Client : titi@free.bzh     azertyA!
   
 Si vous souhaitez le faire tourner directement :  
 
-http://greta-bretagne-sud.fr/stagiaires-kercode/marion-lozach/kerblei/?action=default
+https://greta-bretagne-sud.fr/stagiaires-kercode/marion-lozach/kerblei/
 
